@@ -17,9 +17,8 @@ title: KienDT Blog
 email: trungkien.keio@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Nothing to see here!
-baseurl: "/blog"
-production_url : http://dotrungkien.github.io.com/blog
-# url: "http://dotrungkien.github.io/blog"
+baseurl: ""
+url: ""
 # twitter_username: kien.metalrock
 github_username:  dotrungkien
 

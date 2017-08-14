@@ -57,14 +57,13 @@ Yếu tố này đánh giá tần suất xuất hiện của term trên `toàn b
 
 Tại sao lại như vậy ? nghe chừng hơi khó hiểu nhưng thực sự nó rất hợp lý.
 <br>
-Ví dụ thế này, bạn muốn tìm kiếm thông tin về Framgia. Khi bạn search google với từ khoá "công ty", thì nhận được khoảng 170,000,000 kết quả, nhưng với 170,000,000 kết quả đó, rất khó để biết được kết quả nào là kết quả chúng ta thực sự muốn tìm, và rõ ràng từ khoá "công ty" sẽ có giá trị rất thấp. Tuy nhiên, nếu bạn search với từ khoá "công ty Framgia", số lượng kết quả thu gọn lại chỉ còn khoảng 3,000,000 kết quả, và bạn thấy rõ ràng rằng các kết quả này rất sát với kết quả bạn mong muốn. Vì thế từ khoá ít xuất hiện hơn ("công ty Framgia") sẽ có độ thích hợp cao hơn là từ khoá xuất hiện nhiều hơn("công ty") trên `toàn bộ index`.
+Ví dụ thế này, bạn muốn tìm kiếm thông tin về Framgia. Khi bạn search google với từ khoá "công ty", thì nhận được khoảng 170,000,000 kết quả, nhưng với 170,000,000 kết quả đó, rất khó để biết được kết quả nào là kết quả chúng ta thực sự muốn tìm, suy ra rằng từ khoá "công ty" sẽ có giá trị rất thấp. Tuy nhiên, nếu bạn search với từ khoá "công ty Framgia", số lượng kết quả thu gọn lại chỉ còn khoảng 3,000,000 kết quả, và bạn thấy rõ ràng rằng các kết quả này rất sát với kết quả bạn mong muốn. Vì thế từ khoá ít xuất hiện hơn ("công ty Framgia") sẽ có độ thích hợp cao hơn là từ khoá xuất hiện nhiều hơn("công ty") trên `toàn bộ index`.
 <br>
 Mặc dù vậy, kết quả trên không có nghĩa là từ khoá "công ty Framgia" tốt hơn từ khoá "công ty" gần 60 lần. TDF được đánh giá theo công thức sau:
 
 $$idf(t) = 1 + \log \frac{numDoc}{docFreq + 1} $$
 
-*Giải thích*: inverse document frequency (idf) của t là logarit của thương giữa tổng số documents trong index và tần suất document xuất hiện t
-. (giá trị công thêm 1 ở đây để tránh xảy ra lỗi [Division by zero](https://en.wikipedia.org/wiki/Division_by_zero))
+*Giải thích*: inverse document frequency (idf) của t là logarit của thương giữa tổng số documents trong index và số documents xuất hiện t (giá trị công thêm 1 ở đây để tránh xảy ra lỗi [Division by zero](https://en.wikipedia.org/wiki/Division_by_zero)).
 
 theo đó thì kết quả đã được lấy logarit cơ số 10 đi nên con số 60 bên trên đã giảm kha khá rồi.
 
@@ -75,7 +74,7 @@ Công thức:
 
 $$norm(d) = \frac{1}{\sqrt{numTerms}}$$
 
-*Giải thích*: field-length norm (norm) là nghịch đảo của căn bậc hai số lần xuất hiện của term trong fields.
+*Giải thích*: field-length norm (norm) là nghịch đảo của căn bậc hai số lượng terms trong field.
 
 ### Putting it together
 3 yếu tố [Term frequency](#term-frequency), [Inverse document frequency](#inverse-document-frequency), [Field-length norm](#field-length-norm) đều được tính toán và lưu trữ trong quá trình đánh index.

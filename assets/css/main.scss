@@ -34,7 +34,7 @@ html * {
 
 body {
   font: {
-    size: 100%;
+    size: 28px;
     family: $primary-font; // variables inside partials > _variables.scss
   }
 }
@@ -67,31 +67,31 @@ body {
 --------------------------------- */
 
 h1 {
-    font-size: 2.2em;
-    line-height: 1.4em;
+    font-size: 1.6em;
 }
 
 h2 {
-    font-size: 2.0em;
+    font-size: 1.2em;
 }
 
 h3 {
-    font-size: 1.8em;
-}
-
-h4 {
-    font-size: 1.4em;
-}
-
-h5 {
-    font-size: 1.3em;
-}
-
-h6 {
     font-size: 1.0em;
 }
 
+h4 {
+    font-size: 0.8em;
+}
+
+h5 {
+    font-size: 0.6em;
+}
+
+h6 {
+    font-size: 0.4em;
+}
+
 h1, h2, h3, h4, h5, h6 {
+    border-bottom: 1px solid #FAFAFA;
     padding-bottom: 5px;
 }
 
@@ -103,7 +103,7 @@ p {
   line-height: 1.4;
   @include font-size(14px);
   @include MQ(M) {
-    @include font-size(18px);
+    @include font-size(20px);
   }
 }
 
@@ -120,6 +120,7 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+  text-align: center;
 }
 
 
@@ -172,7 +173,7 @@ header.main-header, footer.main-footer {
   p,address {
     @include font-size(12px);
     @include MQ(M) {
-      @include font-size(18px);
+      @include font-size(20px);
     }
   }
 }
@@ -182,7 +183,12 @@ header.main-header {
   background: #fafafa;
   // border-top: 5px $base-00 solid;
 
-  h1, h2 { text-align: center; color: inherit;}
+  h1, h2 {
+    text-align: center;
+    color: inherit;
+  }
+
+  h1 {font-size: 1.8em;}
   a {
     color: inherit;
     &:hover, &:active, &:focus {
@@ -214,7 +220,7 @@ header.main-header {
     padding-bottom:5px;
     @include transition(all, .2s);
     @include MQ(M) {
-      @include font-size(18px);
+      @include font-size(20px);
     }
     &:hover, &:focus, &:active {
       border-bottom-color: inherit;
@@ -260,7 +266,7 @@ footer.main-footer {
       display: inline;
       padding-right: 10px;
       @include MQ(M) {
-        @include font-size(18px);
+        @include font-size(20px);
       }
     }
   }
@@ -373,7 +379,7 @@ div.page-content {
     }
     @include MQ(M){
       li {
-        @include font-size(18px);
+        @include font-size(20px);
         line-height: 1.5;
         background-position: 0 7px;
       }
@@ -393,7 +399,7 @@ div.page-content {
       position:relative;
     }
     @include MQ(M){
-      @include font-size(18px);
+      @include font-size(20px);
       li {
         line-height: 1.5;
         background-position: 0 7px;
@@ -424,7 +430,7 @@ div.page-content {
 
     @include MQ(M) {
       dt, dd {
-        @include font-size(18px);
+        @include font-size(20px);
         line-height: 1.6;
       }
     }
@@ -432,6 +438,8 @@ div.page-content {
 
   img {
     padding: 1em 0;
+    text-align: center;
+    display: block;
   }
 
   p {
@@ -558,7 +566,7 @@ pre {
   }
 
   @include MQ(M) {
-    @include font-size(18px);
+    @include font-size(20px);
   }
 }
 pre.highlight, .highlight pre { background-color: #f8f8f8; }
@@ -630,7 +638,7 @@ p.post-meta {
   // padding: 1em 0;
   color: #7A7A7A;
   @include MQ(M) {
-    @include font-size(18px);
+    @include font-size(20px);
   }
 }
 
@@ -695,7 +703,7 @@ p.post-meta {
     a,span {
       @include font-size(12px);
       @include MQ(M) {
-        @include font-size(18px);
+        @include font-size(20px);
       }
     }
   }
@@ -737,13 +745,4 @@ th {
 tbody tr:nth-child(odd) td,
 tbody tr:nth-child(odd) th {
   background-color: $base-05;
-}
-
-/* --- Tags --- */
-
-.blog-tags {
-  font-family: 'Inconsolata','Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #000000;
-  font-size: 18px;
-  // margin-bottom: 30px;
 }

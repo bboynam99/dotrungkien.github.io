@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
         <link rel="canonical"
         href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+        <script type="text/javascript" async
+          src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
 
         <!-- Harmony styles -->
         <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/main.css">
@@ -35,17 +38,7 @@
         </header>
         {{ content }}
         <footer class="main-footer">
-            <div class="wc-container">
-                <div class="column one">
-                    {% include footer-links.html %}
-                </div>
-                <div class="column two">
-                    {% include social.html %}
-                </div>
-            </div>
-            <p class="wc-container disclaimer">
-                {% include footer.html %}
-            </p>
+
         </footer>
         <script type="text/javascript">
           /* To avoid render blocking css */
@@ -66,6 +59,5 @@
         <!-- Site js -->
         <script src="{{ site.baseurl }}/assets/js/all.js"></script>
         <!-- Google analytics  -->
-        {% include google-analytics.html %}
     </body>
 </html>

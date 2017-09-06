@@ -1,22 +1,18 @@
 ---
 layout: post
-comments: true
 title:  "Thuật toán đánh giá _score trong Elasticsearch"
-date:   2017-08-14 9:00:00
-permalink: 2017/08/14/thuat-toan-danh-gia-score-trong-elasticsearch/
 mathjax: true
 tags: Elasticsearch algorithm TF-IDF
 ---
 **Elasticsearch** là một engine search đã quá nổi tiếng rồi!
-<br>
+![](https://viblo.asia/uploads/0ee0a402-93c9-46e4-87e3-719c4336ad98.png)
 Mục đích chính để dùng Elasicsearch là gì ? - **Tìm kiếm**, dĩ nhiên là ES có thể làm được nhiều điều hơn thế, nhưng cái quan trọng nhất vẫn là tìm kiếm. Và theo mình thì khi dùng bất cứ công cụ gì, ngoài việc biết cách sử dụng nó, thì việc tìm hiểu xem nó hoạt động ra sao cũng quan trọng và thú vị không hề kém.
-<br>
-Khi tìm kiếm, Elascticsearch (ES) trả về cho mình ngoài các kết quả tìm được, còn có đánh giá `relevance` (độ liên quan) của kết quả dựa trên giá trị thực dương *_score*. ES sẽ sắp xếp các kết quả trả về của các query theo thứ tự *_score* giảm dần. Đây là điểm mà mình thấy rất thú vị trong ES, và mình sẽ dành bài viết này để nói về cách làm thế nào người ta tính toán và đưa ra được giá trị *_score* đó.
-<br>
-**Note**:
 
+Khi tìm kiếm, Elascticsearch (ES) trả về cho mình ngoài các kết quả tìm được, còn có đánh giá `relevance` (độ liên quan) của kết quả dựa trên giá trị thực dương *_score*. ES sẽ sắp xếp các kết quả trả về của các query theo thứ tự *_score* giảm dần. Đây là điểm mà mình thấy rất thú vị trong ES, và mình sẽ dành bài viết này để nói về cách làm thế nào người ta tính toán và đưa ra được giá trị *_score* đó.
+
+**Note**:
 - Elasticsearch là tên của search engine, không phải là tên thuật toán!
-- Một số thuật ngữ rất hay được sử dụng trong Elasticsearch, mình sẽ giữ nguyên để giữ gìn sự trong sáng của thuật ngữ, đồng thời cũng tiện cho việc tra cứu. Các thuật ngữ mình nhắc tới ở đây là: **relevance**, **index** (tương đương với database trong mysql), **type** (tương đương với table trong mysql), **document** (tương ứng với record trong mysql), **term** (từ, từ khóa), **field** (có thể gọi là *trường* - nhưng mình không thích lắm vì nó có cấu trúc, nên quyết định giữ nguyên)
+- Một số thuật ngữ rất hay được sử dụng trong Elasticsearch, mình sẽ giữ nguyên để giữ gìn sự trong sáng của thuật ngữ, đồng thời cũng tiện cho việc tra cứu. Các thuật ngữ mình nhắc tới ở đây là: *relevance*, *index* (tương đương với database trong mysql), *type* (tương đương với table trong mysql), *document* (tương ứng với record trong mysql), *term* (từ, từ khóa), *field* (có thể gọi là *trường* - nhưng mình không thích lắm vì nó có cấu trúc, nên quyết định giữ nguyên)
 
 ## TF/IDF
 
@@ -24,81 +20,70 @@ Thuật toán đánh giá được sử dụng rất phổ biến trong Elastics
 
 ### Term frequency
 Yếu tố này đánh giá tần suất xuất hiện của term trong field. Càng xuất hiện nhiều, relevance càng cao. Dĩ nhiên rồi, một field mà từ khoá xuất hiện 5 lần sẽ cho relevance cao hơn là field mà từ khoá chỉ xuất hiện 1 lần.
-<br>
-Ví dụ: nếu bạn search với từ khoá "quick", thì rõ ràng field bên trên sẽ cho TF cao hơn (xuất hiện 2 lần) filed bên dưới (xuất hiện 1 lần):
 
+Ví dụ: nếu bạn search với từ khoá "quick", thì rõ ràng field bên trên sẽ cho TF cao hơn (xuất hiện 2 lần) filed bên dưới (xuất hiện 1 lần):
 ```yaml
 { "title": "The quick brown fox jumps over the quick dog" }
 ```
-
 ```yaml
 { "title": "The quick brown fox" }
 ```
-
 TF được tính theo công thức sau:
-
-```
-tf(t, d) = √frequency
-```
-
-*Giải thích*: term frequency (tf) của t trong document d được tính bằng căn bậc hai của số lần t xuất hiện trong d.
+{% katex display %}
+tf(t, d) = \sqrt{frequency}
+{% endkatex %}
+Trong đó: *frequency* là số lần t xuất hiện trong d.
 
 ### Inverse document frequency
-Yếu tố này đánh giá tần suất xuất hiện của term trên `toàn bộ index`. Điều đáng chú ý ở đây là càng xuất hiện nhiều, càng `ít` thích hợp!
+Yếu tố này đánh giá tần suất xuất hiện của term trên *toàn bộ index*. Điều đáng chú ý ở đây là càng xuất hiện nhiều, càng `ít` thích hợp!
 
 ![](http://i0.kym-cdn.com/entries/icons/mobile/000/008/491/dafuq.jpg)
 
 
 Tại sao lại như vậy ? nghe chừng hơi khó hiểu nhưng thực sự nó rất hợp lý.
-<br>
+
 Ví dụ thế này, bạn muốn tìm kiếm thông tin về Framgia. Khi bạn search google với từ khoá "công ty", thì nhận được khoảng 170,000,000 kết quả, nhưng với 170,000,000 kết quả đó, rất khó để biết được kết quả nào là kết quả chúng ta thực sự muốn tìm, suy ra rằng từ khoá "công ty" sẽ có giá trị rất thấp. Tuy nhiên, nếu bạn search với từ khoá "công ty Framgia", số lượng kết quả thu gọn lại chỉ còn khoảng 3,000,000 kết quả, và bạn thấy rõ ràng rằng các kết quả này rất sát với kết quả bạn mong muốn. Vì thế từ khoá ít xuất hiện hơn ("công ty Framgia") sẽ cho relevance cao hơn là từ khoá xuất hiện nhiều hơn("công ty") trên `toàn bộ index`.
-<br>
+
 Mặc dù vậy, kết quả trên không có nghĩa là từ khoá "công ty Framgia" tốt hơn từ khoá "công ty" gần 60 lần. TDF được đánh giá theo công thức sau:
-
-```
-idf(t) = 1 + log ( numDocs / (docFreq + 1))
-```
-
-*Giải thích*: inverse document frequency (idf) của t là logarit cơ số e (logarit tự nhiên) của thương giữa tổng số documents trong index và số documents xuất hiện t (giá trị công thêm 1 ở đây để tránh xảy ra lỗi [Division by zero](https://en.wikipedia.org/wiki/Division_by_zero)).
+{% katex display %}
+idf(t) = 1 + \log{\frac{numDocs}{docFreq + 1}}
+{% endkatex %}
+Trong đó:
+- *numDocs* là tổng số lượng documents trong index
+- *docFreq* là số lượng documents xuất hiện t (giá trị công thêm 1 ở đây để tránh xảy ra lỗi [Division by zero](https://en.wikipedia.org/wiki/Division_by_zero))
+- log là logarit cơ số tự nhiên (cơ số e)
 
 theo đó thì kết quả đã được lấy logarit đi nên con số 60 bên trên đã giảm kha khá rồi.
 
 ### Field-length norm
-Yếu tố này đánh giá độ dài của field. Field càng ngắn, thì term sẽ có weight càng cao; và ngược lại. Điều này hoàn toàn dễ hiểu, bạn có thể thấy một từ xuất hiện trong *title* sẽ có giá trị hơn rất nhiều cũng từ đó nhưng xuất hiện trong *content*.
+Yếu tố này đánh giá độ dài của field.
+
+Field càng ngắn, thì term sẽ có weight càng cao; và ngược lại. Điều này hoàn toàn dễ hiểu, bạn có thể thấy một từ xuất hiện trong *title* sẽ có giá trị hơn rất nhiều cũng từ đó nhưng xuất hiện trong *content*.
 
 Công thức:
-
-```
-norm(d) = 1 / √numTerms
-```
-
-*Giải thích*: field-length norm (norm) là nghịch đảo của căn bậc hai số lượng term trong field. (có thể hiểu là số lượng chữ của field đó)
+{% katex display %}
+norm(d) = \frac{1}{\sqrt{numTerms}}
+{% endkatex %}
+Trong đó: *numTerms* là số lượng term trong field. (có thể hiểu là số lượng chữ của field đó).
 
 ### Putting it together
 *_score* cuối cùng sẽ là tích của 3 giá trị trên:
-
-```
+```yaml
 IDF score * TF score * fieldNorms
 ```
-
 hay
+{% katex display %}
+ (1 + \log{\frac{numDocs}{docFreq + 1}}) * \sqrt{Frequency} * \frac{1}{\sqrt{numTerms}}
+{% endkatex %}
 
-```
-log(numDocs / (docFreq + 1)) * √frequency * (1 / √numTerms)
-```
-<br>
 **Note**:
-
-- `numDocs` chính là `maxDocs`, đôi khi bao gồm cả những document đã bị delete
+- numDocs chính là `maxDocs`, đôi khi bao gồm cả những document đã bị delete
 - fieldNorm được tính toán và lưu trữ dưới dạng 8 bit floating point number. Nên khi tính toán, hệ thống sẽ encode và decode giá trị của fieldNorm về  8 bit, và theo đó, bạn sẽ thấy giá trị filedNorm đôi khi hơi khác so với tính toán một chút xíu xíu thôi. Nếu muốn hiểu thêm bạn có thể tham khảo [tại đây](https://lucene.apache.org/core/5_1_0/core/org/apache/lucene/search/similarities/DefaultSimilarity.html#encodeNormValue(float))
-
-> Expert: Default scoring implementation which encodes norm values as a single byte before being stored. At search time, the norm byte value is read from the index directory and decoded back to a float norm value. This encoding/decoding, while reducing index size, comes with the price of precision loss - it is not guaranteed that decode(encode(x)) = x. For instance, decode(encode(0.89)) = 0.875.
-
+> *Expert: Default scoring implementation which encodes norm values as a single byte before being stored. At search time, the norm byte value is read from the index directory and decoded back to a float norm value. This encoding/decoding, while reducing index size, comes with the price of precision loss - it is not guaranteed that decode(encode(x)) = x. For instance, decode(encode(0.89)) = 0.875.*
 
 ### Time for action
 Ta tạo và test thử với dữ liệu như sau:
-
-```
+```yaml
 PUT /my_index/doc/1
 { "text" : "quick brown fox" }
 
@@ -113,10 +98,18 @@ GET /my_index/doc/_search?explain
 ```
 **Expected** kết quả:
 
-- `tf`: có 1 kết quả/1 doc, vậy `tf = 1.0`
-- `idf`: tính toán theo công thức `1 + log((numDocs)/(docFreqs+1)) = 1+log(1/2) = 0.30685282`
-- `fieldNorm`: field "quick brown fox" có độ dài 3, vậy `filedNorm = 1/sqrt(3) = 0.577`
+- tf: có 1 kết quả/1 doc, vậy tf = 1.0
+- idf:
 
+{% katex display %}
+idf(t) = 1 + \log{\frac{numDocs}{docFreq + 1}} = 1 + \log{\frac{1}{2}} = 0.30685282
+{% endkatex %}
+
+- fieldNorm: field "quick brown fox" có độ dài 3, vậy
+
+{% katex display %}
+filedNorm = \frac{1}{\sqrt{3}} = 0.577
+{% endkatex %}
 **Actual:**
 
 ```yaml
@@ -136,9 +129,8 @@ Cảm ơn bạn đã đọc đến đây, nhưng trên thực tế, kể từ b�
 ![](http://i0.kym-cdn.com/photos/images/original/000/407/951/159.jpg)
 
 Mình nhận ra được điều này khi chạy thực tế đoạn code mình viết bên trên kia (yaoming again =))).
-<br>
-Đùa chút thôi, các bạn vẫn hoàn toàn có thể sử dụng thuật toán TF/IDF như cũ, chỉ cần thay đổi config của `similarity` thôi.
 
+Đùa chút thôi, các bạn vẫn hoàn toàn có thể sử dụng thuật toán TF/IDF như cũ, chỉ cần thay đổi config của `similarity` thôi.
 ```yaml
 "similarity": {
   "default": {
@@ -146,7 +138,7 @@ Mình nhận ra được điều này khi chạy thực tế đoạn code mình 
   }
 }
 ```
-<br>
+
 **Note**:
 - Trong Elasticsearch có rất nhiều `similarity module` implement thuật toán đánh giá similarity giữa các kết quả, TF/IDF và BM là một trong số đó, các thuật toán khác các bạn có thể tham khảo thêm [tại đây](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-similarity.html)
 - Elastic search phiên bản 2.4 trở về trước thì sẽ mặc định similarity là `classic` (tức TF/IDF)
@@ -158,26 +150,23 @@ Thực chất, BM25 vẫn dựa trên nền tảng của TF/IDF, và cải tiế
 
 ### IDF trong BM25
 công thức của BM25 IDF là:
-
-```
-idf(t) = log(1 + (docCount - docFreq + 0.5) / (docFreq + 0.5))
-```
+{% katex display %}
+idf(t) = \log{(1 + \frac{docCount - docFreq + 0.5}{docFreq + 0.5})}
+{% endkatex %}
 
 Trong đó:
-
-- `docCount`: số lượng document
-- `docFreq`: số lượng document chứa term
+- *docCount*: số lượng document
+- *docFreq*: số lượng document chứa term
 
 ### TF trong BM25
-trong BM25 thì term frequency được tính theo công thức:
+Trong BM25 thì term frequency được tính theo công thức:
+{% katex display %}
+\frac{(k + 1) * freq}{k + freq}
+{% endkatex %}
 
-```
-((k + 1) * freq) / (k + freq)
-```
 Trong đó:
-
-- `k`: hằng số (thường là 1.2)
-- `freq`: frequency của term trong document
+- *k*: hằng số (thường là 1.2)
+- *freq*: frequency của term trong document
 
 ![](http://opensourceconnections.com/blog/uploads/2015/TF1.png)
 
@@ -186,35 +175,35 @@ Như các bạn có thể nhìn thấy, đường BM25 TF score tiệm cận d�
 
 ### Document Length trong BM25
 Thực ra công thức TF bên trên kia là chưa thực sự hoàn chỉnh, nó đúng với những document có độ dài trung bình trong toàn bộ index. Nếu độ dài document quá ngắn hoặc quá dài so với độ dài trung bình, thì công thức trên sẽ cho kết quả thiếu chính xác.
-<br>
+
 Vì thế người ta thêm vào trong công thức trên 2 tham số, một hằng số b và một giá trị độ dài L, công thức sẽ trở thành:
 
-```
-((k + 1) * freq) / (k * (1.0 - b + b * L) + freq)
-```
+{% katex display %}
+\frac{(k + 1) * freq}{k * (1.0 - b + b * L) + freq}
+{% endkatex %}
 
 trong đó b=0.75 (mặc định), L là tỉ lệ giữa độ dài của document so với độ dài trung bình của tất cả documents.
 
-```
-L = fieldLength / avgFieldLength
-```
+{% katex display %}
+L = \frac{fieldLength}{avgFieldLength}
+{% endkatex %}
 
 Cũng như k, bạn có thể điều chỉnh b để phù hợp với mô hình bạn xây dựng. b càng gần 0 thì độ ảnh hưởng của document length càng nhỏ, và ngược lại, b càng lớn thì độ ảnh hưởng của document length càng lớn.
-<br>
+
 Đây là biểu đồ thể hiện giá trị của TF đối với các độ dài khác nhau của document:
 
 ![](http://opensourceconnections.com/blog/uploads/2015/NORMS1.png)
 
-<br>
+
 
 ### All Together
 Ta công thức cuối cùng của BM25
-
-```
-IDF * (freq * (k1 + 1)) / (freq + k1 * (1 - b + b * (fieldLength / avgFieldLength)))
-```
+{% katex display %}
+\log{(1 + \frac{docCount - docFreq + 0.5}{docFreq + 0.5})} * \frac{(k + 1) * freq}{k * (1.0 - b + b * L) + freq}
+{% endkatex %}
 
 ### Time for action - round 2
+
 Chuẩn bị dữ liệu và test:
 
 ```yaml
@@ -274,7 +263,7 @@ Vậy `_score = 0.6931471805599453*0.8484848484848484 = 0.588124`
 ```
 
 Kết quả gần như chính xác hoàn, tuy nhiên có sai số là do đâu ? Nhìn vào kết quả actual, ta nhận thấy một điểm lạ, đó là `fieldLength = 10.24` chứ không phải là 10 ?
-<br>
+
 Tại sao lại như vậy? Câu trả lời cũng giống như field-Length norm ở bên trên, giá trị được lưu là 8 bit, nên trong quá trình encode với decode dữ liệu đã bị sai khác đi một chút. Tuy nhiên kết quả vẫn có thể chấp nhận được.
 
 ## Conclusion

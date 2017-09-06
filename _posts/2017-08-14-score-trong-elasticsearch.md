@@ -7,7 +7,6 @@ permalink: 2017/08/14/thuat-toan-danh-gia-score-trong-elasticsearch/
 mathjax: true
 tags: Elasticsearch algorithm TF-IDF
 ---
-
 **Elasticsearch** là một engine search đã quá nổi tiếng rồi!
 <br>
 Mục đích chính để dùng Elasicsearch là gì ? - **Tìm kiếm**, dĩ nhiên là ES có thể làm được nhiều điều hơn thế, nhưng cái quan trọng nhất vẫn là tìm kiếm. Và theo mình thì khi dùng bất cứ công cụ gì, ngoài việc biết cách sử dụng nó, thì việc tìm hiểu xem nó hoạt động ra sao cũng quan trọng và thú vị không hề kém.
@@ -247,7 +246,6 @@ GET /my_index/my_type/_search
 **Expected:** kết quả cho `_id=3` (`_id=4` các bạn có thể tự làm)
 
 - `idf`: docCount = 4, docFreq = 2
-
 ```
   log(1 + (docCount - docFreq + 0.5) / (docFreq + 0.5))
 = log(1 + (4-2 + 0.5) / (2+0.5))
@@ -255,7 +253,6 @@ GET /my_index/my_type/_search
 ```
 
 - TF with document Length: freq = 1 (trong doc chỉ có 1 "hahaha"), k = 1.25, b = 0.75, fieldLength = 10, agvLength = 7
-
 ```
   (freq * (k1 + 1)) / (freq + k1 * (1 - b + b * fieldLength / avgFieldLength))
 = (1 * (1.25 + 1) / (1 + 1.25 * (1 - 0.75 + 0.75 * (10. / 7))))
@@ -265,7 +262,6 @@ GET /my_index/my_type/_search
 Vậy `_score = 0.6931471805599453*0.8484848484848484 = 0.588124`
 
 **Actual:**
-
 ```
 ...
 "_score": 0.58279467,

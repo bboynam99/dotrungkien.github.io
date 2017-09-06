@@ -10,7 +10,7 @@ Chúng ta sẽ bắt đầu với một bài toán nhỏ như sau:
 
 ### Straight-forward
 Một cách đơn giản và trực diện nhất, đó chính là brute-force, nhân tất vào, rồi đếm số chữ số 0
-```Python
+```python
 def ftz(n):
   if n == 0: return 0
   product = 1

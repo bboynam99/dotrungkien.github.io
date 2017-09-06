@@ -32,8 +32,9 @@ f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi
 \end{bmatrix}
 {% endkatex %}
 
-```Python
+```python
 def test_method():
   for i in range(10):
     pass
 ```
+{% highlight ruby %} def print_hi(name) puts "Hi, #{name}" end print_hi('Tom') #=> prints 'Hi, Tom' to STDOUT. {% endhighlight %}

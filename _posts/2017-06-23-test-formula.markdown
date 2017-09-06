@@ -8,6 +8,18 @@ Chào các bạn, đây là một công thức toán học trên blog của mìn
 \\[
 \frac{1}{2}e^2 = \frac{1}{2}(y - \hat{y})^2 = \frac{1}{2}(y - \mathbf{\bar{x}}\mathbf{w})^2
 \\]
+1
+
+2
+
+3
+
+4
+
+5
+
+
+
 {% katex display %}
 c = \pm\sqrt{a^2 + b^2}
 {% endkatex %}

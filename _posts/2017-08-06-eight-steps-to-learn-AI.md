@@ -1,12 +1,8 @@
 ---
 layout: post
-comments: true
 title:  "8 bước tiếp cận với Machine Learning"
-date:   2017-08-06 23:59:00
-permalink: 2017/08/06/eight-steps-to-learn-AI/
 mathjax: true
 tags: AI machine-learning
-category: ML AI
 ---
 Đâu là nguồn tốt nhất để học AI? Đây là một câu hỏi rất thưòng gặp trên Quora, trang web để học và chia sẻ kiến thức rất nổi tiếng.
 <br>

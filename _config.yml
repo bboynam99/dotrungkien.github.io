@@ -20,6 +20,9 @@ harmony:
     email: trungkien162@gmail.com
     url: https://dotrungkien.github.io
 
+show_drafts: false
+future: true
+unpublished: true
 markdown:    kramdown
 highlighter: rouge
 kramdown:

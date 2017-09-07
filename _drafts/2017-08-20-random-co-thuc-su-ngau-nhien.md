@@ -55,8 +55,8 @@ X_{n+1} = (aX_{n} + c)\ mod\ m
 Trong đó:
 - $$m,\ 0 < m$$: Mô đun, thường sẽ là một số đủ lớn, ví dụ $$2^{32}, 2^{31} - 1, 2^{48}, 2^{64}$$
 - $$a,\ 0 < a < m$$: Hằng số nhân *mutiplier*
-- $$c,\ 0 <= c < m$$: Hằng số cộng thêm *increment*
-- $$X_{0},\ 0 <= X_{0} < m$$: seed, giá trị khởi tạo
+- $$c,\ 0 \leq c < m$$: Hằng số cộng thêm *increment*
+- $$X_{0},\ 0 \leq X_{0} < m$$: seed, giá trị khởi tạo
 
 Chu kỳ của LCG lớn nhất là m, và để LCG sinh ra tất cả các giá trị trong chu kỳ với mọi giá trị khởi tạo thì sẽ cần những điều kiện ràng buộc như sau
 - $$m$$ và $$c$$ là nguyên tố cùng nhau
@@ -76,11 +76,11 @@ Và chu kỳ của MWC cũng rất lớn, từ $$2^{60}$$ cho tới $$2^{2000000
 
 Trong MWC chúng ta sẽ có một giá trị **r**, gọi là *lag* của MWC. Và cũng giống như LCG, chúng ta cũng sẽ có *mutiplier* và *modulus*, nhưng sẽ không còn *increment*, mà thay vào đó là một giá trị *carry*. Công thức sẽ như sau:
 \\[
-x_{n} = (ax_{n-r} + c_{n-1})\ \ mod \ \ b,\ n>=r
+x_{n} = (ax_{n-r} + c_{n-1})\ \ mod \ \ b,\ n\geq r
 \\]
 Trong đó, cũng giống như trên, **a** sẽ là mutiplier, và ở đây **b** sẽ là mô đun, thường là $$2^{32}$$. Điểm khác biệt là giá trị carry **c**, giá trị này sẽ được dùng để tính toán giá trị **x** tiếp theo. Công thức của **c** là:
 \\[
-c_{n} = \lfloor \frac{ax_{n-r} + c_{n-1}}{b} \rfloor,\ n>=r
+c_{n} = \lfloor \frac{ax_{n-r} + c_{n-1}}{b} \rfloor,\ n\geq r
 \\]
 người ta thường chọn giá trị của a sao cho $$ab-1$$ là *Safe Prime*, tức $$ab-1$$ và $$\frac{ab}{2}-1$$ đều là nguyên tố, khi đó chu kì của MWC sẽ là $$\frac{ab}{2}-1$$
 

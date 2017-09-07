@@ -8,24 +8,24 @@ tags: AI machine-learning
 <br>
 Và đây là câu trả lời từ `Ben Hamner`, Co-founder đồng thời là CTO của Kaggle:
 <br>
-Bạn thật là may mắn - giờ đây chính là thời điểm tốt hơn bao giờ hết để bắt đầu học về AI, một lĩnh vực đang phát triển với tốc độ chóng mặt trong những năm gần đây. Những chuyên gia đã đưa ra rất nhiều những tool open source với chất lưọng cao; đồng thời với đó là các courses học AI hay blog trên mạng cũng đưọc cập nhật hàng ngày. AI đã khai mở thị trưòng đáng giá hàng tỉ Đô, và tạo ra nhiều những cơ hội việc làm hoàn toàn mới.
+Bạn thật là may mắn - giờ đây chính là thời điểm tốt hơn bao giờ hết để bắt đầu học về AI, một lĩnh vực đang phát triển với tốc độ chóng mặt trong những năm gần đây. Những chuyên gia đã đưa ra rất nhiều những tool open source với chất lưọng cao; đồng thời với đó là các courses học AI hay blog trên mạng cũng được cập nhật hàng ngày. AI đã khai mở thị trưòng đáng giá hàng tỉ Đô, và tạo ra nhiều những cơ hội việc làm hoàn toàn mới.
 <br>
 Điều đó cũng có nghĩa là bạn sẽ có khả năng bị overload thông tin khi bắt đầu đặt chân vào lĩnh vực này. Và đây là cách tôi tiếp cận. Nếu bạn cảm thấy bị tắc tại bất cứ bước nào, lên Kaggle hoặc các forums và tìm kiếm các câu trả lời là một cách đi rất tốt.
 <br>
 
 ### 1. Hãy tìm một problem mà bạn yêu thích
-Bắt đầu với problem mà bạn muốn giải quyết bao giờ cũng dễ chịu hơn nhiều so với việc bạn ngồi tại chỗ và học, học nữa, học mãi (bạn có thể tìm đưọc rất nhiều các problem trên Google nên tôi sẽ không nói chi tiết tại đây). Giải quyết một vấn đề cũng đồng thời thúc đẩy bạn phải tiếp cận machine learning một cách chủ động thay vì thụ động đọc về nó.
+Bắt đầu với problem mà bạn muốn giải quyết bao giờ cũng dễ chịu hơn nhiều so với việc bạn ngồi tại chỗ và học, học nữa, học mãi (bạn có thể tìm được rất nhiều các problem trên Google nên tôi sẽ không nói chi tiết tại đây). Giải quyết một vấn đề cũng đồng thời thúc đẩy bạn phải tiếp cận machine learning một cách chủ động thay vì thụ động đọc về nó.
 <br>
-Những problem đưọc xem là **tốt** để bắt đầu thưòng có các tiêu chí sau:
+Những problem được xem là **tốt** để bắt đầu thưòng có các tiêu chí sau:
 
 - Nó thuộc phạm trù mà bạn hứng thú
-- Bạn có thể thu thập đưọc các dữ liệu phù hợp và sẵn có với problem đó
-- Bạn có thể làm việc đưọc với các dữ liệu đó trên một máy tính cá nhân.
+- Bạn có thể thu thập được các dữ liệu phù hợp và sẵn có với problem đó
+- Bạn có thể làm việc được với các dữ liệu đó trên một máy tính cá nhân.
 
 Vẫn chưa thấy có gì gần gũi ? Không sao, chúng tôi có cung cấp một ví dụ về ML rất nhỏ, hoàn toàn có thể chạy trên máy bạn, và có thể dùng nó để tham gia tranh tài. Đó là [titanic competition](!https://www.kaggle.com/c/titanic)
 
 ### 2. Xây dựng một solution để gỉai quyết vấn đề một cách nhanh nhất
-Sẽ rất sai lầm khi bạn mới tiếp cận với Machine Learning mà bạn lại lún sâu vào việc implement sao cho đẹp và tối ưu, tin tôi đi, đầu tiên bạn chỉ cần chạy đưọc, và chạy đúng đã. Mọi thứ khác có hay không, không quan trọng!
+Sẽ rất sai lầm khi bạn mới tiếp cận với Machine Learning mà bạn lại lún sâu vào việc implement sao cho đẹp và tối ưu, tin tôi đi, đầu tiên bạn chỉ cần chạy được, và chạy đúng đã. Mọi thứ khác có hay không, không quan trọng!
 <br>
 Chỉ đơn gỉan là đọc dữ liệu, xử lý dữ liệu, chạy một model cơ bản, xuất kết quả và đánh giá độ chính xác, vậy thôi.
 
@@ -33,10 +33,10 @@ Chỉ đơn gỉan là đọc dữ liệu, xử lý dữ liệu, chạy một mo
 Khi này mới là bước bạn tiến hành cải tiến solution tại bưóc 2.<br>
 Hãy thử cải thiện từng step, sau đó đánh giá xem nó có ảnh hưỏng như thế nào tới toàn bộ solution của bạn. Và từ đó xem nó có đáng giá để bỏ thời gian ra cải thiện step đó hay không.
 <br>
-Thông thưòng thì dành thời gian để thu thập nhiều dữ liệu và xử lý đầu vào chính xác sẽ cho kết quả tốt hơn là đi sâu vào tối ưu thuật toán của model. Bởi vì khi bạn có thêm nhiều dữ liệu và hiển thị đưọc nó ra, bạn hoàn toàn có thể phần nào đó hiểu đưọc cấu trúc cũng như sự khác biệt giữa các dữ liệu.
+Thông thưòng thì dành thời gian để thu thập nhiều dữ liệu và xử lý đầu vào chính xác sẽ cho kết quả tốt hơn là đi sâu vào tối ưu thuật toán của model. Bởi vì khi bạn có thêm nhiều dữ liệu và hiển thị được nó ra, bạn hoàn toàn có thể phần nào đó hiểu được cấu trúc cũng như sự khác biệt giữa các dữ liệu.
 
 ### 4. Viết lại và chia sẻ solution của mình
-Cách tốt nhất để nhận đưọc feedback về solution của mình chính là viết lại nó và share trên mạng. Viết lại solution chính là một phương pháp để bạn hiểu đưọc solution một cách rõ ràng và có hệ thống hơn. Đồng thời có một lợi ích rất lớn nữa, đó là nó làm đẹp cho cv của bạn, nó trở thành những showcase để bạn có thể đem đi khoe hoặc đi phỏng vấn.
+Cách tốt nhất để nhận được feedback về solution của mình chính là viết lại nó và share trên mạng. Viết lại solution chính là một phương pháp để bạn hiểu được solution một cách rõ ràng và có hệ thống hơn. Đồng thời có một lợi ích rất lớn nữa, đó là nó làm đẹp cho cv của bạn, nó trở thành những showcase để bạn có thể đem đi khoe hoặc đi phỏng vấn.
 <br>
 [Kaggle Datasets](!https://www.kaggle.com/datasets) và [Kaggle Kernels](!https://www.kaggle.com/kernels) là những cách vô cùng hiệu quả để share kết quả và data của bạn, nhận feedback từ những người khác, và theo dõi cách mà họ mở rộng vấn đề của bạn. Nó cũng là cách để bạn nâng cao được profile `Kaggle` của mình.
 

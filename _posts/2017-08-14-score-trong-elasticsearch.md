@@ -22,16 +22,16 @@ Thuật toán đánh giá được sử dụng rất phổ biến trong Elastics
 Yếu tố này đánh giá tần suất xuất hiện của term trong field. Càng xuất hiện nhiều, relevance càng cao. Dĩ nhiên rồi, một field mà từ khoá xuất hiện 5 lần sẽ cho relevance cao hơn là field mà từ khoá chỉ xuất hiện 1 lần.
 
 Ví dụ: nếu bạn search với từ khoá "quick", thì rõ ràng field bên trên sẽ cho TF cao hơn (xuất hiện 2 lần) filed bên dưới (xuất hiện 1 lần):
-```yaml
+```
 { "title": "The quick brown fox jumps over the quick dog" }
 ```
-```yaml
+```
 { "title": "The quick brown fox" }
 ```
 TF được tính theo công thức sau:
-{% katex display %}
+\\[
 tf(t, d) = \sqrt{frequency}
-{% endkatex %}
+\\]
 Trong đó: *frequency* là số lần t xuất hiện trong d.
 
 ### Inverse document frequency
@@ -45,9 +45,9 @@ Tại sao lại như vậy ? nghe chừng hơi khó hiểu nhưng thực sự n�
 Ví dụ thế này, bạn muốn tìm kiếm thông tin về Framgia. Khi bạn search google với từ khoá "công ty", thì nhận được khoảng 170,000,000 kết quả, nhưng với 170,000,000 kết quả đó, rất khó để biết được kết quả nào là kết quả chúng ta thực sự muốn tìm, suy ra rằng từ khoá "công ty" sẽ có giá trị rất thấp. Tuy nhiên, nếu bạn search với từ khoá "công ty Framgia", số lượng kết quả thu gọn lại chỉ còn khoảng 3,000,000 kết quả, và bạn thấy rõ ràng rằng các kết quả này rất sát với kết quả bạn mong muốn. Vì thế từ khoá ít xuất hiện hơn ("công ty Framgia") sẽ cho relevance cao hơn là từ khoá xuất hiện nhiều hơn("công ty") trên `toàn bộ index`.
 
 Mặc dù vậy, kết quả trên không có nghĩa là từ khoá "công ty Framgia" tốt hơn từ khoá "công ty" gần 60 lần. TDF được đánh giá theo công thức sau:
-{% katex display %}
+\\[
 idf(t) = 1 + \log{\frac{numDocs}{docFreq + 1}}
-{% endkatex %}
+\\]
 Trong đó:
 - *numDocs* là tổng số lượng documents trong index
 - *docFreq* là số lượng documents xuất hiện t (giá trị công thêm 1 ở đây để tránh xảy ra lỗi [Division by zero](https://en.wikipedia.org/wiki/Division_by_zero))
@@ -61,20 +61,20 @@ Yếu tố này đánh giá độ dài của field.
 Field càng ngắn, thì term sẽ có weight càng cao; và ngược lại. Điều này hoàn toàn dễ hiểu, bạn có thể thấy một từ xuất hiện trong *title* sẽ có giá trị hơn rất nhiều cũng từ đó nhưng xuất hiện trong *content*.
 
 Công thức:
-{% katex display %}
+\\[
 norm(d) = \frac{1}{\sqrt{numTerms}}
-{% endkatex %}
+\\]
 Trong đó: *numTerms* là số lượng term trong field. (có thể hiểu là số lượng chữ của field đó).
 
 ### Putting it together
 *_score* cuối cùng sẽ là tích của 3 giá trị trên:
-```yaml
+```
 IDF score * TF score * fieldNorms
 ```
 hay
-{% katex display %}
+\\[
  (1 + \log{\frac{numDocs}{docFreq + 1}}) * \sqrt{Frequency} * \frac{1}{\sqrt{numTerms}}
-{% endkatex %}
+\\]
 
 **Note**:
 - numDocs chính là `maxDocs`, đôi khi bao gồm cả những document đã bị delete
@@ -83,7 +83,7 @@ hay
 
 ### Time for action
 Ta tạo và test thử với dữ liệu như sau:
-```yaml
+```
 PUT /my_index/doc/1
 { "text" : "quick brown fox" }
 
@@ -101,18 +101,18 @@ GET /my_index/doc/_search?explain
 - tf: có 1 kết quả/1 doc, vậy tf = 1.0
 - idf:
 
-{% katex display %}
+\\[
 idf(t) = 1 + \log{\frac{numDocs}{docFreq + 1}} = 1 + \log{\frac{1}{2}} = 0.30685282
-{% endkatex %}
+\\]
 
 - fieldNorm: field "quick brown fox" có độ dài 3, vậy
 
-{% katex display %}
+\\[
 filedNorm = \frac{1}{\sqrt{3}} = 0.577
-{% endkatex %}
+\\]
 **Actual:**
 
-```yaml
+```
 weight(text:fox in 0) [PerFieldSimilarity]:  0.15342641
 result of:
     fieldWeight in 0                         0.15342641
@@ -131,7 +131,7 @@ Cảm ơn bạn đã đọc đến đây, nhưng trên thực tế, kể từ b�
 Mình nhận ra được điều này khi chạy thực tế đoạn code mình viết bên trên kia (yaoming again =))).
 
 Đùa chút thôi, các bạn vẫn hoàn toàn có thể sử dụng thuật toán TF/IDF như cũ, chỉ cần thay đổi config của `similarity` thôi.
-```yaml
+```
 "similarity": {
   "default": {
     "type": "classic"
@@ -150,9 +150,9 @@ Thực chất, BM25 vẫn dựa trên nền tảng của TF/IDF, và cải tiế
 
 ### IDF trong BM25
 công thức của BM25 IDF là:
-{% katex display %}
+\\[
 idf(t) = \log{(1 + \frac{docCount - docFreq + 0.5}{docFreq + 0.5})}
-{% endkatex %}
+\\]
 
 Trong đó:
 - *docCount*: số lượng document
@@ -160,9 +160,9 @@ Trong đó:
 
 ### TF trong BM25
 Trong BM25 thì term frequency được tính theo công thức:
-{% katex display %}
+\\[
 \frac{(k + 1) * freq}{k + freq}
-{% endkatex %}
+\\]
 
 Trong đó:
 - *k*: hằng số (thường là 1.2)
@@ -178,15 +178,15 @@ Thực ra công thức TF bên trên kia là chưa thực sự hoàn chỉnh, n�
 
 Vì thế người ta thêm vào trong công thức trên 2 tham số, một hằng số b và một giá trị độ dài L, công thức sẽ trở thành:
 
-{% katex display %}
+\\[
 \frac{(k + 1) * freq}{k * (1.0 - b + b * L) + freq}
-{% endkatex %}
+\\]
 
 trong đó b=0.75 (mặc định), L là tỉ lệ giữa độ dài của document so với độ dài trung bình của tất cả documents.
 
-{% katex display %}
+\\[
 L = \frac{fieldLength}{avgFieldLength}
-{% endkatex %}
+\\]
 
 Cũng như k, bạn có thể điều chỉnh b để phù hợp với mô hình bạn xây dựng. b càng gần 0 thì độ ảnh hưởng của document length càng nhỏ, và ngược lại, b càng lớn thì độ ảnh hưởng của document length càng lớn.
 
@@ -198,15 +198,15 @@ Cũng như k, bạn có thể điều chỉnh b để phù hợp với mô hình
 
 ### All Together
 Ta công thức cuối cùng của BM25
-{% katex display %}
+\\[
 \log{(1 + \frac{docCount - docFreq + 0.5}{docFreq + 0.5})} * \frac{(k + 1) * freq}{k * (1.0 - b + b * L) + freq}
-{% endkatex %}
+\\]
 
 ### Time for action - round 2
 
 Chuẩn bị dữ liệu và test:
 
-```yaml
+```
 DELETE /my_index
 PUT /my_index
 { "settings": { "number_of_shards": 1 }}
@@ -232,9 +232,9 @@ GET /my_index/my_type/_search
 }
 ```
 
-**Expected:** kết quả cho `_id=3` (`_id=4` các bạn có thể tự làm)
+**Expected:** kết quả cho _id=3 (_id=4 các bạn có thể tự làm)
 
-- `idf`: docCount = 4, docFreq = 2
+- idf: docCount = 4, docFreq = 2
 ```
   log(1 + (docCount - docFreq + 0.5) / (docFreq + 0.5))
 = log(1 + (4-2 + 0.5) / (2+0.5))

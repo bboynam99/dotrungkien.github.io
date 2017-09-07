@@ -8,6 +8,3 @@ gem 'github-pages', versions['github-pages']
 gem 'rake'
 
 gem 'pygments.rb'
-group :jekyll_plugins do
-  gem 'jekyll-katex'
-end

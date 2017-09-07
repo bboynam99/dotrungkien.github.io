@@ -4,7 +4,7 @@ title:  "Factorials and Trailing Zeros"
 mathjax: true
 tags: algorithm trailing-zeros factorials prime-number prime-factor
 ---
-## Intro
+### Intro
 Chúng ta sẽ bắt đầu với một bài toán nhỏ như sau:
 > Cho một số tự nhiên n, hãy tìm số chữ số 0 liên tiếp cuối cùng của n! (giai thừa)
 

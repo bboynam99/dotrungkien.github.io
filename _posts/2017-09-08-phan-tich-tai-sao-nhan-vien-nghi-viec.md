@@ -270,6 +270,10 @@ plt.show()
 - Nhân viên tại các project thứ **2, 6, 7** có nguy cơ cao là nghỉ.
 - Yếu tố **độ thoả mãn** là yếu tố quan trọng nhất quyết định tới việc nhân viên ở lại hay nghỉ.
 
+Đã có rất nhiều điểm đáng chú ý, tuy nhiên dữ liệu là dựng nên vẫn chưa đủ tốt để đánh giá hết các góc cạnh cũng như độ tương quan giữa các yếu tố trong một công ty.
+
+Sẽ cần lắm thêm nữa những dữ liệu nhân sự thực tế của các công ty, để biết đâu nhờ phân tích chúng mà Pham Thị có thể trở thành công ty dẫn đầu về HR Solution trong tương lai. Có thể lắm!
+
 ---
 > **"You don't build a business. You build people, and people build the business." - Zig Ziglar**
 

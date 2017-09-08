@@ -96,6 +96,7 @@ Cái tên *Mersenne Twister* được chọn vì chu kì của số ngẫu nhiê
 > FYI: Số nguyên tố Mersenne có dạng $$M_{n} = 2^{n} - 1$$, ví dụ 31.
 
 Số nguyên tố Mersenne thường được sử dụng trong thuật toán sinh random là $$2^{19937}−1$$, đó cũng là nguồn gốc của cái tên *MT19937* - standard implement sử dụng từ với độ dài 32 bits.
+
 (to be continued....)
 
 ### Conclusion

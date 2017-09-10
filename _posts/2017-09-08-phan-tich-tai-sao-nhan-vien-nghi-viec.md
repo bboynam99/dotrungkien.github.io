@@ -5,7 +5,7 @@ mathjax: true
 tags: data-analysis python pandas matplotlib seaborn job salary quit working-condition
 ---
 
-Pham Thị vốn là một tập đoàn lớn nhất nhì ở cái đất này. Người đông thế mạnh, tiềm lực tài chính lên đến con số hàng nghìn tỉ, nhân tài nhiều như lá rụng mùa thu, trai xinh gái đẹp đủ cả. Thực là o-sằm! 😎
+Pham Thị vốn là một tập đoàn lớn nhất nhì ở cái đất này. Người đông thế mạnh, tiềm lực tài chính lên đến con số hàng nghìn tỉ, tuấn kiệt như sao buổi tối, nhân tài nhiều như lá rụng mùa thu, trai xinh gái đẹp đủ cả. Thực là o-sằm! 😎
 
 Thế nhưng dạo gần đây xuất hiện nhiều sự lạ, các nhân viên lần lượt ra đi, thậm chí cả những khai quốc công thần từng cống hiến cho Pham Thị từ những ngày đầu. Thực đáng quan ngại! 😨
 
@@ -20,7 +20,7 @@ Câu chuyện bên trên chỉ là một câu chuyện hư cấu =)) tuy nhiên 
 
 Bài phân tích này của mình sẽ nhằm mục đích tìm ra một số điểm "đáng lưu ý" khi nhân viên ra đi, dựa trên dataset [Human Resources Analytics](https://www.kaggle.com/ludobenistant/hr-analytics) được cung cấp bởi Kaggle.
 
-**Note**: *Dữ liệu được xây dựng, không phải dữ liệu thực tế của Pham Thị hay bất cứ công ty nào cả.*
+📌 **Note**: *Dữ liệu được xây dựng, không phải dữ liệu thực tế của Pham Thị hay bất cứ công ty nào cả.*
 
 **Các công cụ**: Jupyter Notebook, Python 3.5, Numpy, Pandas, Matplotlib, Seaborn, Scikit-Learn.
 ## 2. Obtaining Data
@@ -140,7 +140,7 @@ satisfaction vs turnover:  -0.388375
 ```
 Một sự thật hiển nhiên thôi, càng ít thoả mãn thì khả năng rời đi càng cao.
 
-**Suy ngẫm:**
+💡 **Suy ngẫm:**
 - Yếu tố nào ảnh hưởng lớn nhất đến sự ra đi của nhân viên?
 - Những yếu tố nào có mối liên hệ chặt chẽ với các yếu tố khác?
 
@@ -156,8 +156,7 @@ sns.countplot(y="salary", hue='turnover', data=df).set_title('Employee Salary Tu
  - Phần lớn nhân viên ra đi có lương *thấp* hoặc *trung bình*
  - Những nhân viên có lương *cao* ít ra đi
 
-**Suy ngẫm:**
- - Vẫn có những nhân viên lương cao ra đi, lý do vì đâu?
+💡 **Suy ngẫm:** Vẫn có những nhân viên lương cao ra đi, lý do vì đâu?
 
 ### 3.4. Nghỉ việc vs Bộ phận làm việc
 ```python
@@ -187,8 +186,7 @@ ax.set(ylabel="Percent")
 - Số làm 7 projects ra đi sạch sẽ
 - Có dấu hiệu tăng của tỉ lệ ra đi khi càng làm nhiều project
 
-**Suy ngẫm:**
-- Những người làm 6+ projects hẳn là những nhân viên lâu năm, phải chăng họ cần thêm điều gì nữa ngoài những projects để tránh khỏi sự nhàm chán mà ra đi?
+💡 **Suy ngẫm:** Những người làm 6+ projects hẳn là những nhân viên lâu năm, phải chăng họ cần thêm điều gì nữa ngoài những projects để tránh khỏi sự nhàm chán mà ra đi?
 
 ### 3.6. Nghỉ việc vs Đánh giá
 ```python
@@ -203,8 +201,7 @@ plt.title('Employee Evaluation Distribution - Turnover V.S. No Turnover')
  - Nhân viên được đánh giá cao quá cũng sẽ ra đi
  - Nhân viên trung bình và khá, tức mức Evaluation từ *0.6-0.8* là những người ở lại với công ty. Có thể hiểu là với mức đánh giá đó, họ luôn còn mục tiêu để mà cố gắng.
 
- **Suy ngẫm:**
- - Việc đánh giá thấp nhân viên rõ ràng là không tốt, nhưng việc đánh giá quá cao nhân viên cũng không hề tốt hơn. Tại sao ? mỗi chúng ta đều có những mục tiêu riêng cho mình để phấn đấu, khi con người ảo tưởng rằng mình đã quá ngon, đã perfect, cũng giống như đỉnh cao lạnh lẽo, đâu còn mục tiêu gì mà phấn đấu, nên ra đi là điều không hề kỳ lạ.
+ 💡 **Suy ngẫm:** Việc đánh giá thấp nhân viên rõ ràng là không tốt, nhưng việc đánh giá quá cao nhân viên cũng không hề tốt hơn. Tại sao ? mỗi chúng ta đều có những mục tiêu riêng cho mình để phấn đấu, khi con người ảo tưởng rằng mình đã quá ngon, đã perfect, cũng giống như đỉnh cao lạnh lẽo, đâu còn mục tiêu gì mà phấn đấu, nên ra đi là điều không hề kỳ lạ.
 
 ### 3.7. Nghỉ việc vs Thời gian làm việc trung bình trong tháng
 ```python
@@ -231,11 +228,11 @@ sns.lmplot(x='satisfaction', y='evaluation', data=df,
 
 - **Nhóm 1 (Hard-working and Sad Employee):** là nhóm nhân viên có chỉ số thoả mãn nhỏ hơn 0.2 and và được đánh giá lớn hơn 0.75. Đây là điển hình cho những nhân viên có những tố chất rất tốt, làm việc hiệu quả, nhưng cảm thấy chán nản với công việc mình đang làm.
 
-  **Suy ngẫm:** Điều gì là lý do khiến các nhân viên tốt cảm thấy buồn chán, có phải vì họ phải làm việc quá nhiều hay bản thân nội dung công việc đó nhàm chán ?
+  💡 **Suy ngẫm:** Điều gì là lý do khiến các nhân viên tốt cảm thấy buồn chán, có phải vì họ phải làm việc quá nhiều hay bản thân nội dung công việc đó nhàm chán ?
 - **Nhóm 2 (Bad and Sad Employee):** Được đánh giá thấp, độ thoả mãn thấp. Đây là điển hình của nhóm nhân viên kém của công ty.
 - **Nhóm 3 (Hard-working and Happy Employee):** Độ thoả mãn cao, từ 0.7~1.0 và được đánh giá trên 0.8. Đây là nhóm top-class nhân viên, thật là kỳ lạ!
 
-  **Suy ngẫm:** Có phải họ rời đi vì họ tìm thấy công việc khác tốt hơn ? Thật khó để tìm ra một lý do thoả đáng.
+  💡 **Suy ngẫm:** Có phải họ rời đi vì họ tìm thấy công việc khác tốt hơn ? Thật khó để tìm ra một lý do thoả đáng.
 
 ### 3.9. Sử dụng K-Means Clustering
 Ta sẽ sử dụng K-Means Clustering để phân loại một cách định lượng các nhân viên rời đi vào 3 class như trên. Cụ thể:

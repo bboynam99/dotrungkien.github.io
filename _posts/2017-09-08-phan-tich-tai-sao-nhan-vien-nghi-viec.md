@@ -134,7 +134,7 @@ corr
 ```
 Nó có ý nghĩa rằng những nhân viên dành nhiều thời gian làm việc tại công ty hơn và tham gia nhiều project hơn sẽ được đánh giá cao hơn.
 
-- Những mối tương quan nghịch biến (positively correlated) đáng chú ý:
+- Những mối tương quan nghịch biến (negatively correlated) đáng chú ý:
 ```python
 satisfaction vs turnover:  -0.388375
 ```

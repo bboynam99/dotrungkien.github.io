@@ -37,13 +37,12 @@
         </header>
         {{ content }}
         <footer class="main-footer">
-
         </footer>
         <script type="text/javascript">
           /* To avoid render blocking css */
           var cb = function() {
             var l = document.createElement('link'); l.rel = 'stylesheet';
-            l.href = 'http://fonts.googleapis.com/css?family=Ubuntu+Mono&subset=latin';
+            l.href = 'https://fonts.googleapis.com/css?family=Ubuntu+Mono&subset=latin';
             var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
           };
           var raf = requestAnimationFrame || mozRequestAnimationFrame ||
@@ -58,5 +57,6 @@
         <!-- Site js -->
         <script src="{{ site.baseurl }}/assets/js/all.js"></script>
         <!-- Google analytics  -->
+        {% include google-analytics.html %}
     </body>
 </html>

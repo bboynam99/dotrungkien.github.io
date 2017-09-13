@@ -19,6 +19,7 @@ harmony:
     name: Do Trung Kien
     email: trungkien162@gmail.com
     url: https://dotrungkien.github.io
+  google_analytics_key: UA-106327334-1
 
 show_drafts: false
 future: true

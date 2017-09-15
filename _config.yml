@@ -1,26 +1,20 @@
-# Harmony Jekyll theme general configurations
-
-# Base URL
 baseurl: ""
 
-# Site live URL
 url: https://dotrungkien.github.io
 
-# Localhost
-# url: http://127.0.0.1:4000
-
-# Harmony theme configuration. Please change accordingly.
 harmony:
   name: Momo's Blog
-  # Little description about your site
   description: Talk is cheap. Show me the code.
-  basetheme: theme-base-01 # pre defined thmes are darken, blue-water, redish.
-  author: # Author details
+  basetheme: domomo
+  author:
     name: Do Trung Kien
     email: trungkien162@gmail.com
     url: https://dotrungkien.github.io
   google_analytics_key: UA-106327334-1
-
+  social:
+    github: dotrungkien
+    facebook: trungkien162
+  show_disclaimer: true
 show_drafts: false
 future: true
 unpublished: true
@@ -30,7 +24,7 @@ kramdown:
   input: GFM
   math_engine: mathjax
   syntax_highlighter: rouge
-# Permalinks
+
 permalink:        pretty
 
 exclude:
@@ -42,7 +36,6 @@ exclude:
   - .sass-cache
   - Gemfile.lock
 
-# Sass conversion configs
 sass:
     sass_dir: assets/css/_sass
     style: :compressed

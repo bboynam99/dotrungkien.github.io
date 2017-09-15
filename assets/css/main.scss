@@ -34,7 +34,7 @@ html * {
 
 body {
   font: {
-    size: 28px;
+    size: 100%;
     family: $primary-font; // variables inside partials > _variables.scss
   }
 }
@@ -66,44 +66,59 @@ body {
 
 --------------------------------- */
 
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.6;
+}
+
 h1 {
-    font-size: 1.6em;
+  // mobile first
+  @include font-size(20px);
+  @include MQ(M) {
+    @include font-size(36px);
+  }
 }
 
 h2 {
-    font-size: 1.2em;
+  // mobile first
+  @include font-size(18px);
+  @include MQ(M) {
+    @include font-size(31px);
+  }
 }
 
 h3 {
-    font-size: 1.0em;
+  @include font-size(15px);
+  @include MQ(M) {
+    @include font-size(30px);
+  }
 }
 
 h4 {
-    font-size: 0.8em;
+  @include font-size(16px);
+  @include MQ(M) {
+    @include font-size(24px);
+  }
 }
 
 h5 {
-    font-size: 0.6em;
+  @include font-size(14px);
+  @include MQ(M) {
+    @include font-size(22px);
+  }
 }
 
 h6 {
-    font-size: 0.4em;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    border-bottom: 1px solid #FAFAFA;
-    padding-bottom: 5px;
-}
-
-strong, b, h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
+  @include font-size(14px);
+  @include MQ(M) {
+    @include font-size(19px);
+  }
 }
 
 p {
-  line-height: 1.4;
+  line-height: 1.6;
   @include font-size(14px);
   @include MQ(M) {
-    @include font-size(20px);
+    @include font-size(18px);
   }
 }
 
@@ -120,7 +135,6 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
-  text-align: center;
 }
 
 
@@ -173,22 +187,16 @@ header.main-header, footer.main-footer {
   p,address {
     @include font-size(12px);
     @include MQ(M) {
-      @include font-size(20px);
+      @include font-size(14px);
     }
   }
 }
 
 header.main-header {
   color: $base-00;
-  background: #fafafa;
-  // border-top: 5px $base-00 solid;
+  border-top: 5px $base-00 solid;
 
-  h1, h2 {
-    text-align: center;
-    color: inherit;
-  }
-
-  h1 {font-size: 1.8em;}
+  h1, h2 { text-align: center; color: inherit;}
   a {
     color: inherit;
     &:hover, &:active, &:focus {
@@ -220,7 +228,7 @@ header.main-header {
     padding-bottom:5px;
     @include transition(all, .2s);
     @include MQ(M) {
-      @include font-size(20px);
+      @include font-size(18px);
     }
     &:hover, &:focus, &:active {
       border-bottom-color: inherit;
@@ -266,7 +274,7 @@ footer.main-footer {
       display: inline;
       padding-right: 10px;
       @include MQ(M) {
-        @include font-size(20px);
+        @include font-size(16px);
       }
     }
   }
@@ -379,7 +387,7 @@ div.page-content {
     }
     @include MQ(M){
       li {
-        @include font-size(20px);
+        @include font-size(16px);
         line-height: 1.5;
         background-position: 0 7px;
       }
@@ -399,7 +407,7 @@ div.page-content {
       position:relative;
     }
     @include MQ(M){
-      @include font-size(20px);
+      @include font-size(16px);
       li {
         line-height: 1.5;
         background-position: 0 7px;
@@ -430,7 +438,7 @@ div.page-content {
 
     @include MQ(M) {
       dt, dd {
-        @include font-size(20px);
+        @include font-size(16px);
         line-height: 1.6;
       }
     }
@@ -438,8 +446,6 @@ div.page-content {
 
   img {
     padding: 1em 0;
-    text-align: center;
-    display: block;
   }
 
   p {
@@ -516,8 +522,7 @@ footer.main-footer {
 blockquote {
   padding: .5em 1em;
   margin: .8em 0;
-  color: #4d4d4d;
-  background-color: #f8f8f8;
+  color: #7a7a7a;
   border-left: .25em solid #e5e5e5;
 }
 blockquote p:last-child {
@@ -537,11 +542,10 @@ Code snippets
 --------------------------------- */
 code, pre {
   font-family: 'Inconsolata', Menlo, Monaco, "Courier New", monospace;
-  padding: 2px; border-radius: 3px;
 }
 code {
   padding: .25em .5em;
-  font-size: 100%;
+  font-size: 85%;
   color: $base-08;
   background-color: rgba($base-08, .1);
 }
@@ -566,10 +570,10 @@ pre {
   }
 
   @include MQ(M) {
-    @include font-size(20px);
+    @include font-size(14px);
   }
 }
-pre.highlight, .highlight pre { background-color: #f8f8f8; }
+
 .highlight {
   margin-bottom: 1em;
   margin-top: 1em;
@@ -593,7 +597,7 @@ pre.highlight, .highlight pre { background-color: #f8f8f8; }
 .gist .gist-file .gist-data {
   font-size: 12px;
   @include MQ(M) {
-    font-size: 18px !important;
+    font-size: 14px !important;
   }
   line-height: 1.4;
 }
@@ -635,10 +639,10 @@ p.post-meta {
   @include font-size(12px);
   overflow: hidden;
   display: block;
-  // padding: 1em 0;
+  padding: 1em 0;
   color: #7A7A7A;
   @include MQ(M) {
-    @include font-size(20px);
+    @include font-size(16px);
   }
 }
 
@@ -703,7 +707,7 @@ p.post-meta {
     a,span {
       @include font-size(12px);
       @include MQ(M) {
-        @include font-size(20px);
+        @include font-size(16px);
       }
     }
   }

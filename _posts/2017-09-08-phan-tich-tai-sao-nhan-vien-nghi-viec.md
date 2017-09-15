@@ -111,7 +111,14 @@ Name: turnover, dtype: float64
 >>> turnover_Summary.mean()
 ```
 ![png]({{ site.url }}/assets/images/4.1.png)
-
+- Phân phối của một số trường quan trọng
+```python
+f, axes = plt.subplots(ncols=3, figsize=(15, 6))
+sns.distplot(df.satisfaction, kde=False, color="g", ax=axes[0]).set_title('Employee Satisfaction Distribution')
+sns.distplot(df.evaluation, kde=False, color="r", ax=axes[1]).set_title('Employee Evaluation Distribution')
+sns.distplot(df.averageMonthlyHours, kde=False, color="b", ax=axes[2]).set_title('Employee Average Monthly Hours Distribution')
+```
+![png]({{ site.url }}/assets/images/output_37_1.png)
 ### 3.2. Ma trận độ tương quan giữa các features
 Ta sẽ hiển thị ra ma trận độ tương quan giữa các features.
 ```python

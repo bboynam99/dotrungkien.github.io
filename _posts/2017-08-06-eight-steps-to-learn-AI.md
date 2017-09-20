@@ -25,7 +25,7 @@ Những problem được xem là **tốt** để bắt đầu thường có các
 
 Vẫn chưa thấy có gì gần gũi ? Không sao, chúng tôi có cung cấp một ví dụ về ML rất nhỏ, hoàn toàn có thể chạy trên máy bạn, và có thể dùng nó để tham gia tranh tài. Đó là [titanic competition](!https://www.kaggle.com/c/titanic)
 
-### 2. Xây dựng một solution để gỉai quyết vấn đề một cách nhanh nhất
+### 2. Xây dựng một solution để giải quyết vấn đề một cách nhanh nhất
 Sẽ rất sai lầm khi bạn mới tiếp cận với Machine Learning mà bạn lại lún sâu vào việc implement sao cho đẹp và tối ưu, tin tôi đi, đầu tiên bạn chỉ cần chạy được, và chạy đúng đã. Mọi thứ khác có hay không, không quan trọng!
 
 Chỉ đơn gỉan là đọc dữ liệu, xử lý dữ liệu, chạy một model cơ bản, xuất kết quả và đánh giá độ chính xác, vậy thôi.

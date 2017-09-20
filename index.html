@@ -1,32 +1,16 @@
 ---
 layout: default
 ---
-<div id="home" class="page-content wc-container">
-	<div class="posts">
-  		{% for post in site.posts limit:10 %}
-  			<div class="post">
-    			<h2 class="post-title">
-			      <a href="{{ post.url | prepend: site.baseurl | prepend: site.url }}">
-			        {{ post.title }}
-			      </a>
-    			</h2>
-
-          <p class="post-meta">
-            Posted on
-            <span class="post-date">
-            {{ post.date | date: "%B %-d, %Y" }}
-            </span>
-          </p>
-
-  				<p>
-	  				{{ post.excerpt }}
-  				</p>
-  				<p>
-  					<a href="{{ post.url | prepend: site.baseurl | prepend: site.url }}" title="{{ post.title}}">
-  						Read More
-					</a>
-  				</p>
-  			</div>
-  		{% endfor %}
-	</div>
+<div class="page-content wc-container">
+  {% for post in site.posts %}
+  	{% capture currentyear %}{{post.date | date: "%Y"}}{% endcapture %}
+  	{% if currentyear != year %}
+    	{% unless forloop.first %}</ul>{% endunless %}
+    		<h3>{{ currentyear }}</h3>
+    		<ul class="posts">
+    		{% capture year %}{{currentyear}}{% endcapture %}
+  		{% endif %}
+    <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+    {% if forloop.last %}</ul>{% endif %}
+{% endfor %}
 </div>

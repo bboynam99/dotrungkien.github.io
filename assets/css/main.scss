@@ -133,7 +133,9 @@ img {
   max-width: 100%;
   height: auto;
 }
-
+img.license {
+  display: inline ;
+}
 
 hr {
   margin-top: 20px;
@@ -161,7 +163,7 @@ a.default-anchor {
   color: $base-08;
   &:hover, &:active, &:focus {
     @include transition(border-bottom-color .2s);
-    border-bottom-color: $base-08;
+    // border-bottom-color: $base-08;
   }
 
 }
@@ -244,7 +246,12 @@ footer.main-footer {
       }
     }
   }
-
+  p {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
   h6 {
       position: relative;
       padding: 10px 0;
@@ -359,10 +366,10 @@ footer.main-footer {
 
 div.page-content {
   @extend .default-page-content;
-  min-height: 650px;
+  min-height: 700px;
 
   @include MQ(M) {
-    min-height: 650px;
+    min-height: 700px;
   }
 }
 
@@ -470,6 +477,7 @@ body.theme-base-01 {
   }
 
   footer.main-footer {
+    text-align: center;
     background-color: $base-01;
     color: $base-07;
   }

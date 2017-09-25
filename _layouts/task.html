@@ -5,7 +5,7 @@ layout: default
 	<div class="post">
 		<h1>{{ page.title }}</h1>
 		<div class="post">
-			{{ content }}
+			{{ content | replace: '<ul>', '<ul class = "tasklist">' | replace: '<li>[ ]', '<li class = "box">' | replace: '<li>[x]', '<li class = "box_done">'  }}
 		</div>
 	</div>
 </div>

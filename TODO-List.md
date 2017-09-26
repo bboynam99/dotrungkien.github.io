@@ -3,7 +3,7 @@ layout: task
 title: TODO List
 permalink: /todolist
 ---
-- Understanding Git reset & soft & hard
+- ~~Understanding Git reset & soft & hard~~
 - [Coroutines & Yield](http://twistedoakstudios.com/blog/Post83_coroutines-more-than-you-want-to-know)
 - Delegate, Composition, Aggregation vs Inheritance
 - Delegate in C# vs Pointer in C++
@@ -17,3 +17,4 @@ permalink: /todolist
 - Vigenere Cipher
 - Unity Machine Learning Agents
 - WTF Python
+- Khoảng cách Levenshtein

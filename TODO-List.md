@@ -8,14 +8,14 @@ permalink: /todolist
 - [ ] [Coroutines & Yield](http://twistedoakstudios.com/blog/Post83_coroutines[ ]more[ ]than[ ]you[ ]want[ ]to[ ]know)
 - [ ] Delegate, Composition, Aggregation vs Inheritance
 - [ ] Delegate in C# vs Pointer in C++
-- [ ] Extension Method in C#
-- [ ] Generics
+- [ ] Extension Method in C# vs Decorator Pattern
 - [ ] Lamda Expresion
 - [ ] LINQ
 - [ ] Unit test in Unity
-- [ ] CI – CD in Unity
+- [ ] Unity CI: Unity Cloud Build
 - [ ] Iterable, Iterator, IEnumerable, IEnumerator
 - [ ] Vigenere Cipher
 - [ ] Unity Machine Learning Agents
 - [ ] WTF Python
 - [ ] Khoảng cách Levenshtein
+- [ ] [Python decorator](https://www.thecodeship.com/patterns/guide-to-python-function-decorators/)

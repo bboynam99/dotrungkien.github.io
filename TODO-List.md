@@ -18,4 +18,6 @@ permalink: /todolist
 - [ ] Unity Machine Learning Agents
 - [ ] WTF Python
 - [ ] Khoảng cách Levenshtein
-- [ ] [Python decorator](https://www.thecodeship.com/patterns/guide-to-python-function-decorators/)
+- [x] Python Decorator
+- [ ] Các loại License 
+- [ ] Cách đánh version

@@ -136,7 +136,7 @@ print get_text("John")
 ## Decorator với function có nhiều tham số
 Hàm get_text phía trên chỉ có một tham số là *name*, tuy nhiên trên thực tế các function hoặc có thể không có tham số, hoặc có thể có ít tham số, hoặc có thể có nhiều tham số, túm lại là tham số trong function có thể xuất hiện rất đa dạng.
 
-Và Python cung cấp một cách viết chung nhất cho chúng, là `*args, **kwargs`. Trong đó `*arg` là list các tham số không tên, còn `**kwargs**` là keyword args, nghĩa là các tham số có tên, các bạn có thể xem ví dụ dưới đây để hiểu rõ hơn:
+Và Python cung cấp một cách viết chung nhất cho chúng, là `*args, **kwargs`. Trong đó `*arg` là list các tham số không tên, còn `**kwargs` là keyword args, nghĩa là các tham số có tên, các bạn có thể xem ví dụ dưới đây để hiểu rõ hơn:
 ```python
 def print_everything(*args):
     for count, thing in enumerate(args):

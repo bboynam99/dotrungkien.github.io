@@ -4,7 +4,7 @@ title: "Python Decorator là gì?"
 ---
 Chào các bạn, hôm nay chúng ta sẽ đến với chủ đề: **Python Decorator**.
 
-Nếu bạn đã biết đến **Decorator Pattern** hay **Java Annotation** thì có lẽ bạn sẽ thấy nó rất quen thuộc và gần gũi. Còn nếu bạn chưa biết, cũng không sao, chúng ta sẽ bắt đầu đi tìm hiểu.
+Nếu bạn đã biết đến **Decorator Pattern** thì có lẽ bạn sẽ thấy nó rất quen thuộc và gần gũi. Còn nếu bạn chưa biết, cũng không sao, chúng ta sẽ bắt đầu đi tìm hiểu.
 
 Decorator xuất phát từ mẫu design pattern có tên là **Decorator**, mẫu thiết kế này lấy cảm hứng từ nguyên lý "Open for Extension and Closed for Modification" trong lập trình hướng đối tượng. Decorator có nhiệm vụ đúng như cái tên của nó: "trang trí" - nó trang trí thêm cho các function những thứ function chưa có mà không hề động chạm trực tiếp đến code bên trong.
 

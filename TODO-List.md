@@ -21,3 +21,4 @@ permalink: /todolist
 - [x] Python Decorator
 - [ ] Các loại License 
 - [ ] Cách đánh version
+- [ ] Chúng ta đang đứng ở đâu trong cách mạng công nghiệp 4.0

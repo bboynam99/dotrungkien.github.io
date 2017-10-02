@@ -23,3 +23,4 @@ permalink: /todolist
 - [ ] Cách đánh version
 - [ ] Chúng ta đang đứng ở đâu trong cách mạng công nghiệp 4.0
 - [ ] Images augumented
+- [ ] [Blockchain in Python](https://hackernoon.com/learn-blockchains-by-building-one-117428612f46)

@@ -24,3 +24,4 @@ permalink: /todolist
 - [ ] Chúng ta đang đứng ở đâu trong cách mạng công nghiệp 4.0
 - [ ] Images augumented
 - [ ] [Blockchain in Python](https://hackernoon.com/learn-blockchains-by-building-one-117428612f46)
+- [ ] [Ứng dụng của blockchain](https://blockgeeks.com/guides/blockchain-applications/)

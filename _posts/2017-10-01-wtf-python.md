@@ -13,6 +13,8 @@ Bài khá dài, thực ra là quá dài, nên mình trích những điểm mà m
 
 Bài viết gốc nằm trên repo [wtfpython](https://github.com/satwikkansal/wtfpython), các bạn có thể lên đó star hay clone về nghiên cứu.
 
+---
+
 ## Skipping lines?
 
 #### Output
@@ -38,6 +40,8 @@ Sẽ ra sao nếu bạn phải debug một đoạn code mà dev trước đó 'c
 Sẽ ra sao nếu bạn bị dẫn tới trang fishing bằng cách thức như vậy? ví dụ 'https://аpple.com' ? các bạn có thể đọc thêm về vụ fishing này [tại đây](https://www.forbes.com/sites/leemathews/2017/04/21/this-apple-phishing-site-is-as-sneaky-as-they-come/#cd745a160e18)
 
 Lời khuyên là hãy luôn cẩn thận, vậy thôi.
+
+---
 
 ## Time for some hash brownies!
 ```python
@@ -66,6 +70,8 @@ True
 True
 ```
 Bạn có thể đọc thêm về **hash** trong Python [tại đây](https://stackoverflow.com/questions/32209155/why-can-a-floating-point-dictionary-key-overwrite-an-integer-key-with-the-same-v/32211042#32211042)
+
+---
 
 ## Evaluation time discrepancy
 ```python
@@ -106,6 +112,8 @@ Tại sao in có đúng 8 số ?
 - Python không support việc vừa duyệt vừa edit trên một dictionary
 - Việc chỉ chạy đúng 8 lần là do cơ chế resize để lưu trữ key trong dictionary. Min size của dictionary sẽ là 8.
 - Bạn có thể tìm hiểu thêm [tại đây](https://stackoverflow.com/questions/44763802/modifying-a-dictionary-while-iterating-over-it-bug-in-python-dict)
+
+---
 
 ## Deleting a list item while iterating over it
 ```python
@@ -159,6 +167,8 @@ Sự khác nhau giữa **del**, **remove**, **pop**
 - Tại list_1 không có gì thay đổi.
 - Tại list_3 sẽ xóa tất cả, vì các phần tử xóa được lấy từ dãy copy.
 
+---
+
 ## Let's make a giant string!
 ```python
 def add_string_with_plus(iters):
@@ -199,6 +209,8 @@ Có điều gì đáng chú ý với các cách concat strings này ?
 #### Giải thích
 - Đừng bao giờ sử dụng `+` để nối string. Nếu bạn còn đang dùng như vậy, hãy chuyển qua dùng `.format` hay `%`. Bởi vì *str* trong Python là *immutable*, nghĩ là mỗi khi bạn ghép 2 string lại với nhau, nó sẽ được copy sang một string mới. Thật tệ hại nếu số lượng strings là rất lớn.
 - Nếu mà các strings của bạn ở sẵn dạng iterable như list, thì dùng `''.join(iterable_object)` sẽ nhanh hơn rất nhiều.
+
+---
 
 ## String interning
 #### Output
@@ -256,6 +268,8 @@ Try block executed successfully...
 - `else` trong vòng lặp for sẽ được thực thi nếu không có `break` xảy ra tại tất cả các vòng lặp
 - `else` sau `try` block được gọi là *completion clause*, nghĩa là nếu try thành công thì else sẽ được gọi
 
+---
+
 ## `is` is not what it is!
 Đoạn code sau đã từng gây sốt cộng đồng mạng
 ```python
@@ -309,6 +323,8 @@ False
 ```
 - Khi khai a và b bằng 257 trên cùng một dòng, thì trình dịch Python sẽ tạo một object, và tham chiếu biến thứ 2 đến object đó cùng lúc. Do đó khi này `a is b` là **True**. Nếu không khai báo trên một dòng, Python không biết được điều này, và kết quả là **False**.
 
+---
+
 ## `is not ...` is not `is (not ...)`
 ```python
 >>> 'something' is not None
@@ -318,6 +334,8 @@ False
 ```
 #### Giải thích
 - `is not` là **một phép toán** chứ không phải hai phép toán, nên rõ ràng nó khác `is (not ...)` rồi
+
+---
 
 ## The function inside loop sticks to the same output
 ```python
@@ -355,6 +373,8 @@ for x in range(7):
 >>> funcs_results
 [0, 1, 2, 3, 4, 5, 6]
 ```
+
+---
 
 ## Loop variables leaking out of local scope!
 1.

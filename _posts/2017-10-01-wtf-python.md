@@ -7,7 +7,9 @@ tags: python
 Chào các bạn, dạo này mình mới học được cách giật tít từ mấy trang lá cải, đem áp dụng vào một số nơi và thấy là độ hiệu quả không ngờ =))) 
 
 ---
-Chuyện cũng chẳng có gì, mình có thói quen hay lên github xem mấy trending repositories. Và một ngày đẹp trời mình gặp wtfpython, thấy rất **chất**, nhiều điều mới và hữu ích nên muốn chia sẻ lại cho mọi người.
+Chuyện cũng chẳng có gì, mình có thói quen hay lên github xem mấy trending repositories. Và một ngày đẹp trời mình gặp wtfpython, thấy rất **chất**, nhiều điều mới và hữu ích nên muốn chia sẻ lại cho mọi người. 
+
+Bài khá dài, thực ra là quá dài, nên mình trích những điểm mà mình cho là hay nhất để viết lại (tất nhiên phù hợp với license của tác giả).
 
 Bài viết gốc nằm trên repo [wtfpython](https://github.com/satwikkansal/wtfpython), các bạn có thể lên đó star hay clone về nghiên cứu.
 
@@ -432,7 +434,7 @@ board = [row]*3
 
 Tại sao 3 giá trị đầu đều là ếch ?
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
 Đầu tiên khi ta khai báo biến `row` sẽ trông thế này
 ![image]({{ site.url }}/assets/images/after_row_initialized.png)
@@ -465,7 +467,7 @@ def some_func(default_arg=[]):
 ['some_string', 'some_string', 'some_string']
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
 - Chúng ta luôn phải cẩn thận với các giá trị *mutable* trong Python (list chẳng hạn). Giá trị default của tham số `default_arg` là mutable, tức [], sẽ không được khởi tạo mỗi khi gọi hàm, mà nó sẽ được gán bằng giá trị sử dụng lần gần nhất.
 
@@ -534,46 +536,13 @@ a += [5, 6, 7, 8]
 [1, 2, 3, 4, 5, 6, 7, 8]
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
 *  `a += b` không giống với `a = a + b`
 
 * `a = a + [5,6,7,8]` tạo ra object mới và trỏ a tới nó, b sẽ vẫn trỏ tới giá trị a cũ.
 
 * `a + =[5,6,7,8]` chỉ mở rộng a mà không thay đổi địa chỉ của a, b vẫn trỏ tới giá trị giống như a.
-
----
-
-###  Mutating the immutable!
-
-```py
-some_tuple = ("A", "tuple", "with", "values")
-another_tuple = ([1, 2], [3, 4], [5, 6])
-```
-
-**Output:**
-```py
->>> some_tuple[2] = "change this"
-TypeError: 'tuple' object does not support item assignment
->>> another_tuple[2].append(1000) #This throws no error
->>> another_tuple
-([1, 2], [3, 4], [5, 6, 1000])
->>> another_tuple[2] += [99, 999]
-TypeError: 'tuple' object does not support item assignment
->>> another_tuple
-([1, 2], [3, 4], [5, 6, 1000, 99, 999])
-```
-
-But I thought tuples were immutable...
-
-#### 💡 Explanation:
-
-* Quoting from https://docs.python.org/2/reference/datamodel.html
-
-    > Immutable sequences
-        An object of an immutable sequence type cannot change once it is created. (If the object contains references to other objects, these other objects may be mutable and may be modified; however, the collection of objects directly referenced by an immutable object cannot change.)
-
-* `+=` operator changes the list in-place. The item assignment doesn't work, but when the exception occurs, the item has already been changed in place.
 
 ---
 
@@ -597,10 +566,10 @@ def another_func():
 UnboundLocalError: local variable 'a' referenced before assignment
 ```
 
-#### 💡 Explanation:
-* When you make an assignment to a variable in a scope, it becomes local to that scope. So `a` becomes local to the scope of `another_func`,  but it has not been initialized previously in the same scope which throws an error.
-* Read [this](http://sebastianraschka.com/Articles/2014_python_scope_and_namespaces.html) short but an awesome guide to learn more about how namespaces and scope resolution works in Python.
-* To modify the outer scope variable `a` in `another_func`, use `global` keyword.
+#### 💡 Giải thích:
+* Khi một phép gán xảy ra, nó sẽ trở thành biến local trong scope đó. Theo đó `a` sẽ là biến local trong `another_func`, nó chưa được khai báo nên error được throw.
+* Bạn có thể đọc thêm về scope của biến trong Python [tại đây](http://sebastianraschka.com/Articles/2014_python_scope_and_namespaces.html) 
+* Nếu muốn sử dụng `a` trong `another_func` thì ta sẽ phải thêm keyword `global` vào như dưới đây:
   ```py
   def another_func()
       global a
@@ -616,110 +585,6 @@ UnboundLocalError: local variable 'a' referenced before assignment
 
 ---
 
-###  The disappearing variable from outer scope
-
-```py
-e = 7
-try:
-    raise Exception()
-except Exception as e:
-    pass
-```
-
-**Output (Python 2.x):**
-```py
->>> print(e)
-# prints nothing
-```
-
-**Output (Python 3.x):**
-```py
->>> print(e)
-NameError: name 'e' is not defined
-```
-
-#### 💡 Explanation:
-
-* Source: https://docs.python.org/3/reference/compound_stmts.html#except
-
-  When an exception has been assigned using `as` target, it is cleared at the end of the except clause. This is as if
-
-  ```py
-  except E as N:
-      foo
-  ```
-
-  was translated to
-
-  ```py
-  except E as N:
-      try:
-          foo
-      finally:
-          del N
-  ```
-
-  This means the exception must be assigned to a different name to be able to refer to it after the except clause. Exceptions are cleared because, with the traceback attached to them, they form a reference cycle with the stack frame, keeping all locals in that frame alive until the next garbage collection occurs.
-
-* The clauses are not scoped in Python. Everything in the example is present in the same scope, and the variable `e` got removed due to the execution of the `except` clause. The same is not the case with functions which have their separate inner-scopes. The example below illustrates this:
-
-     ```py
-     def f(x):
-         del(x)
-         print(x)
-
-     x = 5
-     y = [5, 4, 3]
-     ```
-
-     **Output:**
-     ```py
-     >>>f(x)
-     UnboundLocalError: local variable 'x' referenced before assignment
-     >>>f(y)
-     UnboundLocalError: local variable 'x' referenced before assignment
-     >>> x
-     5
-     >>> y
-     [5, 4, 3]
-     ```
-
-* In Python 2.x the variable name `e` gets assigned to `Exception()` instance, so when you try to print, it prints nothing.
-
-    **Output (Python 2.x):**
-    ```py
-    >>> e
-    Exception()
-    >>> print e
-    # Nothing is printed!
-    ```
-
-
----
-
-###  Return return everywhere!
-
-```py
-def some_func():
-    try:
-        return 'from_try'
-    finally:
-        return 'from_finally'
-```
-
-**Output:**
-```py
->>> some_func()
-'from_finally'
-```
-
-#### 💡 Explanation:
-
-- When a `return`, `break` or `continue` statement is executed in the `try` suite of a "try…finally" statement, the `finally` clause is also executed ‘on the way out.
-- The return value of a function is determined by the last `return` statement executed. Since the `finally` clause always executes, a `return` statement executed in the `finally` clause will always be the last one executed.
-
----
-
 ###  When True is actually False
 
 ```py
@@ -732,49 +597,11 @@ if True == False:
 ```
 I've lost faith in truth!
 ```
+True == False ? thật giả lẫn lộn hết rồi.
+#### 💡 Giải thích:
 
-#### 💡 Explanation:
-
-- Initially, Python used to have no `bool` type (people used 0 for false and non-zero value like 1 for true). Then they added `True`, `False`, and a `bool` type, but, for backward compatibility, they couldn't make `True` and `False` constants- they just were built-in variables.
-- Python 3 was backwards-incompatible, so it was now finally possible to fix that, and so this example won't work with Python 3.x!
-
----
-
-###  Be careful with chained operations
-
-```py
->>> True is False == False
-False
->>> False is False is False
-True
->>> 1 > 0 < 1
-True
->>> (1 > 0) < 1
-False
->>> 1 > (0 < 1)
-False
-```
-
-#### 💡 Explanation:
-
-As per https://docs.python.org/2/reference/expressions.html#not-in
-
-> Formally, if a, b, c, ..., y, z are expressions and op1, op2, ..., opN are comparison operators, then a op1 b op2 c ... y opN z is equivalent to a op1 b and b op2 c and ... y opN z, except that each expression is evaluated at most once.
-
-While such behavior might seem silly to you in the above examples, it's fantastic with stuff like `a == b == c` and `0 <= x <= 100`.
-
-* `False is False is False` is equivalent to `(False is False) and (False is False)`
-* `True is False == False` is equivalent to `True is False and False == False` and since the first part of the statement (`True is False`) evaluates to `False`, the overall expression evaluates to `False`.
-* `1 > 0 < 1` is equivalent to `1 > 0 and 0 < 1` which evaluates to `True`.
-* The expression `(1 > 0) < 1` is equivalent to `True < 1` and
-  ```py
-  >>> int(True)
-  1
-  >>> True + 1 #not relevant for this example, but just for fun
-  2
-  ```
-  So, `1 < 1` evaluates to `False`
-
+- Ban đầu khi thiết kế Python, không hề có kiểu dữ liệu `bool`, người ta dùng 0 đại diện cho False, và dùng giá trị khác 0 đại diện cho True. Sau này khi thêm vào `True`, `False`, và kiểu `bool`, để tương thích với phiên bản cũ, người ta để `True` và `False` là biến chứ không phải là hằng số.
+- Python3 là phiên bản hoàn toàn mới và không tương thích với phiên bản cũ, nên ví dụ trên sẽ không chạy được trên Python3.
 
 ---
 
@@ -814,10 +641,9 @@ class SomeClass:
 5
 ```
 
-#### 💡 Explanation
-- Scopes nested inside class definition ignore names bound at the class level.
-- A generator expression has its own scope.
-- Starting from Python 3.X, list comprehensions also have their own scope.
+#### 💡 Giải thích
+- generator có scope riêng của nó, nên x trong ví dụ đầu trong generator sẽ không bị ảnh hưởng bởi x local.
+- từ Python 3.X list comprehensions cũng có scope riêng của nó, Python2 thì không.
 
 ---
 ###  From filled to None in one instruction...
@@ -842,50 +668,9 @@ None
 None
 ```
 
-#### 💡 Explanation
+#### 💡 Giải thích
 
-Most methods that modify the items of sequence/mapping objects like `list.append`, `dict.update`, `list.sort`, etc. modify the objects in-place and return `None`. The rationale behind this is to improve performance by avoiding making a copy of the object if the operation can be done in-place (Referred from [here](http://docs.python.org/2/faq/design.html#why-doesn-t-list-sort-return-the-sorted-list))
-
----
-
-###  Explicit typecast of strings
-
-This is not a WTF at all, but it took me so long to realize such things existed in Python. So sharing it here for the beginners.
-
-```py
-a = float('inf')
-b = float('nan')
-c = float('-iNf')  #These strings are case-insensitive
-d = float('nan')
-```
-
-**Output:**
-```py
->>> a
-inf
->>> b
-nan
->>> c
--inf
->>> float('some_other_string')
-ValueError: could not convert string to float: some_other_string
->>> a == -c #inf==inf
-True
->>> None == None # None==None
-True
->>> b == d #but nan!=nan
-False
->>> 50/a
-0.0
->>> a/a
-nan
->>> 23 + b
-nan
-```
-
-#### 💡 Explanation:
-
-`'inf'` and `'nan'` are special strings (case-insensitive), which when explicitly type casted to `float` type, are used to represent mathematical "infinity" and "not a number" respectively.
+- Hãy cẩn thận với các thay đổi in-place như `append` hay `update` hay `sort`... kết quả trả về là `None` chứ không phải bản thân object đó. Vì thế phép gán ở đây là không cần thiết, thật tai hại.
 
 ---
 
@@ -953,85 +738,9 @@ True
 ```
 
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-* Class variables and variables in class instances are internally handled as dictionaries of a class object. If a variable name is not found in the dictionary of the current class, the parent classes are searched for it.
-* The `+=` operator modifies the mutable object in-place without creating a new object. So changing the attribute of one instance affects the other instances and the class attribute as well.
-
----
-
-###  Catching the Exceptions!
-
-```py
-some_list = [1, 2, 3]
-try:
-    # This should raise an ``IndexError``
-    print(some_list[4])
-except IndexError, ValueError:
-    print("Caught!")
-
-try:
-    # This should raise a ``ValueError``
-    some_list.remove(4)
-except IndexError, ValueError:
-    print("Caught again!")
-```
-
-**Output (Python 2.x):**
-```py
-Caught!
-
-ValueError: list.remove(x): x not in list
-```
-
-**Output (Python 3.x):**
-```py
-  File "<input>", line 3
-    except IndexError, ValueError:
-                     ^
-SyntaxError: invalid syntax
-```
-
-#### 💡 Explanation
-
-* To add multiple Exceptions to the except clause, you need to pass them as parenthesized tuple as the first argument. The second argument is an optional name, which when supplied will bind the Exception instance that has been raised. Example,
-  ```py
-  some_list = [1, 2, 3]
-  try:
-     # This should raise a ``ValueError``
-     some_list.remove(4)
-  except (IndexError, ValueError), e:
-     print("Caught again!")
-     print(e)
-  ```
-  **Output (Python 2.x):**
-  ```
-  Caught again!
-  list.remove(x): x not in list
-  ```
-  **Output (Python 3.x):**
-  ```py
-    File "<input>", line 4
-      except (IndexError, ValueError), e:
-                                       ^
-  IndentationError: unindent does not match any outer indentation level
-  ```
-
-* Separating the exception from the variable with a comma is deprecated and does not work in Python 3; the correct way is to use `as`. Example,
-  ```py
-  some_list = [1, 2, 3]
-  try:
-      some_list.remove(4)
-
-  except (IndexError, ValueError) as e:
-      print("Caught again!")
-      print(e)
-  ```
-  **Output:**
-  ```
-  Caught again!
-  list.remove(x): x not in list
-  ```
+* Biến trong class và biến trong instance của class được quản lý giống như dictionary. Mỗi khi một biến không tìm thấy trong từ điển của lớp hiện tại, nó sẽ tìm kiếm và trả về giá trị từ lớp cha.
 
 ---
 
@@ -1057,11 +766,11 @@ if noon_time:
 ```sh
 ('Time at noon is', datetime.time(12, 0))
 ```
-The midnight time is not printed.
+thời gian lúc nửa đêm đâu mất rồi ? phải chăng Python đi ngủ ?
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-Before Python 3.5, the boolean value for `datetime.time` object was considered to be `False` if it represented midnight in UTC. It is error-prone when using the `if obj:` syntax to check if the `obj` is null or some equivalent of "empty."
+Trước phiên bản Python 3.5, giá trị `datetime.time` sẽ bị coi là `False` nếu nó gọi đến thời gian nửa đêm (thời gian UTC). Nghe khá là creepy^^
 
 ---
 
@@ -1105,9 +814,9 @@ another_dict[1.0] = "Python"
 ```
 
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-* Booleans are a subclass of `int`
+* `bool` là subclass của `int`
   ```py
   >>> isinstance(True, int)
   True
@@ -1115,275 +824,11 @@ another_dict[1.0] = "Python"
   True
   ```
 
-* The integer value of `True` is `1` and that of `False` is `0`.
+* Giá trị của `True` là `1`, và `False` là `0`.
   ```py
   >>> True == 1 == 1.0 and False == 0 == 0.0
   True
   ```
-
-* See this StackOverflow [answer](https://stackoverflow.com/a/8169049/4354153) for rationale behind it.
-
----
-
-### Needle in a Haystack
-
-Almost every Python programmer would have faced this situation.
-
-```py
-t = ('one', 'two')
-for i in t:
-    print(i)
-
-t = ('one')
-for i in t:
-    print(i)
-
-t = ()
-print(t)
-```
-
-**Output:**
-```py
-one
-two
-o
-n
-e
-tuple()
-```
-
-
-#### 💡 Explanation:
-* The correct statement for expected behavior is `t = ('one',)` or `t = 'one',` (missing comma) otherwise the interpreter considers `t` to be a `str` and iterates over it character by character.
-* `()` is a special token and denotes empty `tuple`.
-
----
-
-### The surprising comma
-
-Suggested by @MostAwesomeDude in [this](https://github.com/satwikkansal/wtfPython/issues/1) issue.
-
-**Output:**
-```py
->>> def f(x, y,):
-...     print(x, y)
-...
->>> def g(x=4, y=5,):
-...     print(x, y)
-...
->>> def h(x, **kwargs,):
-  File "<stdin>", line 1
-    def h(x, **kwargs,):
-                     ^
-SyntaxError: invalid syntax
->>> def h(*args,):
-  File "<stdin>", line 1
-    def h(*args,):
-                ^
-SyntaxError: invalid syntax
-```
-
-#### 💡 Explanation:
-
-- Trailing comma is not always legal in formal parameters list of a Python function.
--  In Python, the argument list is defined partially with leading commas and partially with trailing commas. This conflict causes situations where a comma is trapped in the middle, and no rule accepts it.
--  **Note:** The trailing comma problem is [fixed in Python 3.6](https://bugs.python.org/issue9232). The remarks in [this](https://bugs.python.org/issue9232#msg248399) post discuss in brief different usages of trailing commas in Python.
-
----
-
-### For what?
-
-Suggested by @MittalAshok in [this](https://github.com/satwikkansal/wtfpython/issues/23) issue.
-
-```py
-some_string = "wtf"
-some_dict = {}
-for i, some_dict[i] in enumerate(some_string):
-    pass
-```
-
-**Outuput:**
-```py
->>> some_dict # An indexed dict is created.
-{0: 'w', 1: 't', 2: 'f'}
-```
-
-####  💡 Explanation:
-
-* A `for` statement is defined in the [Python grammar](https://docs.python.org/3/reference/grammar.html) as:
-  ```
-  for_stmt: 'for' exprlist 'in' testlist ':' suite ['else' ':' suite]
-  ```
-  Where `exprlist` is the assignment target. This means that the equivalent of `{exprlist} = {next_value}` is **executed for each item** in the iterable.
-  An interesting example suggested by @tukkek in [this](https://github.com/satwikkansal/wtfPython/issues/11) issue illustrates this:
-  ```py
-  for i in range(4):
-      print(i)
-      i = 10
-  ```
-
-  **Output:**
-  ```
-  0
-  1
-  2
-  3
-  ```
-
-  Did you expect the loop to run just once?
-
-  **💡 Explanation:**
-
-  - The assignment statement `i = 10` never affects the iterations of the loop because of the way for loops work in Python. Before the beginning of every iteration, the next item provided by the iterator (`range(4)` this case) is unpacked and assigned the target list variables (`i` in this case).
-
-* The `enumerate(some_string)` function yields a new value `i` (A counter going up) and a character from the `some_string` in each iteration. It then sets the (just assigned) `i` key of the dictionary `some_dict` to that character. The unrolling of the loop can be simplified as:
-  ```py
-  >>> i, some_dict[i] = (0, 'w')
-  >>> i, some_dict[i] = (1, 't')
-  >>> i, some_dict[i] = (2, 'f')
-  >>> some_dict
-  ```
-
----
-
-### not knot!
-
-Suggested by @MostAwesomeDude in [this](https://github.com/satwikkansal/wtfPython/issues/1) issue.
-
-```py
-x = True
-y = False
-```
-
-**Output:**
-```py
->>> not x == y
-True
->>> x == not y
-  File "<input>", line 1
-    x == not y
-           ^
-SyntaxError: invalid syntax
-```
-
-#### 💡 Explanation:
-
-* Operator precedence affects how an expression is evaluated, and `==` operator has higher precedence than `not` operator in Python.
-* So `not x == y` is equivalent to `not (x == y)` which is equivalent to `not (True == False)` finally evaluating to `True`.
-* But `x == not y` raises a `SyntaxError` because it can be thought of being equivalent to `(x == not) y` and not `x == (not y)` which you might have expected at first sight.
-* The parser expected the `not` token to be a part of the `not in` operator (because both `==` and `not in` operators have same precedence), but after not being able to find a `in` token following the `not` token, it raises a `SyntaxError`.
-
----
-
-### Let's see if you can guess this?
-
-Suggested by @PiaFraus in [this](https://github.com/satwikkansal/wtfPython/issues/9) issue.
-
-```py
-a, b = a[b] = {}, 5
-```
-
-**Output:**
-```py
->>> a
-{5: ({...}, 5)}
-```
-
-#### 💡 Explanation:
-
-* According to [Python language reference](https://docs.python.org/2/reference/simple_stmts.html#assignment-statements), assignment statements have the form
-  ```
-  (target_list "=")+ (expression_list | yield_expression)
-  ```
-  and
-  > An assignment statement evaluates the expression list (remember that this can be a single expression or a comma-separated list, the latter yielding a tuple) and assigns the single resulting object to each of the target lists, from left to right.
-
-* The `+` in `(target_list "=")+` means there can be **one or more** target lists. In this case, target lists are `a, b` and `a[b]` (note the expression list is exactly one, which in our case is `{}, 5`).
-
-* After the expression list is evaluated, it's value is unpacked to the target lists from **left to right**. So, in our case, first the `{}, 5` tuple is unpacked to `a, b` and we now have `a = {}` and `b = 5`.
-
-* `a` is now assigned to `{}` which is a mutable object.
-
-* The second target list is `a[b]` (you may expect this to throw an error because both `a` and `b` have not been defined in the statements before. But remember, we just assigned `a` to `{}` and `b` to `5`).
-
-* Now, we are setting the key `5` in the dictionary to the tuple `({}, 5)` creating a circular reference (the `{...}` in the output refers to the same object that `a` is already referencing). Another simpler example of circular reference could be
-  ```py
-  >>> some_list = some_list[0] = [0]
-  >>> some_list
-  [[...]]
-  >>> some_list[0]
-  [[...]]
-  >>> some_list is some_list[0]
-  [[...]]
-  ```
-  Similar is the case in our example (`a[b][0]` is the same object as `a`)
-
-* So to sum it up, you can break the example down to
-  ```py
-  a, b = {}, 5
-  a[b] = a, b
-  ```
-  And the circular reference can be justified by the fact that `a[b][0]` is the same object as `a`
-  ```py
-  >>> a[b][0] is a
-  True
-  ```
-
----
-
-###  Minor Ones
-
-* `join()` is a string operation instead of list operation. (sort of counter-intuitive at first usage)
-  
-  **💡 Explanation:**
-  If `join()` is a method on a string then it can operate on any iterable (list, tuple, iterators). If it were a method on a list, it'd have to be implemented separately by every type. Also, it doesn't make much sense to put a string-specific method on a generic `list` object API.
-
-* Few weird looking but semantically correct statements:
-  + `[] = ()` is a semantically correct statement (unpacking an empty `tuple` into an empty `list`)
-  + `'a'[0][0][0][0][0]` is also a semantically correct statement as strings are [sequences](https://docs.python.org/3/glossary.html#term-sequence)(iterables supporting element access using integer indices) in Python.
-  + `3 --0-- 5 == 8` and `--5 == 5` are both semantically correct statements and evaluate to `True`.
-
-* Given that `a` is a number, `++a` and `--a` are both valid Python statements, but don't behave the same way as compared with similar statements in languages like C, C++ or Java.
-  ```py
-  >>> a = 5
-  >>> a
-  5
-  >>> ++a
-  5
-  >>> --a
-  5
-  ```
-
-  **💡 Explanation:**
-  + There is no `++` operator in Python grammar. It is actually two `+` operators.
-  + `++a` parses as `+(+a)` which translates to `a`. Similarly, the output of the statement `--a` can be justified.
-  + This StackOverflow [thread](https://stackoverflow.com/questions/3654830/why-are-there-no-and-operators-in-python) discusses the rationale behind the absence of increment and decrement operators in Python.
-
-* Python uses 2 bytes for local variable storage in functions. In theory, this means that only 65536 variables can be defined in a function. However, python has a handy solution built in that can be used to store more than 2^16 variable names. The following code demonstrates what happens in the stack when more than 65536 local variables are defined (Warning: This code prints around 2^18 lines of text, so be prepared!):
-     ```py
-     import dis
-     exec("""
-     def f():*     """ + """
-         """.join(["X"+str(x)+"=" + str(x) for x in range(65539)]))
-
-     f()
-
-     print(dis.dis(f))
-     ```
-
-* Multiple Python threads won't run your *Python code* concurrently (yes you heard it right!). It may seem intuitive to spawn several threads and let them execute your Python code concurrently, but, because of the [Global Interpreter Lock](https://wiki.python.org/moin/GlobalInterpreterLock) in Python, all you're doing is making your threads execute on the same core turn by turn. Python threads are good for IO-bound tasks, but to achieve actual parallelization in Python for CPU-bound tasks, you might want to use the Python [multiprocessing](https://docs.python.org/2/library/multiprocessing.html) module.
-
-* List slicing with out of the bounds indices throws no errors
-  ```py
-  >>> some_list = [1, 2, 3, 4, 5]
-  >>> some_list[111:]
-  []
-  ```
-
----
-
-
-
 ## Conclusion
 Cái này chúng tôi gọi là Python **chất** đến từng dòng code!
 

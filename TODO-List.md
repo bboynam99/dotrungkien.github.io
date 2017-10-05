@@ -15,7 +15,7 @@ permalink: /todolist
 - [ ] Iterable, Iterator, IEnumerable, IEnumerator
 - [ ] Vigenere Cipher
 - [ ] Unity Machine Learning Agents
-- [ ] WTF Python
+- [x] WTF Python
 - [ ] Khoảng cách Levenshtein
 - [x] Python Decorator
 - [ ] Các loại License 

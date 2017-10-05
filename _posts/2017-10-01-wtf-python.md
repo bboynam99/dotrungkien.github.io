@@ -87,6 +87,8 @@ print(list(g))
 #### 💡 Giải thích
 - Trong biểu thức [generator](https://wiki.python.org/moin/Generators) thì phép **in** được thực thi tại lúc khai báo, còn **if** lại được thực thi tại runtime. Vì thế khi x bị khai báo lại là [2, 8, 22] và ta gọi tới g trong `print(list(g))` thì chỉ còn 8 là có count > 0 mà thôi. Vi diệu!
 
+---
+
 ## Modifying a dictionary while iterating over it
 ```python
 x = {0: None}
@@ -230,6 +232,8 @@ Có điều gì đáng chú ý với các cách concat strings này ?
 #### Giải thích
 - `+=` nhanh hơn `+` khi concat các string vì string đầu tiên không bị hủy khi tính toán (ví dụ s1 trong s1 = s1 + s2 + s3).
 - Kết quả cuối cùng sẽ vẫn là object s1 (id như cũ)
+
+---
 
 ## Yes, it exists!
 Có thể bạn đã biết, Python cũng có `else` cho vòng lặp `for`:

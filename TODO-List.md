@@ -16,9 +16,9 @@ permalink: /todolist
 - [ ] Vigenere Cipher
 - [ ] Unity Machine Learning Agents
 - [x] WTF Python
-- [ ] Khoảng cách Levenshtein
+- [ ] Khoảng cách Levenshtein và Fuzzy Search
 - [x] Python Decorator
-- [ ] Các loại License 
+- [ ] Các loại License
 - [ ] Cách đánh version
 - [ ] Chúng ta đang đứng ở đâu trong cách mạng công nghiệp 4.0
 - [ ] Images augumented
@@ -26,3 +26,4 @@ permalink: /todolist
 - [ ] [Blockchain in Python](https://hackernoon.com/learn-blockchains-by-building-one-117428612f46)
 - [ ] Mã hóa RSA
 - [ ] [Python Module](https://docs.python.org/3/tutorial/modules.html#packages)
+- [ ] Standard Analyzer in Elasticsearch

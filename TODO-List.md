@@ -11,12 +11,11 @@ permalink: /todolist
 - [ ] Extension Method in C# vs Decorator Pattern
 - [ ] Lamda Expresion
 - [ ] LINQ
-- [ ] Unit test in Unity
 - [ ] Iterable, Iterator, IEnumerable, IEnumerator
 - [ ] Vigenere Cipher
+- [ ] Mã hóa RSA
 - [ ] Unity Machine Learning Agents
 - [x] WTF Python
-- [ ] Khoảng cách Levenshtein và Fuzzy Search
 - [x] Python Decorator
 - [ ] Các loại License
 - [ ] Cách đánh version
@@ -24,6 +23,7 @@ permalink: /todolist
 - [ ] Images augumented
 - [ ] [Blockchain hoạt động như thế nào](https://medium.com/@micheledaliessi/how-does-the-blockchain-work-98c8cd01d2ae)
 - [ ] [Blockchain in Python](https://hackernoon.com/learn-blockchains-by-building-one-117428612f46)
-- [ ] Mã hóa RSA
 - [ ] [Python Module](https://docs.python.org/3/tutorial/modules.html#packages)
+- [ ] Khoảng cách Levenshtein và Fuzzy Search
 - [ ] Standard Analyzer in Elasticsearch
+- [ ] Bulk API trong Elasticsearch

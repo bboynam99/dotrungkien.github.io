@@ -27,3 +27,4 @@ permalink: /todolist
 - [ ] Khoảng cách Levenshtein và Fuzzy Search
 - [ ] Standard Analyzer in Elasticsearch
 - [ ] Bulk API trong Elasticsearch
+- [ ] [Python Memory Management](http://deeplearning.net/software/theano/tutorial/python-memory-management.html)

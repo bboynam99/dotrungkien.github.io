@@ -12,7 +12,7 @@ permalink: /todolist
 - [ ] Lamda Expresion
 - [ ] LINQ
 - [ ] Iterable, Iterator, IEnumerable, IEnumerator
-- [ ] Vigenere Cipher
+- [x] Vigenere Cipher
 - [ ] Mã hóa RSA
 - [ ] Unity Machine Learning Agents
 - [x] WTF Python

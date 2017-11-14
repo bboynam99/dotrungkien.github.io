@@ -3,14 +3,14 @@ layout: post
 title: "Khoảng cách Levenshtein và fuzzy query trong Elasticsearch"
 tags: Levenshtein fuzzy query Elasticsearch dynamic-programming
 ---
-Chào các bạn, quay lại với Elasticsearch, hôm nay chúng ta sẽ đến với một chủ đề quen thuộc: **fuzzy query**.
+Chào các bạn, quay lại với Elasticsearch, hôm nay chúng ta sẽ đến với một chủ đề khác trong fulltext search: **fuzzy query**.
 
-Khi làm việc với Elasticsearch, hẳn là các bạn không lạ gì với fuzzy query, tuy nhiên nếu không hiểu về cách mà fuzzy query hoạt động, thì rất có thể việc search của bạn sẽ cho ra những kết quả như "trên trời rơi xuống" vậy. Vì vậy hiểu và nắm được nguyên lý của fuzzy query là một điều rất đỗi quan trọng trong fulltext search.
+Khi làm việc với Elasticsearch, hẳn là các bạn không lạ gì với fuzzy query, tuy nhiên nếu không hiểu về cách mà fuzzy query hoạt động, thì rất có thể việc search của bạn sẽ cho ra những kết quả như "trên trời rơi xuống" vậy. Vì vậy hiểu và nắm được nguyên lý của fuzzy query là một điều rất quan trọng trong fulltext search.
 
 ## Khoảng cách Levenshtein
 Để hiểu được nguyên lý của fuzzy query, trước hết ta phải nắm được về *khoảng cách Levenshtein*: **Khoảng cách Levenshtein** thể hiện khoảng cách khác biệt giữa 2 chuỗi ký tự. 
 
-Khoảng cách Levenshtein giữa chuỗi S và chuỗi T là số bước ít nhất biến chuỗi S thành chuỗi T thông qua 3 phép biến đổi là:
+Khoảng cách Levenshtein giữa chuỗi S1 và chuỗi S2 là số bước ít nhất biến chuỗi S1 thành chuỗi S2 thông qua 3 phép biến đổi là:
 - xoá 1 ký tự.
 - thêm 1 ký tự.
 - thay ký tự này bằng ký tự khác.
@@ -20,11 +20,12 @@ Ví dụ: Khoảng cách Levenshtein giữa 2 chuỗi "kitten" và "sitting" là
 2. sitten -> sittin (thay "e" bằng "i")
 3. sittin -> sitting (thêm ký tự "g")
 
-Rất rõ ràng, rất dễ hiểu, tuy nhiên vấn đề là làm thế nào để ta xác định được chuỗi biến đổi **ngắn nhất** đó. Về cơ bản đây là một bài lập trình thuật toán thuần tuý. Chúng ta có thể giải nó bằng **quy hoạch động** như sau:
+Rất rõ ràng, tuy nhiên vấn đề là làm thế nào để ta xác định được chuỗi biến đổi **ngắn nhất** đó. Về cơ bản đây là một bài lập trình thuật toán thuần tuý. Chúng ta có thể giải nó bằng **quy hoạch động** như sau:
 - Không mất tính tổng quát, giả sử s1 >= s2 (tức chuỗi s1 dài hơn chuỗi s2).
 - Ta sẽ xây dựng mảng previous_row để lưu trữ khoảng cách Levenshtein từ mỗi chuỗi tạo bởi i ký tự đầu tiên của s1 với j ký tự đầu tiên của s2.
 - Khởi tạo previous_row bằng chuỗi tạo bởi i ký tự đầu tiên của s1 với 0 ký tự đầu của s2, khoảng cách này dĩ nhiên bằng i.
 - Tại mỗi vị trí (i, j), ta sẽ có công thức tính khoảng cách như sau: distance = min(insertion, deletions, subtitutions), nghĩa là tại đó phép nào cho khoảng cách ngắn nhất thì lấy.
+
 ```py
 def levenshtein(s1, s2):
     if len(s1) < len(s2):
@@ -46,6 +47,7 @@ def levenshtein(s1, s2):
 print levenshtein("kitten", "sitting")
 ```
 
+
 ## Khoảng cách Levenshtein với Non-Ascii string 
 Trong hầu hết các ví dụ của lập trình, ta thông thường đều chỉ làm việc với tiếng Anh, kết quả thường đẹp tuyệt vời. Nhưng đời không như mơ, ngoài tiếng Anh, chúng ta còn thường xuyên gặp phải tiếng Việt, tiếng Nhật nữa, và liệu rằng những gì chúng ta tính toán trên kia có còn đúng nữa không ? chúng ta sẽ kiểm tra.
 ```py
@@ -60,7 +62,7 @@ Trong hầu hết các ví dụ của lập trình, ta thông thường đều c
 (dafuq) không phải 2 sao ?
 Thật không thể tin nổi ? sao kết quả lại không như mong đợi ?
 
-Nguyên nhân của điều này là do **multibyte character**. Với các kí tự trong các ngôn ngữ khác tiếng Anh, chúng ta đôi khi phải dùng nhiều hơn 1 byte để biểu diễn. Ví dụ như trên là ký tự "â" và các kí tự tiếng Nhật. Ta check thử từng kí tự:
+Nguyên nhân của điều này là do **multibyte character**. Với các kí tự trong các ngôn ngữ khác tiếng Anh, chúng ta đôi khi phải dùng nhiều hơn 1 byte để biểu diễn. Ví dụ như trên là ký tự "â, đ, ư, ờ" và các kí tự tiếng Nhật. Ta check thử từng kí tự:
 ```py
 >>> for i in "con đường": print ord(i),
 >>> for i in "cân đường": print ord(i),

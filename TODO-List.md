@@ -24,7 +24,7 @@ permalink: /todolist
 - [ ] [Blockchain hoạt động như thế nào](https://medium.com/@micheledaliessi/how-does-the-blockchain-work-98c8cd01d2ae)
 - [ ] [Blockchain in Python](https://hackernoon.com/learn-blockchains-by-building-one-117428612f46)
 - [ ] [Python Module](https://docs.python.org/3/tutorial/modules.html#packages)
-- [ ] Khoảng cách Levenshtein và Fuzzy Search
+- [x] Khoảng cách Levenshtein và Fuzzy Search
 - [ ] Standard Analyzer in Elasticsearch
 - [ ] Bulk API trong Elasticsearch
 - [ ] [Python Memory Management](http://deeplearning.net/software/theano/tutorial/python-memory-management.html)

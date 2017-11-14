@@ -23,7 +23,7 @@ Ví dụ: Khoảng cách Levenshtein giữa 2 chuỗi "kitten" và "sitting" là
 Rất rõ ràng, tuy nhiên vấn đề là làm thế nào để ta xác định được chuỗi biến đổi **ngắn nhất** đó. Về cơ bản đây là một bài lập trình thuật toán thuần tuý. Chúng ta có thể giải nó bằng **quy hoạch động** như sau:
 - Không mất tính tổng quát, giả sử s1 >= s2 (tức chuỗi s1 dài hơn chuỗi s2).
 - Ta sẽ xây dựng mảng previous_row để lưu trữ khoảng cách Levenshtein từ mỗi chuỗi tạo bởi i ký tự đầu tiên của s1 với j ký tự đầu tiên của s2.
-- Khởi tạo previous_row bằng chuỗi tạo bởi i ký tự đầu tiên của s1 với 0 ký tự đầu của s2, khoảng cách này dĩ nhiên bằng i.
+- Khởi tạo previous_row bằng chuỗi khoảng cách tạo bởi i ký tự đầu tiên của s1 với 0 ký tự đầu của s2, khoảng cách này dĩ nhiên bằng i.
 - Tại mỗi vị trí (i, j), ta sẽ có công thức tính khoảng cách như sau: distance = min(insertion, deletions, subtitutions), nghĩa là tại đó phép nào cho khoảng cách ngắn nhất thì lấy.
 
 ```py
@@ -95,4 +95,4 @@ Enjoy coding !
 
 ## References
 - [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance)
-- [Fuzzy query](https://www.elastic.co/guide/en/Elasticsearch/reference/current/common-options.html#fuzzy query)
+- [Fuzzy query](https://www.elastic.co/guide/en/Elasticsearch/reference/current/common-options.html#fuzziness)

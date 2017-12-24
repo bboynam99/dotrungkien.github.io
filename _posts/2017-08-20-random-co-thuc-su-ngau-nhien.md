@@ -16,30 +16,17 @@ Quá trình sinh ra random trong máy tính được gọi là **Pseudo Random N
 
 ## 1. RPNG Concept
 Ta sẽ có 3 khái niệm chung trong PRNG:
-- *Seed*: có thể coi như là giá trị khởi tạo của PRNG.
-- *Internal State*: trạng thái của PRNG, bao gồm các biến số để có thể dự đoán được giá trị tiếp theo và trạng thái tiếp theo của PRNG.
+- *Seed*: giá trị khởi tạo của PRNG.
+- *Internal State*: trạng thái của PRNG, lưu trữ các biến số để có thể dự đoán được giá trị và trạng thái tiếp theo của PRNG.
 - *Period*: chu kỳ của random, random sẽ lặp lại mỗi khi chu kỳ kết thúc.
 
 ## 2. Random Distribution Types
-Tuỳ vào mục đích sử dụng, Random() trong các ngôn ngữ lập trình sẽ sinh ra các số ngẫu nhiên theo *phân phối đều* (Uniform Distribution) với xác suất xuất hiện các số là gần như nhau
+Tuỳ vào mục đích sử dụng, Random() trong các ngôn ngữ lập trình sẽ sinh ra các số ngẫu nhiên theo các phân phối khác nhau.
+
+Thông thường nhất là *phân phối đều* (Uniform Distribution) với xác suất xuất hiện các số là gần như nhau
 ![Uniform Distribution](http://users.ecs.soton.ac.uk/jn2/simulation/unif.png)
 hoặc *phân phối chuẩn* (Normal Distribution) để sinh ra các giá trị xung quanh một giá trị nào đó.
 ![Normal Distribution](http://users.ecs.soton.ac.uk/jn2/simulation/normal.png)
-Dưới đây là list các random function và phân phối tạo ra tương ứng trong một số ngôn ngữ lập trình thông dụng
-```python
-# C#
-  Uniform: Random.NextDouble
-  Normal: NA
-# C/C++
-  Uniform: rand
-  Normal: NA
-# Java
-  Uniform: Random.NextDouble
-  Normal: Random.nextGaussian
-# Python
-  Uniform: random.random
-  Normal: random.randn
-```
 Đó, rõ ràng Random() không phải là dùng tuỳ tiện được mà phải phụ thuộc vào việc vào chúng ta muốn dữ liệu như thế nào nữa.
 
 ## 3. PRNG Algorithms
@@ -58,19 +45,22 @@ Trong đó:
 - $$c,\ 0 \leq c < m$$: Hằng số cộng thêm *increment*
 - $$X_{0},\ 0 \leq X_{0} < m$$: seed, giá trị khởi tạo
 
-Chu kỳ của LCG lớn nhất là m, và để LCG sinh ra tất cả các giá trị trong chu kỳ với mọi giá trị khởi tạo (full-period) thì sẽ cần những điều kiện ràng buộc như sau:
+Chu kỳ của LCG lớn nhất là m, và để LCG sinh ra tất cả các giá trị trong chu kỳ với mọi giá trị khởi tạo (full-period) thì sẽ cần những điều kiện ràng buộc như sau (các bạn hãy thử tự chứng minh bằng toán học xem sao :D):
 - $$m$$ và $$c$$ là nguyên tố cùng nhau.
 - $$a-1$$ chia hết cho mọi thừa số nguyên tố của $$m$$.
 - $$a-1$$ chia hết cho 4 nếu $$m$$ chia hết cho 4.
 
-Về giá trị của các hằng số, các bạn có thể tham khảo thêm [tại đây](https://en.wikipedia.org/wiki/Linear_congruential_generator).
+Về giá trị mặc định của các hằng số với các ngôn ngữ lập trình khác nhau, các bạn có thể tham khảo thêm [tại đây](https://en.wikipedia.org/wiki/Linear_congruential_generator).
+
+Dưới đây là vài ví dụ về LCG:
+![](https://upload.wikimedia.org/wikipedia/commons/0/02/Linear_congruential_generator_visualisation.svg)
 
 **Ưu điểm**: Rất nhanh và tốn ít bộ nhớ (32 hoặc 64 bits).
 
 **Nhược điểm**: Tính chất ngẫu nhiên chưa cao, và do đó với những hệ thống thực sự cần độ ngẫu nhiên rất cao, người ta không khuyến khích sử dụng LCG. Và thay vào đó là sử dụng *Mersenne Twister* (sẽ được nói tới trong phần sau).
 
 ### 3.2. Multiply with Carry (MWC)
-Để tạo ra chu kỳ random lớn hơn, [George Marsaglia](https://en.wikipedia.org/wiki/George_Marsaglia) đã tạo ra một thuật toán PRNG khác với tên gọi Multiply with Carry (MWC). Trong MWC thì ta sẽ dùng một set gồm từ hai cho tới hàng ngàn giá trị cho seed.
+Để tạo ra chu kỳ random lớn hơn, [George Marsaglia](https://en.wikipedia.org/wiki/George_Marsaglia) đã đề xuất một thuật toán PRNG khác với tên gọi Multiply with Carry (MWC). Trong MWC thì ta sẽ dùng một set gồm từ hai cho tới hàng ngàn giá trị cho seed.
 
 Và chu kỳ của MWC cũng rất lớn, từ $$2^{60}$$ cho tới $$2^{2000000}$$, nghĩa là lớn hơn rất rất nhiều so với LCG.
 
@@ -90,7 +80,7 @@ Các bạn có thể tham khảo bảng giá trị chu kì của MWC như dướ
 ### 3.3 Mersenne Twister
 *Mersenne Twister* là một thuật toán PRNG được *Makoto Matsumoto* và *Takuji Nishimura* phát triển vào năm 1997. Đây là một thuật toán thực sự tuyệt vời. Rất nhanh và tạo ra được dãy số với chất lượng ngẫu nhiên rất cao.
 
-Mersenne Twister được sử dụng như là built-in PRNG cho Python, Ruby, PHP và R.
+Mersenne Twister được sử dụng như là built-in PRNG cho *Python, Ruby, PHP và R*.
 
 Cái tên Mersenne Twister được chọn vì chu kì của số ngẫu nhiên tạo ra bởi thuật toán này luôn là một [số nguyên tố Mersenne](https://en.wikipedia.org/wiki/Mersenne_prime)
 > FYI: Số nguyên tố Mersenne có dạng $$M_{n} = 2^{n} - 1$$, ví dụ 31.
@@ -155,9 +145,9 @@ Sau khi đã xây dựng được dãy các vector $$\mathbf{x_0}, \mathbf{x_1},
 Tương tự như trên, để đơn giản hóa cho việc tính toán, người ta chọn T sao cho kết quả có thể nhận được chỉ bằng các phép XOR, AND và dịch bit thông thường
 \\[
 \begin{matrix}
-\mathbf{y} := \mathbf{x} \oplus ((\mathbf{x} \\gg u) & \mathbf{d}) \\\
-\mathbf{y} := \mathbf{y} \oplus ((\mathbf{y} \\ll s) & \mathbf{b}) \\\
-\mathbf{y} := \mathbf{y} \oplus ((\mathbf{y} \\ll t) & \mathbf{c}) \\\
+\mathbf{y} := \mathbf{x} \oplus ((\mathbf{x} \\gg u) \& \mathbf{d}) \\\
+\mathbf{y} := \mathbf{y} \oplus ((\mathbf{y} \\ll s) \& \mathbf{b}) \\\
+\mathbf{y} := \mathbf{y} \oplus ((\mathbf{y} \\ll t) \& \mathbf{c}) \\\
 \mathbf{z} := \mathbf{y} \oplus (\mathbf{y} \\gg l)
 \end{matrix}
 \\]
@@ -167,6 +157,8 @@ trong đó:
 
 Và cuối cùng là **đưa $$w$$ bit cuối cùng của $$\mathbf{z}$$ ra làm kết quả.**
 
+Nếu thấy hơi xoắn não, các bạn có thể xem hình bên dưới để hiểu một cách trực quan hơn cách dịch trái-phải của quá trình trên:
+![](https://upload.wikimedia.org/wikipedia/commons/b/b5/Mersenne_Twister_visualisation.svg)
 #### Initialization
 
 Ta cần bước khởi tạo các giá trị $$\mathbf{x}$$ trước khi thuật toán bắt đầu. Với một giá trị đầu vào **seed** gán cho $$\mathbf{x_0}$$.
@@ -176,7 +168,7 @@ $$x_i = f \times (x_{i-1} \oplus (x_{i-1} \gg (w-2))) + i$$
 f là một hằng số. Với MT19937 thì $$f=1812433253$$
 
 ---
-💡 Vậy là ta có cái nhìn tổng quan về Mersenne Twister, hãy ngồi xuống nghe một ca khúc và làm một ly cà phê trước khi đến với phần code :joy:
+💡 Vậy là ta có cái nhìn tổng quan về Mersenne Twister, hãy ngồi xuống, nghe một ca khúc và làm một ly cà phê trước khi đến với phần code :joy:
 
 #### 3.3b. MT19937
 MT19937 là standard implement của Mersene Twister, sử dụng với các tham số như sau:
@@ -246,9 +238,9 @@ print a.extract_number()
 ## 4. Conclusion
 Vậy là rõ ràng random() không phải là ngẫu nhiên, đó đều là kết quả do máy tính (hay chính xác hơn là con người) tạo ra mà thôi.
 
-Nếu biết được trạng thái hiện tại của thuật toán và seed, thì hoàn toàn chúng ta có thể tính toán được trạng thái tiếp theo, tức kết quả tiếp theo của random(). Tuy nhiên điều này đôi khi không dễ dàng và cần một số những điều kiện nhất định. Các bạn có thể tham khảo [bài viết này](https://manhhomienbienthuy.github.io/2016/Jul/04/cryptography-untwisting-mersenne-twister.html) của bờ rồ [@naa](https://viblo.asia/u/naa)
+Nếu biết được trạng thái hiện tại của thuật toán và seed, thì hoàn toàn chúng ta có thể tính toán được trạng thái tiếp theo, tức kết quả tiếp theo của random(). Tuy nhiên điều này đôi khi không dễ dàng và cần một số những điều kiện nhất định, đôi khi thấy xuất hiện trong các cuộc thi CTF.
 
-Vậy nên, nếu bạn chưa có bạn gái, hay chưa giàu, hay chưa trúng Vietlot, hãy luôn tin rằng đó chỉ là do *chưa tới lượt* mà thôi, ngày ngày làm một tấm vé, dù sớm hay muộn thì may mắn cũng [sẽ đến](https://www.youtube.com/watch?v=utTw_g4jkDw).
+Vậy nên, nếu bạn chưa có bạn gái, hay chưa giàu, hay chưa trúng Vietlot, hãy luôn tin rằng đó chỉ là do **chưa tới lượt** mà thôi, ngày ngày làm một tấm vé, dù sớm hay muộn thì may mắn cũng [sẽ đến](https://www.youtube.com/watch?v=utTw_g4jkDw).
 
 Good luck! :joy:
 
@@ -258,5 +250,5 @@ Good luck! :joy:
 - [List of random number generators](https://en.wikipedia.org/wiki/List_of_random_number_generators)
 - [Linear Congruential Generator](https://en.wikipedia.org/wiki/Linear_congruential_generator)
 - [Multiply with Carry](https://en.wikipedia.org/wiki/Multiply-with-carry)
-- [Mersene Twister](https://en.wikipedia.org/wiki/Mersenne_Twister)
+- [Mersenne Twister](https://en.wikipedia.org/wiki/Mersenne_Twister)
 - [Mersenne Twister Random Number Generator](https://www.ibm.com/support/knowledgecenter/en/SSLVMB_20.0.0/com.ibm.spss.statistics.help/alg_random-numbers_mersenne.htm)

@@ -243,7 +243,7 @@ print a.extract_number()
 print a.extract_number()
 ```        
 
-### Conclusion
+## 4. Conclusion
 Vậy là rõ ràng random() không phải là ngẫu nhiên, đó đều là kết quả do máy tính (hay chính xác hơn là con người) tạo ra mà thôi.
 
 Nếu biết được trạng thái hiện tại của thuật toán và seed, thì hoàn toàn chúng ta có thể tính toán được trạng thái tiếp theo, tức kết quả tiếp theo của random(). Tuy nhiên điều này đôi khi không dễ dàng và cần một số những điều kiện nhất định. Các bạn có thể tham khảo [bài viết này](https://manhhomienbienthuy.github.io/2016/Jul/04/cryptography-untwisting-mersenne-twister.html) của bờ rồ [@naa](https://viblo.asia/u/naa)
@@ -251,8 +251,8 @@ Nếu biết được trạng thái hiện tại của thuật toán và seed, t
 Vậy nên, nếu bạn chưa có bạn gái, hay chưa giàu, hay chưa trúng Vietlot, hãy luôn tin rằng đó chỉ là do *chưa tới lượt* mà thôi, ngày ngày làm một tấm vé, dù sớm hay muộn thì may mắn cũng [sẽ đến](https://www.youtube.com/watch?v=utTw_g4jkDw).
 
 Good luck! :joy:
-<br>
-### References
+
+## 5. References
 - [Random numbers: generators and distributions](http://users.ecs.soton.ac.uk/jn2/simulation/random.html)
 - [Artificial intelligence for humans volume 1](https://www.amazon.com/Artificial-Intelligence-Humans-Fundamental-Algorithms/dp/1493682229)
 - [List of random number generators](https://en.wikipedia.org/wiki/List_of_random_number_generators)

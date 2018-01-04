@@ -28,6 +28,6 @@ permalink: /todolist
 - [ ] Standard Analyzer in Elasticsearch
 - [ ] Bulk API trong Elasticsearch
 - [ ] [Python Memory Management](http://deeplearning.net/software/theano/tutorial/python-memory-management.html)
-- [ ] [modulo 10^9+7 in competitive programming](https://www.quora.com/What-exactly-is-print-it-modulo-10-9-+-7-in-competitive-programming-web-sites)
+- [x] [modulo 10^9+7 in competitive programming](https://www.quora.com/What-exactly-is-print-it-modulo-10-9-+-7-in-competitive-programming-web-sites)
 - [ ] [Battle of the Deep Learning frameworks](https://towardsdatascience.com/battle-of-the-deep-learning-frameworks-part-i-cff0e3841750)
 - [ ] Resize Image

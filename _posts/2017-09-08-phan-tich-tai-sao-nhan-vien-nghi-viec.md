@@ -266,7 +266,7 @@ plt.show()
 ```
 ![png]({{ site.url }}/assets/images/output_57_0.png)
 
-## 4. Conclusion
+## 4. Kết luận
 - Nhân viên làm **ít việc quá** sẽ nghỉ việc (ít hơn 150h/tháng hay 6h/ngày)
 - Nhân viên làm **nhiều việc quá** sẽ nghỉ việc (nhiều hơn 250h/tháng hay 10h/ngày)
 - Nhân viên có đánh giá **quá thấp** hay **quá cao** đều nghỉ.
@@ -283,7 +283,7 @@ Sẽ cần lắm thêm nữa những dữ liệu nhân sự thực tế của c�
 
 ---
 
-## 5. References
+## 5. Tham khảo
 - [Human Resources Analytics](https://www.kaggle.com/ludobenistant/hr-analytics/kernels)
 - [Why did Bob's Employees Leave? (Complete EDA)](https://www.kaggle.com/randylaosat/why-did-bob-s-employees-leave-complete-eda)
 - [Don't know why employees leave ? Read this](https://www.kaggle.com/yassineghouzam/don-t-know-why-employees-leave-read-this)

@@ -88,11 +88,11 @@ Fuzzy query trong Elasticsearch cũng sử dụng khoảng cách Levenshtein, v�
 
 Nếu trang web bạn đang sử dụng không phải là tiếng Anh, thì khi tìm kiếm fulltext search, có thể bạn sẽ phải chú ý điều chỉnh config giá trị fuzzy query hợp lý để đưa ra kết quả gần nhất với mong đợi. Nhiều khi AUTO chưa chắc đã là tốt.
 
-## Conclusion
+## Kết luận
 Fulltext search rất linh hoạt, nhưng chính sự linh hoạt đó đôi khi khiến lập trình viên trở nên bối rối trong quá nhiều sự lựa chọn.
 
 Enjoy coding !
 
-## References
+## Tham khảo
 - [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance)
 - [Fuzzy query](https://www.elastic.co/guide/en/Elasticsearch/reference/current/common-options.html#fuzziness)

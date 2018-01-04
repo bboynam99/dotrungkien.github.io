@@ -30,6 +30,8 @@ Môi trường sử dụng: python3.6, Tensorflow with GPU.
 
 **Update 2017/09/12:** Mình có update thêm code sử dụng SVM, có độ chính xác cho predict tốt hơn, nếu bạn có hứng thú thì check thử trên repo của mình [tại đây.](https://github.com/dotrungkien/breaking-captcha-using-Machine-Learning) nhé :smile:
 
+**Update 2017/09/12:** chuyencuadev đã ngừng hoạt động. Bài viết chỉ còn tính chất tham khảo, cảm ơn các bạn đã quan tâm.
+
 ### 1.Chuẩn bị dữ liệu ảnh captcha
 Rất đơn giản, captcha được sinh ra bởi url [https://chuyencuadev.com/captcha](https://chuyencuadev.com/captcha), ta chỉ cần get về là xong
 

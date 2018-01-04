@@ -7,7 +7,7 @@ tags: algorithm trailing-zeros factorials prime-number prime-factor
 Chúng ta sẽ bắt đầu với một bài toán nhỏ như sau:
 > Cho một số tự nhiên n, hãy tìm số chữ số 0 liên tiếp cuối cùng của n! (giai thừa)
 
-### Straight-forward
+### 1. Straight-forward
 Một cách đơn giản và trực diện nhất, đó chính là brute-force, nhân tất vào, rồi đếm số chữ số 0
 ```python
 def trailing_zeros(n):
@@ -24,7 +24,7 @@ def trailing_zeros(n):
 ```
 Đơn giản, dễ hiểu, nhưng rõ ràng là không hiệu quả về performance. Nếu bạn đã từng tham dự vào các cuộc thi **Competitive Programming** thì sẽ biết các cách giải kiểu brute-force này chắc chắn sẽ bị đánh giá là *time-out*!
 
-### Dùng cái đầu
+### 2. Dùng cái đầu
 Ta có nhận xét như sau: trailing_zeros(n) chính là số lần mà 10 xuất hiện trong khai triển $$n!$$
 
 Tuy nhiên, $$10 = 2*5$$, nên bài toán sẽ đưa về là tìm số lần xuất hiện của tích giữa 2 và 5 trong $$n!$$. Thêm nữa $$5 > 2$$, ta chắc chắn một điều là số lượng 5 xuất hiện ít hơn số lượng 2 xuất hiện, do đó cuối cùng ta chỉ cần đếm số lần 5 xuất hiện là đủ.
@@ -59,7 +59,7 @@ def trailing_zeros(n):
   return tz
 ```
 
-### Mở rộng
+### 3. Mở rộng
 Bài toán sẽ ra sao nếu ta thêm một điều kiện nữa, đó là *tìm số chữ số 0 liên tiếp cuối cùng của n trong cơ số $$b\ (b \geq 2)$$ bất kì*? [Khó - Nam Cường](http://mp3.zing.vn/bai-hat/Kho-Nam-Cuong/ZWZADE90.html)
 
 Ta lại có một nhận xét mở rộng của nhận xét trên: số chữ số 0 liên tiếp cuối cùng của một số trong cơ số b chính là số lần b xuất hiện trong khai triển $$n!$$
@@ -128,14 +128,14 @@ def trailing_zeros(number, base):
     return min([data[factor]/_factors.count(factor) for factor in set(_factors)])
 ```
 
-### Conclusion
+### 4. Kết luận
 Một bài toán tưởng chừng như đơn giản sẽ trở nên rất thú vị nếu ta biết cách khai thác và nhìn nó dưới những góc độ khác nhau.
 
 Cuộc sống cũng vậy, những điều lớn lao bao giờ cũng bắt nguồn từ những thứ đơn giản nhất.
 
 Enjoy coding!
 
-### References
+### 5. Tham khảo
 - [Trailing Zero](https://en.wikipedia.org/wiki/Trailing_zero)
 - [Legendre's formula](https://en.wikipedia.org/wiki/Legendre%27s_formula)
 - [Factorials and Trailing zeros](http://www.purplemath.com/modules/factzero.htm)

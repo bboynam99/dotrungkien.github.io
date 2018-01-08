@@ -20,7 +20,6 @@ permalink: /todolist
 - [ ] Các loại License
 - [ ] Cách đánh version
 - [x] Chúng ta đang đứng ở đâu trong cách mạng công nghiệp 4.0
-- [ ] Images augumented
 - [ ] [Blockchain hoạt động như thế nào](https://medium.com/@micheledaliessi/how-does-the-blockchain-work-98c8cd01d2ae)
 - [ ] [Blockchain in Python](https://hackernoon.com/learn-blockchains-by-building-one-117428612f46)
 - [ ] [Python Module](https://docs.python.org/3/tutorial/modules.html#packages)
@@ -31,3 +30,5 @@ permalink: /todolist
 - [x] [modulo 10^9+7 in competitive programming](https://www.quora.com/What-exactly-is-print-it-modulo-10-9-+-7-in-competitive-programming-web-sites)
 - [ ] [Battle of the Deep Learning frameworks](https://towardsdatascience.com/battle-of-the-deep-learning-frameworks-part-i-cff0e3841750)
 - [ ] Resize Image
+- [ ] Imread benchmark
+- [ ] Images augumented

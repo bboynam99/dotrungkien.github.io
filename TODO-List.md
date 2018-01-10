@@ -25,10 +25,10 @@ permalink: /todolist
 - [ ] [Python Module](https://docs.python.org/3/tutorial/modules.html#packages)
 - [x] Khoảng cách Levenshtein và Fuzzy Search
 - [ ] Standard Analyzer in Elasticsearch
-- [ ] Bulk API trong Elasticsearch
 - [ ] [Python Memory Management](http://deeplearning.net/software/theano/tutorial/python-memory-management.html)
 - [x] [modulo 10^9+7 in competitive programming](https://www.quora.com/What-exactly-is-print-it-modulo-10-9-+-7-in-competitive-programming-web-sites)
 - [ ] [Battle of the Deep Learning frameworks](https://towardsdatascience.com/battle-of-the-deep-learning-frameworks-part-i-cff0e3841750)
 - [ ] Resize Image
 - [ ] Imread benchmark
 - [ ] Images augumented
+- [ ] [Regex was taking 5 days to run. So I built a tool that did it in 15 minutes.](https://medium.freecodecamp.org/regex-was-taking-5-days-flashtext-does-it-in-15-minutes-55f04411025f)

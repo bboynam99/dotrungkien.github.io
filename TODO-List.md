@@ -32,3 +32,4 @@ permalink: /todolist
 - [ ] Imread benchmark
 - [ ] Images augumented
 - [ ] [Regex was taking 5 days to run. So I built a tool that did it in 15 minutes.](https://medium.freecodecamp.org/regex-was-taking-5-days-flashtext-does-it-in-15-minutes-55f04411025f)
+- [ ] Accuracy - Confusion Matrix - Precision/Recall - ROC curve

@@ -34,3 +34,4 @@ permalink: /todolist
 - [ ] [Regex was taking 5 days to run. So I built a tool that did it in 15 minutes.](https://medium.freecodecamp.org/regex-was-taking-5-days-flashtext-does-it-in-15-minutes-55f04411025f)
 - [ ] Accuracy - Confusion Matrix - Precision/Recall - FScore - ROC curve (http://blog.exsilio.com/all/accuracy-precision-recall-f1-score-interpretation-of-performance-measures/)
 - [ ] [Transfer Learning](http://ruder.io/transfer-learning/)
+- [ ] [Fizz Buzz in Tensorflow](http://joelgrus.com/2016/05/23/fizz-buzz-in-tensorflow/)

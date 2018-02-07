@@ -36,3 +36,4 @@ permalink: /todolist
 - [ ] [Transfer Learning](http://ruder.io/transfer-learning/)
 - [ ] [Fizz Buzz in Tensorflow](http://joelgrus.com/2016/05/23/fizz-buzz-in-tensorflow/)
 - [ ] [Deep Fakes](https://medium.com/@svencharleer/family-fun-with-deepfakes-or-how-i-got-my-wife-onto-the-tonight-show-a4454775c011)
+- [x] Cách download hàng loạt google images

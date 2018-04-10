@@ -1,8 +1,3 @@
----
-layout: post
-title: "Blockchain - hacking smart contract with Ethernaut CTF (Part 1)"
-mathjax: true
----
 Những năm gần đây, **Blockchain** và các ứng dụng của nó nổi lên như một xu thế công nghệ của tương lai. Áp dụng **Blockchain**, ta có thể giải quyết được rất nhiều vấn đề mà các công nghệ hiện tại không làm được, mà trong đó nổi bật nhất là không còn trung gian giao dịch, không cần tin tưởng vào một bên thứ 3 nào nữa. Điều này khiến cho mọi thứ trở nên đơn giản hơn, tiện lợi hơn, minh bạch hơn, sự tin tưởng cao hơn.
 
 Tuy vậy **Blockchain** không phải chỉ có toàn ưu điểm, nó vẫn còn là một công nghệ còn rất "mới" và sẽ cần nhiều thời gian nữa để hoàn thiện. Một số nhược điểm cơ bản có thể kể đến như tốc độ confirm giao dịch vẫn còn chậm, chi phí còn cao đối với các giao dịch nhỏ. Một điều nữa là *user experience* - người dùng phổ thông vẫn chưa sẵn sàng với khái niệm **Blockchain**, sự tin tưởng vào công nghệ này vẫn còn cần rất nhiều sự minh chứng nữa.
@@ -15,7 +10,7 @@ Các bạn có thể tham gia chơi tại đây: [https://ethernaut.zeppelin.sol
 
 Một vài recommend:
 
-- Sẽ tốt hơn nếu bạn có kiến thức về **Blockchain** và **Smart Contract*
+- Sẽ tốt hơn nếu bạn có kiến thức về **Blockchain** và **Smart Contract**
 - Sẽ tốt hơn nếu bạn có kiến thức về **Solidity** và **Web3js**
 - Sẽ là tốt hơn nếu bạn biết cách sử dụng **Remix IDE** hoặc **Truffle**
 
@@ -36,7 +31,7 @@ Tại mỗi bài, chúng ta sẽ được cấp một instance, địa chỉ ins
 
 ### Solution
 
-- Tại bước hướng dẫn số 9, ta sẽ bắt đầu bằng `contract.info()` trên Chrome Console
+- Ta chưa biết mình phải làm gì ngoài một gợi ý tại bước hướng dẫn số 9. Ta sẽ bắt đầu bằng `contract.info()` trên Chrome Console
 
 ```js
 await contract.info()
@@ -274,14 +269,14 @@ contract CoinFlip {
 }
 ```
 
-### Solution Coin Flip
+### Coin Flip Solution
 
 - Đầu tiên, khẳng định một điều rằng: việc tự đoán 10 lần đúng liên tiếp bằng đỏ đen gần như là bất khả thi.
 - Nhận thấy rằng trong function flip() có tính toán mặt sấp/ngửa sau đó submit kết quả luôn, nên ta không thể biết được kết quả tính toán là gì để can thiệp vào quá trình submit. Tuy nhiên nó gợi ý tưởng cho ta có thể viết một contract khác chia function đó ra làm đôi, một function có nhiệm vụ tính toán và một function có nhiệm vụ submit kết quả.
-- Đã đến lúc phải code, ta sẽ sử dụng Remix IDE thay cho chrome debug console. Ta sẽ viết một contract **Flip** khác như sau, nhớ hay thế biến target bằng địa chỉ instance của bạn:
+- Đã đến lúc phải code, ta sẽ sử dụng Remix IDE thay cho Chrome console. Ta sẽ viết một contract **Attack** khác như sau, nhớ hay thế biến target bằng địa chỉ instance của bạn:
 
 ```js
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.18;
 
 
 contract CoinFlip {
@@ -405,7 +400,7 @@ contract Telephone {
 
 contract Attack {
   Telephone phone;
-
+  // replace target by your instance address
   address target = 0x7828d70649688ad7fb4fa2b34430e92096b6fb47;
 
   function Attack() {

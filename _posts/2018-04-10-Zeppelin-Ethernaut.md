@@ -1,3 +1,8 @@
+---
+layout: post
+title: "Blockchain - hacking smart contract with Ethernaut CTF (Part 1)"
+mathjax: true
+---
 Những năm gần đây, **Blockchain** và các ứng dụng của nó nổi lên như một xu thế công nghệ của tương lai. Áp dụng **Blockchain**, ta có thể giải quyết được rất nhiều vấn đề mà các công nghệ hiện tại không làm được, mà trong đó nổi bật nhất là không còn trung gian giao dịch, không cần tin tưởng vào một bên thứ 3 nào nữa. Điều này khiến cho mọi thứ trở nên đơn giản hơn, tiện lợi hơn, minh bạch hơn, sự tin tưởng cao hơn.
 
 Tuy vậy **Blockchain** không phải chỉ có toàn ưu điểm, nó vẫn còn là một công nghệ còn rất "mới" và sẽ cần nhiều thời gian nữa để hoàn thiện. Một số nhược điểm cơ bản có thể kể đến như tốc độ confirm giao dịch vẫn còn chậm, chi phí còn cao đối với các giao dịch nhỏ. Một điều nữa là *user experience* - người dùng phổ thông vẫn chưa sẵn sàng với khái niệm **Blockchain**, sự tin tưởng vào công nghệ này vẫn còn cần rất nhiều sự minh chứng nữa.

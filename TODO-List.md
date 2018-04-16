@@ -38,7 +38,7 @@ permalink: /todolist
 - [ ] [Deep Fakes](https://medium.com/@svencharleer/family-fun-with-deepfakes-or-how-i-got-my-wife-onto-the-tonight-show-a4454775c011)
 - [x] Cách download hàng loạt google images
 - [x] Writeup Ethernaut CTF part 1
-- [ ] Writeup Ethernaut CTF part 2
+- [x] Writeup Ethernaut CTF part 2
 - [ ] Writeup Ethernaut CTF part 3
 - [ ] [Understanding ERC20 token](https://medium.com/@jgm.orinoco/understanding-erc-20-token-contracts-a809a7310aa5)
 - [ ] [ICO in less than 20 minutes](https://medium.com/bitfwd/how-to-do-an-ico-on-ethereum-in-less-than-20-minutes-a0062219374)

@@ -102,6 +102,7 @@ hmm, nhiều lắm, tôi không biết là anh có thực sự cần không, nh�
 - Mastering bitcoin: [https://www.amazon.com/Mastering-Bitcoin-Unlocking-Digital-Cryptocurrencies/dp/1449374042](https://www.amazon.com/Mastering-Bitcoin-Unlocking-Digital-Cryptocurrencies/dp/1449374042)
 - Vietnam Blockchain Developer: [https://www.facebook.com/groups/1561844270543595/](https://www.facebook.com/groups/1561844270543595/)
 - Medium.com: trên này tổng hợp đủ tất cả các thể loại, a có thể tự lựa chọn cho mình category mà mình yêu thích
+- Ngoài ra hiện tại Framgia cũng đang có một nhóm Blockchain Research Group, bao gồm toàn hảo thủ ngày đêm nghiên cứu về blockchain. A có thể liên hệ thử xem sao.
 
 Có lẽ cũng khá là nhiều rồi, hi vọng a sẽ sớm tu thành đắc đạo.
 

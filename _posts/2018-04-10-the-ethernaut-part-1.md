@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Blockchain - hacking smart contract with Ethernaut CTF (Part 1)"
+title: "The Ethernaut - Part 1: 0-4"
 mathjax: true
 ---
 Những năm gần đây, **Blockchain** và các ứng dụng của nó nổi lên như một xu thế công nghệ của tương lai. Áp dụng **Blockchain**, ta có thể giải quyết được rất nhiều vấn đề mà các công nghệ hiện tại không làm được, mà trong đó nổi bật nhất là không còn trung gian giao dịch, không cần tin tưởng vào một bên thứ 3 nào nữa. Điều này khiến cho mọi thứ trở nên đơn giản hơn, tiện lợi hơn, minh bạch hơn, sự tin tưởng cao hơn.

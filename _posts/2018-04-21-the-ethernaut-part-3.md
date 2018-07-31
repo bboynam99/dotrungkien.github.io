@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Blockchain - hacking smart contract with Ethernaut CTF (Part 3)"
+title: "The Ethernaut - Part 3: 9-11"
 mathjax: true
 ---
 Chào các bạn, hôm nay chúng ta sẽ đến với phần 3, cũng là phần cuối của chuỗi bài *Blockchain - hacking smart contract with Ethernaut CTF*

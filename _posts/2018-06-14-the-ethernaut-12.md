@@ -46,15 +46,14 @@ contract Privacy {
 
 ## Phân tích
 
-Để giải quyết được bài toán này các bạn phải hiểu được cách mà storage hoạt động trong solidity.
+Để giải quyết được bài toán này các bạn phải hiểu được cách mà storage hoạt động trong solidity. Về cơ bản thì phần này khá là dài và rắc rối, nên mình sẽ chỉ nói những phần cơ bản nhất để ta có thể làm được bài này, các bạn có thể đọc kỹ thêm [tại đây](http://solidity.readthedocs.io/en/v0.4.24/miscellaneous.html)
 
-- Các biến sẽ được gộp lại thành từng slot có độ dài 32 bytes (256 bits)
+- Các biến sẽ được gộp lại thành từng slot có độ dài 32 bytes (256 bits), tức 64 ký tự hexa
 - Các biến sẽ lần lượt được đưa vào slot, nếu không vừa thì sẽ được đưa sang slot mới
-- Struct và Array sẽ luôn luôn tạo một slot mới
+- *Static array* luôn sinh một slot mới, và cũng đưa các phần tử lần lượt vào slot như trên.
+- *constant* sẽ không được lưu vào storage
 
-Note: nếu bạn dùng biến có độ dài nhỏ hơn 32 bytes, có thể contract của bạn sẽ tốn nhiều gas hơn!
-
-Vì EVM trong ethereum xử lý theo từng block 32 bytes mỗi phép tính, nên nếu có nhiều thành phần nhỏ hơn 32 bytes thì EVM sẽ phải tốn thêm phép tính để giảm size từ 32 bytes về size mà bạn đã định nghĩa.
+Note: nếu bạn dùng biến có độ dài nhỏ hơn 32 bytes, có thể contract của bạn sẽ tốn nhiều gas hơn! Vì EVM trong ethereum xử lý theo từng block 32 bytes mỗi phép tính, nên nếu có nhiều thành phần nhỏ hơn 32 bytes thì EVM sẽ phải tốn thêm phép tính để giảm size từ 32 bytes về size mà bạn đã định nghĩa.
 
 Nhìn qua các biến của contract:
 
@@ -67,9 +66,14 @@ uint16 private awkwardness = uint16(now);
 bytes32[3] private data;
 ```
 
-như trên, ta sẽ có các nhóm: nhóm `locked, flattening, denimination, awkwardness`, nhóm `data[0]` (do bytes32 đã là 32 bytes = 256 bíts), nhóm `data[1]` và nhóm `data[3]` (ID là **constant** nên sẽ không được lưu trữ).
+như trên, ta sẽ có các slot như sau:
 
-vì thế `data[2]` sẽ có index là 2 trong storage của contract.
+- slot 0: locked, flattening, denimination, awkwardness
+- slot 1: data[0] (do mỗi thành phần của data đã là 32 bytes rồi)
+- slot 2: data[1]
+- slot 3: data[2]
+
+vì thế `data[2]` sẽ có index là 3 trong storage của contract.
 
 ## Solution
 
@@ -102,17 +106,4 @@ false
 - Các bạn có thể tham khảo thêm cách solidity lưu biến [tại đây](https://solidity.readthedocs.io/en/latest/miscellaneous.html#layout-of-state-variables-in-storage)
 - Các bạn cũng có thể tham khảo cách decode các tham số trong hàm trong solidity [tại đây](https://medium.com/aigang-network/how-to-read-ethereum-contract-storage-44252c8af925)
 
-## Conclusion
-
-Vậy là chúng ta đã hoàn thành chuỗi bài *Blockchain - hacking smart contract with Ethernaut CTF*.
-
-Hi vọng những kiến thức trong đó có thể giúp ích được các bạn ít nhiều trong việc viết code solidity nói riêng cũng như các ứng dụng phi tập trung nói chung.
-
-Enjoy coding!
-
-## References
-
-- [The Ethernaut](https://ethernaut.zeppelin.solutions/)
-- [Remix](https://remix.ethereum.org/)
-- [Solidity Docs](http://solidity.readthedocs.io/en/develop/types.html#members-of-addresses)
-- [Recommendations for Smart Contract Security in Solidity](https://consensys.github.io/smart-contract-best-practices/recommendations/#be-aware-of-the-tradeoffs-between-send-transfer-and-callvalue)
+**Enjoy Coding!**

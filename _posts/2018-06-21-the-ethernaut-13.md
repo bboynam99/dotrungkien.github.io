@@ -3,7 +3,9 @@ layout: post
 title: "The Ethernaut: 13 - Gatekeeper One"
 mathjax: true
 ---
-# 13. Gatekeeper One 　★★★★★★
+# 13. Gatekeeper One 　★★★★★
+
+**Note**: hãy luôn chọn đúng version solidity và tắt chế độ *Enable Optimization* trên Remix, vì với mỗi version số lượng gas tiêu tốn có thể khác nhau. Đây là một kinh nghiệm đau thương của mình khi tốn cả ngày trời debug mà không biết lỗi nằm ở đâu.
 
 **Nhiệm vụ**: vượt qua 3 cánh cổng và thay đổi địa chỉ của cửa vào
 
@@ -72,37 +74,43 @@ Ta chuẩn bị contract trung gian như sau:
 
 ```js
 contract Backdoor {
-    GatekeeperOne gk;
+  GatekeeperOne gk;
 
-    constructor (address _target) {
-        gk = GatekeeperOne(_target);
-    }
+  function Backdoor (address _target) public {
+    gk = GatekeeperOne(_target);
+  }
 
-    function enterGate2() public {
-        gk.enter.gas(500000)(0x12345678);
-    }
+  function enter(uint gaslimit, bytes8 key) public {
+    gk.enter.gas(gaslimit)(key);
+  }
 }
 ```
 
-Compile với _target là địa chỉ instance của bạn. Nếu muốn test nhanh thì trên Remix chúng ta có thể để môi trường là `JavaScript VM` và compile lại cả `GateKeeperOne` và `Backdoor` contract.
+trong đó _target là địa chỉ instance của bạn.
 
-Ta sẽ set cho hàm enterGate2 một số lượng gas đủ lớn là `500000` gas, `_key` thì tuỳ ý vì ta chưa động đến *gateThree*. Ở đây tuy transaction gần như chắc chắn sẽ fail, tuy nhiên từ đó, ta sẽ tiến hành debug và quan sát xem cho đến khi check điều kiện `require(msg.gas % 8191 == 0);` của gate 2 chúng ta đã tốn mất bao nhiêu gas, để theo đó có thể setup số lượng gas chính xác nhất
+Ta sẽ switch qua môi trường là `JavaScript VM` và compile lại cả `GateKeeperOne` và `Backdoor` contract để tiến hành debug.
 
-![png]({{ site.url }}/assets/images/Gascost.png)
+Ta sẽ set cho hàm enterGate2 một số lượng gas đủ lớn là `500000` gas, `_key` thì tuỳ ý vì ta chưa động đến *gateThree*.
 
-Ta thấy rằng cho đến bước 71, tức lúc debug chỉ vào `msg.gas`, số lượng gas hiện tại là 499760 gas, step này tốn 2 gas, vậy tổng số lượng gas đã mất là `500000 - 499760 + 2 = 242`
+![png]({{ site.url }}/assets/images/GatekeeperOne-Gate2.png)
 
-Do đó ta chỉ cần điều chỉnh số lượng gas là `242 + 8191*100=819342` là đủ, sở dĩ nhân với 100 để đảm bảo còn đủ gas để qua tiếp gate 3 mà vẫn qua được gate 2:
+Ở đây tuy transaction gần như chắc chắn sẽ fail, tuy nhiên từ đó, ta sẽ tiến hành debug và quan sát xem cho đến khi check điều kiện `require(msg.gas % 8191 == 0);` của gate 2 chúng ta đã tốn mất bao nhiêu gas, để theo đó có thể setup số lượng gas chính xác nhất
 
-```js
-function enterGate2() public {
-  gk.enter.gas(819342)(0x12345678);
-}
-```
+![png]({{ site.url }}/assets/images/GatekeeperOne-Debug.png)
 
-compile và chạy lại, ta thấy vẫn lỗi, tất nhiên rồi vì đã qua gate3 đâu, tuy nhiên nếu bật debug lên thì ta thấy là đã qua gate 2 rồi. Ngon.
+Ta thấy rằng cho đến bước 61, tức lúc debug chỉ vào `msg.gas`, số lượng gas hiện tại là 499787 gas, step này tốn 2 gas, vậy tổng số lượng gas đã mất là `500000 - 499787 + 2 = 215`
+
+![png]({{ site.url }}/assets/images/GatekeeperOne-Gascost.png)
+
+Do đó ta chỉ cần điều chỉnh số lượng gas là `215 + 8191*100=819315` là đủ, sở dĩ nhân với 100 để đảm bảo sau khi qua gate 2 ta vẫn còn đủ gas để đi tiếp vào gate 3:
+
+![png]({{ site.url }}/assets/images/GatekeeperOne-Gate2Again.png)
+
+chạy lại, ta thấy vẫn lỗi, tất nhiên rồi vì đã qua gate3 đâu, tuy nhiên nếu bật debug lên thì ta thấy là đã qua gate 2 rồi. Ngon.
 
 ### Cửa số 3
+
+Note: hãy switch lại môi trường Ropsten test net trước khi đến với cửa số 3 vì ta sẽ submit thực tế tại đây.
 
 ```js
 modifier gateThree(bytes8 _gateKey) {
@@ -123,15 +131,15 @@ Trước hết ta nhắc lại một lượt các giới hạn số nguyên tron
 
 Khi ép kiểu thì nếu số đó lớn hơn giới hạn của kiểu dữ liệu, thì sẽ quay vòng trở lại từ số bé nhất.
 
-Có nghĩa là, giả sử như ta ép kiểu uint16(x) thì kết quả ta nhận được sẽ là x%65536
+Có nghĩa là, giả sử như ta ép kiểu uint16(x) thì kết quả ta nhận được sẽ là x % 65536
 
-OK, quay trở lại bài toán, điều kiện thứ 3:
+OK, quay trở lại bài toán, **điều kiện thứ 3**:
 
 ```js
 require(uint32(_gateKey) == uint16(tx.origin));
 ```
 
-ở đây `tx.origin` chính là địa chỉ của mình trên metamask. Ở đây mình sử dụng địa chỉ của mình, các bạn hãy thay tương ứng với địa chỉ của các bạn.
+ở đây `tx.origin` chính là địa chỉ account của mình. Ở đây mình sử dụng địa chỉ của mình, các bạn hãy thay tương ứng với địa chỉ của các bạn.
 
 Do việc tính toán với số lớn của javascript hơi củ chuối, nên mình dùng python để tính toán
 
@@ -144,7 +152,13 @@ Trước tiên ta sẽ tính `uint16(tx.origin)`
 
 Vậy thì từ `require(uint32(_gateKey) == uint16(tx.origin));` ta có `_gateKey` sẽ có dạng $$2^{32}*x + 55659$$
 
-Điều kiện đầu tiên: `require(uint32(_gateKey) == uint16(_gateKey));`. Ta thấy rằng với dạng $$2^{32}*x + 55659$$ thì điều kiện trên rõ ràng luôn đúng vì
+**Điều kiện đầu tiên**: 
+
+```js
+require(uint32(_gateKey) == uint16(_gateKey));
+```
+
+Ta thấy rằng với dạng $$2^{32}*x + 55659$$ thì điều kiện trên rõ ràng luôn đúng vì
 
 \\[
 (2^{32} \times x + 55659) ~ mod ~ 2^{32} = (2^{32} \times x + 55659) ~ mod ~ 2^{16} = 55659
@@ -152,7 +166,13 @@ Vậy thì từ `require(uint32(_gateKey) == uint16(tx.origin));` ta có `_gateK
 
 nghĩa là chỉ cần một số đi quá chu kì của $$2^{32}$$ một lượng nhỏ hơn $$2^{16}$$ là ok
 
-Điều kiện thứ 2: `require(uint32(_gateKey) != uint64(_gateKey));`. Để đạt được điều kiện này ta chỉ cần một số đi quá giới hạn của `uint32` nhưng chưa tới giới hạn của `uint64`, khi đó số đó sẽ quay trở lại rất nhỏ với `uint32` nhưng vẫn còn rất lớn với `uint64`, thật vậy
+**Điều kiện thứ 2**: 
+
+```js
+require(uint32(_gateKey) != uint64(_gateKey));
+```
+
+Để đạt được điều kiện này ta chỉ cần một số đi quá giới hạn của `uint32` nhưng chưa tới giới hạn của `uint64`, khi đó số đó sẽ quay trở lại rất nhỏ với `uint32` nhưng vẫn còn rất lớn với `uint64`, thật vậy
 
 \\[
 (2^{32} + 55659) ~ mod ~ 2^{64} = 4295022955
@@ -160,7 +180,7 @@ nghĩa là chỉ cần một số đi quá chu kì của $$2^{32}$$ một lượ
 (2^{32} + 55659) ~ mod ~ 2^{32} = 55659
 \\]
 
-Vậy nên ta chọn luôn số $$2^{32} + 55659$$ và chuyển nó qua dạng `bytes8` là ok
+Vậy nên ta chọn luôn số $$2^{32} + 55659$$ và chuyển nó qua dạng hex là ok
 
 ```python
 >>> 2**32 + 55659
@@ -169,13 +189,10 @@ Vậy nên ta chọn luôn số $$2^{32} + 55659$$ và chuyển nó qua dạng `
 '0x10000d96b'
 ```
 
-đổi tên enterGate2 thành `enter`, thay *key* bằng chuỗi bên trên và submit
+vì chuỗi key là dạng `bytes8`, tức 16 ký tự hexa, ta sẽ thêm vài số 0 ở đầu để đảm bảo key dài 16 ký tự: `0x000000010000d96b`
+thay *key* bằng chuỗi bên trên và submit
 
-```js
-function enter() public {
-  gk.enter.gas(819342)(0x10000d96b);
-}
-```
+![png]({{ site.url }}/assets/images/GatekeeperOne-Final.png)
 
 Kiểm tra lại xem entrant đã đổi thành địa chỉ của mình chưa ?
 
@@ -189,3 +206,5 @@ Submit && All done!
 ## Bình luận
 
 Đây là một bài tập hết sức khó nhằn, yêu cầu rất nhiều kiến thức tổng hợp. Từ kiến thức về msg.sender, tx.origin, cho đến overflow dữ liệu, đồng thời phải biết cả debug transaction, hiểu về khái niệm *gas* trong giao dịch. Thực sự mình đánh giá đây là bài tập khó nhất của chuỗi CTF này.
+
+Không hiểu sao phía BTC họ lại để 5/6 sao, chắc trêu =))

@@ -3,4 +3,7 @@ layout: page
 title: About me
 permalink: /about/
 ---
-Reality is just an illusion of lacking alcohol!
+
+"There's a big difference between knowing﻿ the name of something and knowing something."
+
+― Richard Feynman

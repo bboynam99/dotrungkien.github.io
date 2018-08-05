@@ -208,3 +208,5 @@ Submit && All done!
 Đây là một bài tập hết sức khó nhằn, yêu cầu rất nhiều kiến thức tổng hợp. Từ kiến thức về msg.sender, tx.origin, cho đến overflow dữ liệu, đồng thời phải biết cả debug transaction, hiểu về khái niệm *gas* trong giao dịch. Thực sự mình đánh giá đây là bài tập khó nhất của chuỗi CTF này.
 
 Không hiểu sao phía BTC họ lại để 5/6 sao, chắc trêu =))
+
+Enjoy coding!

@@ -80,10 +80,10 @@ function transfer(address to, uint tokens) public returns (bool success);
 
 ```js
 function approve(address spender, uint tokens) public returns (bool success);
-  function transferFrom(address from, address to, uint tokens) public returns (bool success);
+function transferFrom(address from, address to, uint tokens) public returns (bool success);
 ```
 
-Do đó ta sẽ khai thác như sau. Đầu tiên paste code lên Remix và load contract của ta ra. Nhớ là sử dụng account player hiện tại nhé.
+Do đó ta sẽ khai thác như sau: Đầu tiên paste code lên Remix và load contract của ta ra, nhớ là sử dụng account *player* hiện tại nhé.
 
 Bước 1: Trên chrome console kiểm tra balance hiện tại
 
@@ -92,22 +92,22 @@ await contract.blanceof(player).then(x => x.toNumber())
 1000000000000000000000000
 ```
 
-Bước 2: Tiến hành `approve` cho một tài khoản khác , ở đây là `0xc3A5e98871B9Bbb045A700c28b53C017D15Bd288` với số lượng token là 1000000000000000000000000
+Bước 2: Trên Remix, tiến hành `approve` cho một tài khoản khác với số lượng token là 1000000000000000000000000, ở đây mình sử dụng một tài khoản khác của mình là `0xc3A5e98871B9Bbb045A700c28b53C017D15Bd288`, các bạn hãy thay bằng tài khoản khác của các bạn.
 
 ![png]({{site.url}}/assets/images/naughty-coin-approve.png)
 
-Bước 3: Chuyển qua account `0xc3A5e98871B9Bbb045A700c28b53C017D15Bd288` và tiến hành rút toàn bộ tiền tiền bằng `transferFrom`
+Bước 3: Switch qua account `0xc3A5e98871B9Bbb045A700c28b53C017D15Bd288` và tiến hành rút toàn bộ tiền tiền bằng `transferFrom`
 
 ![png]({{site.url}}/assets/images/naughty-coin-transferfrom.png)
 
-Bước 4: Quay lại tài khoản player, trên chrome console check lại tài khoản của mình
+Bước 4: Switch lại tài khoản player, trên chrome console check lại balance
 
 ```js
 await contract.blanceof(player).then(x => x.toNumber())
 0
 ```
 
-Submit && all done!
+Vậy là balance đã về 0. Submit && all done!
 
 ### Bình luận
 

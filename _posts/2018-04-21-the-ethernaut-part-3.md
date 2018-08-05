@@ -85,6 +85,9 @@ contract Attack {
 }
 ```
 
+- mình sẽ giải thích thêm một chút về đoạn `if(!_target.call.value(msg.value)()) revert();,` có vẻ trông đoạn này hơi lạ nhưng có lý do của nó:
+  - để gửi eth đến một địa chỉ, chúng ta có 3 cách: `transfer`, `send`, `call.value`. Trong đó thì *transfer* và *send* được fixed số gas limit là 2100, quá là thấp, có nghĩa *transfer* và *send* chỉ thuần tuý là để chuyển eth mà không thể thực hiện thêm bất cứ logic nào trong fallback function cả.
+  - `call.value` là một hàm lowlevel, không giới hạn số gas limit, tuy nhiên sẽ trả về kết quả true/false thay vì throw ra một exception, vì thế ta cần đưa vào đoạn if-revert để biết được nó có lỗi hay không.
 - Compile và chạy hàm steal, `_target` là target của instance của bạn, `msg.value` ta cho một giá trị lớn hơn prize hiện tại, ví dụ 1.1 ether (1100 finneys).
 
 - Kiểm tra lại king hiện tại và thấy đang là bạn:

@@ -236,7 +236,7 @@ contract Vault {
 
 - Contract Vault có 2 tham số: `looked` và `password`, nó sẽ lưu `looked` tại vị trí 0 và `password` tại vị trí 1 trong storage.
 - `password` có kiểu dữ liệu là bytes32, nên để hiển thị ra ký tự ASCII ta phải dùng hàm `web3.toAscii`
-- Trong chrome console, ta chạy lệnh sau, lưu ý thay địa chỉ bằng địa chỉ instance của bạn
+- Trong chrome console, ta chạy lệnh sau
 
 ```js
 web3.eth.getStorageAt("0x712d4d349abd61d1ff12be06f8ff55cc7fb1052b", 1, (err, result) => alert(web3.toAscii(result)))

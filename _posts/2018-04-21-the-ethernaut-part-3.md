@@ -72,6 +72,7 @@ await contract.king()
 await contract.prize().then(x => x.toNumber);
 > 1000000000000000000
 ```
+
 nghĩa là giải thưởng hiện tại là 1 ether
 
 - Trên Remix IDE, chuẩn bị một contract tấn công không có `payable fallback`

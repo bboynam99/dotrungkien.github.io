@@ -1,109 +1,110 @@
 Don't worry, that value is only wrong half of the time
 The unit test doesn't cover that eventuality
-There was too little data to bother with the extra functionality at the time
-I thought you signed off on that?
-The program has never collected that information
-That's interesting, how did you manage to make it do that?
-Your browser must be caching the old content
-Our internet connection must not be working
-I couldn't find any examples of how that can be done anywhere online
-I thought I fixed that
-The marketing department made us put that there
-Somebody must have changed my code
-Maybe somebody forgot to pay our hosting company
-That was literally a one in a million error
-There's currently a problem with our hosting company
-I'm not sure as I've never had a look at how that works before
-The accounting department must have cancelled that subscription
-I'll have to fix that at a later date
-I didn't anticipate that I would make any errors
-That process requires human oversight that nobody was providing
-It worked yesterday
-It's a third party application issue
-It works, but it's not been tested
-Well done, you found my easter egg!
-That's already fixed it just hasn't taken effect yet
-Well, that's a first
-I'm still working on that as we speak
-It's always been like that
-It's a known bug with the programming language
-The code is compiling
-It must be because of a leap year
-That's not a bug it's a configuration issue
-Our code quality is no worse than anyone else in the industry
-I haven't touched that code in weeks
-I can't make that a priority right now
-The problem seems to be with our legacy software
-The person responsible doesn't work here anymore
-Well at least we know not to try that again
-The existing design makes it difficult to do the right thing
-The download must have been corrupted
-Oh, that was only supposed to be a placeholder
-Even though it doesn't work, how does it feel?
-It works for me
-How is that possible?
-It's a known bug with the server software
-It must be because of a leap second
-It would have taken twice as long to build it properly
-Did you check for a virus on your system?
-The request must have dropped some packets
-I thought I finished that
-I broke that deliberately to do some testing
-My time was split in a way that meant I couldn't do either project properly
-There must be something strange in your data
-Oh, that was just a temporary fix
-Everything looks fine my end
-It's never shown unexpected behaviour like this before
-It's just some unlucky coincidence
-The client wanted it changed at the last minute
-We outsourced that months ago
-It was working in my head
-I couldn't find any examples of how that can be done anywhere else in the project
-Why do you want to do it that way?
-You must have done something wrong
-Our hardware is too slow to cope with demand
-What did I tell you about using parts of the system you don't understand?
-I haven't had the chance to run that code yet
-We should have updated our software years ago
-That important email must have been marked as spam
-You're doing it wrong
-Well, at least it displays a very pretty error
-The WYSIWYG must have produced an invalid output
-That feature was slated for phase two
-Where were you when the program blew up?
-I'm not getting any error codes
-The original specification contained conflicting requirements
-You must be missing some of the dependencies
-There were too many developers working on that same thing
-I told you yesterday it would be done by the end of today
-It would take too long to rewrite the code from scratch
-Management insisted we wouldn't need to waste our time writing unit tests
-Nobody has ever complained about it
-I usually get a notification when that happens
-I was told to stop working on that when something important came up
-I was just fixing that
-That behaviour is in the original specification
-Our redundant systems must have failed as well
-That feature would be outside of the scope
-That error means it was successful
-The third party API is not responding
-It can't be broken, it passes all unit tests
-I have never seen that before in my life
-I haven't been able to reproduce that
-I couldn't find any library that can even do that
-THIS can't be the source of THAT
-I must not have understood what you were asking for
-The user must not know how to use it
-That isn't covered by my job description
-We spent three months debugging it because we only had one month to build it
-You must have the wrong version
-The third party documentation doesn't exist
-I'm surprised it works as well as it does
-I can't test everything
-That's the fault of the graphic designer
-It probably won't happen again
-The third party documentation is wrong
-I had to do the project backwards as people demanded results out of order
-This is a previously known bug you told me not to work on yet
-Nobody asked me how long it would actually take
-Actually, that's a feature
+"text":"There was too little data to bother with the extra functionality at the time"
+"text":"I thought you signed off on that?"
+"text":"The program has never collected that information"
+"text":"That's interesting, how did you manage to make it do that?"
+"text":"Your browser must be caching the old content"
+{"text":`Our internet connection must not be working`}
+{"text":`I couldn't find any examples of how that can be done anywhere online`}
+{"text":`I thought I fixed that`}
+{"text":`The marketing department made us put that there`}
+{"text":`Somebody must have changed my code`}
+{"text":`Maybe somebody forgot to pay our hosting company`}
+{"text":`That was literally a one in a million error`}
+{"text":`There's currently a problem with our hosting company`}
+{"text":`I'm not sure as I've never had a look at how that works before`}
+{"text":`The accounting department must have cancelled that subscription`}
+{"text":`I'll have to fix that at a later date`}
+{"text":`I didn't anticipate that I would make any errors`}
+{"text":`That process requires human oversight that nobody was providing`}
+{"text":`It worked yesterday`}
+{"text":`It's a third party application issue`}
+{"text":`It works, but it's not been tested`}
+{"text":`Well done, you found my easter egg!`}
+{"text":`That's already fixed it just hasn't taken effect yet`}
+{"text":`Well, that's a first`}
+{"text":`I'm still working on that as we speak`}
+{"text":`It's always been like that`}
+{"text":`It's a known bug with the programming language`}
+{"text":`The code is compiling`}
+{"text":`It must be because of a leap year`}
+{"text":`That's not a bug it's a configuration issue`}
+{"text":`Our code quality is no worse than anyone else in the industry`}
+{"text":`I haven't touched that code in weeks`}
+{"text":`I can't make that a priority right now`}
+{"text":`The problem seems to be with our legacy software`}
+{"text":`The person responsible doesn't work here anymore`}
+{"text":`Well at least we know not to try that again`}
+{"text":`The existing design makes it difficult to do the right thing`}
+{"text":`The download must have been corrupted`}
+{"text":`Oh, that was only supposed to be a placeholder`}
+{"text":`Even though it doesn't work, how does it feel?`}
+{"text":`It works for me`}
+{"text":`How is that possible?`}
+{"text":`It's a known bug with the server software`}
+{"text":`It must be because of a leap second`}
+{"text":`It would have taken twice as long to build it properly`}
+{"text":`Did you check for a virus on your system?`}
+{"text":`The request must have dropped some packets`}
+{"text":`I thought I finished that`}
+{"text":`I broke that deliberately to do some testing`}
+{"text":`My time was split in a way that meant I couldn't do either project properly`}
+{"text":`There must be something strange in your data`}
+{"text":`Oh, that was just a temporary fix`}
+{"text":`Everything looks fine my end`}
+{"text":`It's never shown unexpected behaviour like this before`}
+{"text":`It's just some unlucky coincidence`}
+{"text":`The client wanted it changed at the last minute`}
+{"text":`We outsourced that months ago`}
+{"text":`It was working in my head`}
+{"text":`I couldn't find any examples of how that can be done anywhere else in the pr"ojec`}
+{"text":`Why do you want to do it that way?`}
+{"text":`You must have done something wrong`}
+{"text":`Our hardware is too slow to cope with demand`}
+{"text":`What did I tell you about using parts of the system you don't understand?`}
+{"text":`I haven't had the chance to run that code yet`}
+{"text":`We should have updated our software years ago`}
+{"text":`That important email must have been marked as spam`}
+{"text":`You're doing it wrong`}
+{"text":`Well, at least it displays a very pretty error`}
+{"text":`The WYSIWYG must have produced an invalid output`}
+{"text":`That feature was slated for phase two`}
+{"text":`Where were you when the program blew up?`}
+{"text":`I'm not getting any error codes`}
+{"text":`The original specification contained conflicting requirements`}
+{"text":`You must be missing some of the dependencies`}
+{"text":`There were too many developers working on that same thing`}
+{"text":`I told you yesterday it would be done by the end of today`}
+{"text":`It would take too long to rewrite the code from scratch`}
+{"text":`Management insisted we wouldn't need to waste our time writing unit tests`}
+{"text":`Nobody has ever complained about it`}
+{"text":`I usually get a notification when that happens`}
+{"text":`I was told to stop working on that when something important came up`}
+{"text":`I was just fixing that`}
+{"text":`That behaviour is in the original specification`}
+{"text":`Our redundant systems must have failed as well`}
+{"text":`That feature would be outside of the scope`}
+{"text":`That error means it was successful`}
+{"text":`The third party API is not responding`}
+{"text":`It can't be broken, it passes all unit tests`}
+{"text":`I have never seen that before in my life`}
+{"text":`I haven't been able to reproduce that`}
+{"text":`I couldn't find any library that can even do that`}
+{"text":`THIS can't be the source of THAT`}
+{"text":`I must not have understood what you were asking for`}
+{"text":`The user must not know how to use it`}
+{"text":`That isn't covered by my job description`}
+{"text":`We spent three months debugging it because we only had one month to build it`}
+{"text":`You must have the wrong version`}
+{"text":`The third party documentation doesn't exist`}
+{"text":`I'm surprised it works as well as it does`}
+{"text":`I can't test everything`}
+{"text":`That's the fault of the graphic designer`}
+{"text":`It probably won't happen again`}
+{"text":`The third party documentation is wrong`}
+{"text":`I had to do the project backwards as people demanded results out of order`}
+{"text":`This is a previously known bug you told me not to work on yet`}
+{"text":`Nobody asked me how long it would actually take`}
+{"text":`Actually, that's a feature`}
+{"te`t":"`}

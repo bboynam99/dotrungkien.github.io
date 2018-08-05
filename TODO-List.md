@@ -5,42 +5,25 @@ permalink: /todolist
 ---
 
 - [x] Understanding Git reset & soft & hard
-- [ ] [Coroutines & Yield](http://twistedoakstudios.com/blog/Post83_coroutines[ ]more[ ]than[ ]you[ ]want[ ]to[ ]know)
-- [ ] Delegate, Composition, Aggregation vs Inheritance
-- [ ] Delegate in C# vs Pointer in C++
-- [ ] Extension Method in C# vs Decorator Pattern
-- [ ] Lamda Expresion
-- [ ] LINQ
-- [ ] Iterable, Iterator, IEnumerable, IEnumerator
 - [x] Vigenere Cipher
-- [ ] Mã hóa RSA
-- [ ] Unity Machine Learning Agents
 - [x] WTF Python
 - [x] Python Decorator
 - [ ] Các loại License
 - [ ] Cách đánh version
 - [x] Chúng ta đang đứng ở đâu trong cách mạng công nghiệp 4.0
-- [ ] [Blockchain hoạt động như thế nào](https://medium.com/@micheledaliessi/how-does-the-blockchain-work-98c8cd01d2ae)
-- [ ] [Blockchain in Python](https://hackernoon.com/learn-blockchains-by-building-one-117428612f46)
-- [ ] [Python Module](https://docs.python.org/3/tutorial/modules.html#packages)
 - [x] Khoảng cách Levenshtein và Fuzzy Search
-- [ ] Standard Analyzer in Elasticsearch
-- [ ] [Python Memory Management](http://deeplearning.net/software/theano/tutorial/python-memory-management.html)
 - [x] [modulo 10^9+7 in competitive programming](https://www.quora.com/What-exactly-is-print-it-modulo-10-9-+-7-in-competitive-programming-web-sites)
-- [ ] [Battle of the Deep Learning frameworks](https://towardsdatascience.com/battle-of-the-deep-learning-frameworks-part-i-cff0e3841750)
-- [ ] Resize Image
-- [ ] Imread benchmark
-- [ ] [Images augumented](https://machinelearningmastery.com/image-augmentation-deep-learning-keras/)
-- [ ] [Regex was taking 5 days to run. So I built a tool that did it in 15 minutes.](https://medium.freecodecamp.org/regex-was-taking-5-days-flashtext-does-it-in-15-minutes-55f04411025f)
-- [ ] Accuracy - Confusion Matrix - Precision/Recall - FScore - ROC curve (http://blog.exsilio.com/all/accuracy-precision-recall-f1-score-interpretation-of-performance-measures/)
-- [ ] [Transfer Learning](http://ruder.io/transfer-learning/)
-- [ ] [Fizz Buzz in Tensorflow](http://joelgrus.com/2016/05/23/fizz-buzz-in-tensorflow/)
-- [ ] [Deep Fakes](https://medium.com/@svencharleer/family-fun-with-deepfakes-or-how-i-got-my-wife-onto-the-tonight-show-a4454775c011)
 - [x] Cách download hàng loạt google images
 - [x] Writeup Ethernaut CTF part 1
 - [x] Writeup Ethernaut CTF part 2
 - [x] Writeup Ethernaut CTF part 3
-- [ ] Writeup Ethernaut CTF part 4
+- [x] Writeup Ethernaut CTF part 12
+- [x] Writeup Ethernaut CTF part 13
+- [ ] Writeup Ethernaut CTF part 14
+- [ ] Writeup Ethernaut CTF part 15
+- [ ] Writeup Ethernaut CTF part 16
+- [ ] Writeup Ethernaut CTF part 17
+- [ ] Writeup Ethernaut CTF part 18
 - [ ] [Understanding ERC20 token](https://medium.com/@jgm.orinoco/understanding-erc-20-token-contracts-a809a7310aa5)
 - [ ] [ICO in less than 20 minutes](https://medium.com/bitfwd/how-to-do-an-ico-on-ethereum-in-less-than-20-minutes-a0062219374)
 - [ ] [How to Secure Your Smart Contracts: 6 Solidity Vulnerabilities and how to avoid them](https://medium.com/loom-network/how-to-secure-your-smart-contracts-6-solidity-vulnerabilities-and-how-to-avoid-them-part-1-c33048d4d17d)

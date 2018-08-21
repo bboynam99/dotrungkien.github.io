@@ -19,8 +19,8 @@ permalink: /todolist
 - [x] Writeup Ethernaut CTF part 3
 - [x] Writeup Ethernaut CTF part 12
 - [x] Writeup Ethernaut CTF part 13
-- [ ] Writeup Ethernaut CTF part 14
-- [ ] Writeup Ethernaut CTF part 15
+- [x] Writeup Ethernaut CTF part 14
+- [x] Writeup Ethernaut CTF part 15
 - [ ] Writeup Ethernaut CTF part 16
 - [ ] Writeup Ethernaut CTF part 17
 - [ ] Writeup Ethernaut CTF part 18

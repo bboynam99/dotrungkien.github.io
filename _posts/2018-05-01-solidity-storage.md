@@ -8,10 +8,9 @@ Trong các bài toán liên quan đến security của smart contract, ta rất 
 
 # Storage structure
 
-Mỗi smart contract chạy trên máy ảo Ethereum (EVM) đều được cấp một dung lượng nhớ nhất định gọi là **storage**. Storage này có tổng cộng tất cả
-$$2^{256}$$ slot nhớ, tương đương với khoảng $$10^{77}$$ slot nhớ.
+Mỗi smart contract chạy trên máy ảo Ethereum (EVM) đều được cấp một dung lượng nhớ nhất định gọi là **storage**. Storage này có tổng cộng tất cả $$2^{256}$$ slot nhớ, tương đương với khoảng $$10^{77}$$ slot nhớ.
 
-Nên nhớ rẳng theo ước lượng thì tổng số hạt trong vũ trụ quan sát được là khoảng xấp xỉ $$10^{80}$$, có nghĩa là, số slots nhớ này đủ lưu trữ gần như toàn bộ proton, electron và neutron trong toàn vũ trụ rồi!
+Nên nhớ rằng theo ước lượng thì tổng số hạt trong vũ trụ quan sát được là khoảng xấp xỉ $$10^{80}$$, có nghĩa là, số slots nhớ này đủ lưu trữ gần như toàn bộ proton, electron và neutron trong toàn vũ trụ rồi!
 
 WOW, một con số ấn tượng đấy chứ?
 
@@ -147,7 +146,7 @@ Các biến dynamic size là các biến array động và mapping.
 
 Dynamic array sẽ luôn chiếm một slot mới, tại slot này sẽ lưu trữ **length** của array. Ta giả sử slot này là `p`.
 
-Phần tử trong dynamic array sẽ được lưu trữ lần lượt từ `keccak256(p)`, một lưu ý quan trọng là `p` là *chuỗi hexa* 256 bit, tức 64 ký tự hexa, chứ không phải là các giá trị thuần tuý.
+Phần tử trong dynamic array sẽ được lưu trữ lần lượt từ `keccak256(p)`, một lưu ý quan trọng là `p` là chuỗi 64 ký tự hexa (256 bit), chứ không phải là giá trị uint.
 
 Ta xét một ví dụ khá giống lúc nãy
 
@@ -257,7 +256,7 @@ Mapping cũng luôn chiếm một slot mới, tuy nhiên slot này không lưu t
 
 Việc sinh ra slot mới này chỉ đơn thuần để đảm bảo 2 mapping này là *khác nhau* mà thôi.
 
-Mỗi key `k` của mapping sẽ được lưu trữ tại slot `keccak256(k + p)`, trong đó `k` và `p` là các chuỗi 256 bit, hay 64 ký tự hexa, chứ không phải giá trị thuần tuý.
+Mỗi key `k` của mapping sẽ được lưu trữ tại slot `keccak256(k + p)`, một lưu ý quan trọng là `k` và `p` là chuỗi 64 ký tự hexa (256 bit), chứ không phải là các giá trị uint.
 
 Ta xét một ví dụ nữa.
 

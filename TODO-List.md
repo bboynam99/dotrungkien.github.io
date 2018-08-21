@@ -21,7 +21,7 @@ permalink: /todolist
 - [x] Writeup Ethernaut CTF part 13
 - [x] Writeup Ethernaut CTF part 14
 - [x] Writeup Ethernaut CTF part 15
-- [ ] Writeup Ethernaut CTF part 16
+- [x] Writeup Ethernaut CTF part 16
 - [ ] Writeup Ethernaut CTF part 17
 - [ ] Writeup Ethernaut CTF part 18
 - [x] Storage trong Ethereum smart contract

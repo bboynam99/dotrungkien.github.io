@@ -24,6 +24,7 @@ permalink: /todolist
 - [ ] Writeup Ethernaut CTF part 16
 - [ ] Writeup Ethernaut CTF part 17
 - [ ] Writeup Ethernaut CTF part 18
+- [x] Storage trong Ethereum smart contract
 - [ ] [Understanding ERC20 token](https://medium.com/@jgm.orinoco/understanding-erc-20-token-contracts-a809a7310aa5)
 - [ ] [ICO in less than 20 minutes](https://medium.com/bitfwd/how-to-do-an-ico-on-ethereum-in-less-than-20-minutes-a0062219374)
 - [ ] [How to Secure Your Smart Contracts: 6 Solidity Vulnerabilities and how to avoid them](https://medium.com/loom-network/how-to-secure-your-smart-contracts-6-solidity-vulnerabilities-and-how-to-avoid-them-part-1-c33048d4d17d)

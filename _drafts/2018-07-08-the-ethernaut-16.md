@@ -4,7 +4,7 @@ title: "The Ethernaut: 16 - Preservation"
 mathjax: true
 ---
 
-## 15. Naughty Coin 　★★★★★★
+# 16. Preservation 　★★★★★★
 
 **Nhiệm vụ**: bạn có rất nhiều tiền, nhưng phải đợi tới tận 10 năm sau mới được tiêu số tiền đó. Bằng cách nào đó hãy tiêu hết số tiền đó mà ko cần phải chờ tới 10 năm nữa.
 
@@ -47,9 +47,7 @@ import 'zeppelin-solidity/contracts/token/ERC20/StandardToken.sol';
 }
 ```
 
-### Phân tích
+## Solution
 
-### Solution
-
-### Bình luận
+## Bình luận
 

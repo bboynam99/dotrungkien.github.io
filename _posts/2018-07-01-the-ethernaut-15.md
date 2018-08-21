@@ -3,7 +3,7 @@ layout: post
 title: "The Ethernaut: 15 - Naughty Coin"
 mathjax: true
 ---
-## 15. Naughty Coin 　★★★★★★
+# 15. Naughty Coin 　★★★★★★
 
 **Nhiệm vụ**: bạn có rất nhiều tiền, nhưng phải đợi tới tận 10 năm sau mới được tiêu số tiền đó. Bằng cách nào đó hãy tiêu hết số tiền đó mà ko cần phải chờ tới 10 năm nữa.
 
@@ -46,7 +46,7 @@ import 'zeppelin-solidity/contracts/token/ERC20/StandardToken.sol';
 }
 ```
 
-### Phân tích & Solution
+## Phân tích & Solution
 
 Contract này được thiết kế theo chuẩn ERC20, nên ta hãy xem qua một lượt interface của chuẩn này:
 
@@ -109,7 +109,7 @@ await contract.blanceof(player).then(x => x.toNumber())
 
 Vậy là balance đã về 0. Submit && all done!
 
-### Bình luận
+## Bình luận
 
 Đây là một bài toán khá đơn giản, điều cốt lõi ở đây chỉ là nắm và hiểu kiến trúc của ERC20 mà thôi.
 

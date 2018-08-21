@@ -35,7 +35,7 @@ Cơ bản nhất, chúng ta có thể hiểu các biến trong contract sẽ đ�
 
 Đi sâu vào thực tế, chúng ta sẽ thấy việc lưu trữ kết hợp các kiểu dữ liệu trở nên phức tạp hơn rất nhiều. Ta sẽ đi qua vài ví dụ để các bạn có thể hiểu rõ hơn.
 
-## Lưu ý
+**Lưu ý**
 
 - Tất cả các biến trong contract đều được lưu trong storage và đều có thể truy xuất được
 - Dù bạn có khai báo biến là `private` hay `internal` đi chăng nữa, nó chỉ có tác dụng trong phạm vi contract mà thôi, lên blockchain tất cả đều public hết. Tất nhiên tuỳ kiểu dữ liệu mà sẽ có mã hoá khác nhau, song về cơ bản không có gì là private cả.
@@ -251,7 +251,7 @@ function increaseHexByOne(hex) {
 }
 ```
 
-## Mappings
+### Mappings
 
 Mapping cũng luôn chiếm một slot mới, tuy nhiên slot này không lưu trữ giá trị nào cả! giả sử slot này là `p`
 
@@ -321,13 +321,13 @@ Trên khung debug của Remix, ta check thông tin của contract như sau, lưu
 
 Yes, các giá trị vẫn đúng như ta dự đoán (y)
 
-## bytes và string
+## Bytes và String
 
-Với `bytes`: *bytes* là chuỗi ký tự có độ dài cố định, và vì thế nó cũng được lưu trữ vảo các slot giống như các biến fixed-size thông thường. Chỉ có một lưu ý nhỏ là mỗi ký tự trong *bytes* có size là 1 byte, nó sẽ tương ứng với 2 ký tự hexa trong value trong storage.
+Với `bytes`: `bytes` là chuỗi ký tự có độ dài cố định, và vì thế nó cũng được lưu trữ vảo các slot giống như các biến fixed size thông thường. Chỉ có một lưu ý nhỏ là mỗi ký tự trong `bytes` có size là 1 byte, nó sẽ tương ứng với 2 ký tự hexa trong value trong storage.
 
 Với `string`: mỗi `string` sẽ chiếm một slot mới
 
-- Nếu chuỗi ký tự dài nhất là 31 byte, các chuỗi ký tự sẽ được lữu trữ kèm với độ dài của nó theo quy tắc: chuỗi sẽ được lưu từ bit trái qua phải (higher-order), còn độ dài thì lưu từ bit phải qua trái (lower-order) với giá trị `length * 2`, tức số lượng ký tự hexa của chuỗi.
+- Nếu chuỗi ký tự ít hơn 32 byte, các chuỗi ký tự sẽ được lữu trữ kèm với độ dài của nó theo quy tắc: chuỗi sẽ được lưu từ bit trái qua phải (higher-order), còn độ dài thì lưu từ bit phải qua trái (lower-order) với giá trị `length * 2`, tức số lượng ký tự hexa của chuỗi.
 - Nếu chuỗi ký tự dài từ 32 byte trở lên, thì main slot sẽ lưu trữ độ dài của chuỗi, tức `length * 2 + 1`. Còn giá trị thì theo thông thường sẽ được lưu trữ tại `keccak256(p)`, với `p` là vị trí của main slot.
 
 Ta xét một ví dụ.
@@ -353,6 +353,8 @@ Khi này:
 - `f` chiếm slot số 4, tuy nhiên độ dài của string là 33 > 32 ký tự, nên slot này sẽ chứa giá trị `length * 2 + 1 = 67`, và value sẽ được lưu tại slot `keccak256(hex(4))`
 
 Ta sẽ tiến hành test thử trên RemixIDE, địa chỉ contract deploy của mình là `0xde7f331e143c3db5889c783be57db79178865848`
+
+![png]({{ site.url }}/assets/images/bytes-string.png)
 
 Trên khung debug của Remix, ta check thông tin của contract như sau, lưu ý `keccak256` chính là `web3.sha3`:
 

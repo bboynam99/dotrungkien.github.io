@@ -31,11 +31,11 @@ Cơ bản nhất, chúng ta có thể hiểu các biến trong contract sẽ đ�
 - Fixed size array tạo một slot mới, các phần tử trong struct được đưa vào slot lần lượt tương tự như trên.
 - Dynamic size array tạo một slot mới, slot này chỉ lưu **độ dài** của array, còn các value trong array sẽ được lưu trữ tại các vị trí khác, ta sẽ nói cụ thể hơn ở phần sau.
 - Mapping luôn tạo một slot mới để giữ chỗ, các value trong array sẽ được lưu trữ tại các vị trí khác, ta sẽ nói cụ thể hơn ở phần sau.
-- String và Bytes cũng sẽ tạo ra một slot mới, slot này lưu trữ cả dữ liệu & độ dài dữ liệu, ta sẽ nói cụ thể hơn ở phần sau.
+- String tạo ra một slot mới, slot này lưu trữ cả dữ liệu & độ dài dữ liệu, ta sẽ nói cụ thể hơn ở phần sau.
 
 Đi sâu vào thực tế, chúng ta sẽ thấy việc lưu trữ kết hợp các kiểu dữ liệu trở nên phức tạp hơn rất nhiều. Ta sẽ đi qua vài ví dụ để các bạn có thể hiểu rõ hơn.
 
-**Lưu ý**
+**Có thể bạn chưa biết:**
 
 - Tất cả các biến trong contract đều được lưu trong storage và đều có thể truy xuất được
 - Dù bạn có khai báo biến là `private` hay `internal` đi chăng nữa, nó chỉ có tác dụng trong phạm vi contract mà thôi, lên blockchain tất cả đều public hết. Tất nhiên tuỳ kiểu dữ liệu mà sẽ có mã hoá khác nhau, song về cơ bản không có gì là private cả.
@@ -178,9 +178,9 @@ Khi này:
 - `d[0]` sẽ được lưu trữ tại vị trí `keccak256(hex(5))`
 - `d[1]` sẽ được lưu trữ tại vị trí `keccak256(hex(5)) + 1`
 - `e` sẽ chiếm slot 6
-- e[0] sẽ được lưu trữ tại slot `keccak256(hex(6))`
-- e[0].id sẽ được đưa vào slot của e[0], tức `keccak256(hex(6))`, và chiếm toàn bộ slot này (uint256)
-- e[0].value sẽ được đưa vào slot `keccak256(hex(6)) + 1`
+- `e[0]` sẽ được lưu trữ tại slot `keccak256(hex(6))`
+- `e[0].id` sẽ được đưa vào slot của e[0], tức `keccak256(hex(6))`, và chiếm toàn bộ slot này (uint256)
+- `e[0].value` sẽ được đưa vào slot `keccak256(hex(6)) + 1`
 
 ![png]({{site.url}}/assets/images/dynamic.png)
 

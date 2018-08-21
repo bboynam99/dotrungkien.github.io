@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Storage trong Solidity lưu trữ State Variables như thế nào?"
+title: "Storage trong smart contract"
 mathjax: true
 ---
 
-Trong rất nhiều các bài toán liên quan đến security của smart contract, ta rất hay gặp những lỗi liên quan đến **storage**, vì thế việc nắm chắc *storage* là điều tối cần thiết cho bất cứ ai muốn làm việc với solidity.
+Trong các bài toán liên quan đến security của smart contract, ta rất hay gặp những lỗi liên quan đến **storage**, vì thế việc nắm chắc *storage* là điều tối cần thiết cho bất cứ ai muốn làm việc với *smart contract* nói chung và *solidity* nói riêng.
 
 # Storage structure
 

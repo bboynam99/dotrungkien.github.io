@@ -305,7 +305,7 @@ Trên khung debug của Remix, ta check thông tin của contract như sau, lưu
 0x000000000000000000000000000000000000000000000000000000000000000d // 13
 ```
 
-- Kiểm tra giá trị của `d[1]`
+- Kiểm tra giá trị của `f[789]`
 
 ```js
 > slot = '0000000000000000000000000000000000000000000000000000000000000007'

@@ -66,3 +66,5 @@ Submit && all done!
 Hãy luôn nhớ tới keyword `memory` khi khai báo một struct mới trong hàm.
 
 Bên cạnh đó, việc nắm chắc *storage* là điều tối cần thiết cho bất cứ ai muốn làm việc với *smart contract* nói chung và *solidity* nói riêng.
+
+Enjoy coding!

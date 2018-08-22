@@ -40,9 +40,11 @@ contract Locked {
 
 ## Phân tích
 
-Trong hàm `register` có một lỗi cơ bản, đó chính là không có keyword `memory` trước biến `newRecord`, do đó biến `newRecord` sẽ chính là biến trong `storage` của contract; hay nói cách khác, `newRecord` đang trỏ đến slot của `unlocked`.
+Trong hàm `register` có một lỗi cơ bản, đó chính là không có keyword `memory` trước biến `newRecord`, do đó biến `newRecord` sẽ chính là biến trong `storage` của contract.
 
-Bạn có thể đọc thêm về storage trong smart contract tại [bài viết này](http://dotrungkien.github.io/2018/05/01/smart-contract-storage/) của mình
+Hay nói cách khác, `newRecord` đang trỏ đến slot của `unlocked`. Một chỉ dẫn rất rõ ràng phải không ?
+
+Bạn có thể đọc thêm về storage trong smart contract tại [bài viết này](http://dotrungkien.github.io/2018/05/01/smart-contract-storage/) của mình.
 
 ## Solution
 

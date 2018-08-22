@@ -100,6 +100,8 @@ false
 
 - submit && all done!
 
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
+
 ## Bình luận
 
 - Các bài liên quan đến **storage** của solidity luôn rất là rắc rối

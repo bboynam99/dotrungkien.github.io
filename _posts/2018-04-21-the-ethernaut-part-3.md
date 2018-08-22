@@ -101,6 +101,8 @@ await contract.king()
 
 - Submit && all done!
 
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
+
 ### Bình luận
 
 - Bài này khá là tricky.
@@ -184,6 +186,8 @@ await getBalance(contract.address);
 
 - Submit && all done!
 
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
+
 ### Bình luận
 
 - Đây là một tấn công có thể nói là kinh điển nhất của nền tảng ethereum cho tới thời điểm hiện tại. Bạn có thể đọc thêm về [The DAO Hack](https://www.reddit.com/r/ethereum/comments/4oi2ta/i_think_thedao_is_getting_drained_right_now/)
@@ -258,6 +262,8 @@ await contract.top()
 ```
 
 - Submit && all done!
+
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
 
 ### Bình luận
 

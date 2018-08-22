@@ -61,6 +61,8 @@ true
 
 Submit && all done!
 
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
+
 ### Bình luận
 
 Hãy luôn nhớ tới keyword `memory` khi khai báo một struct mới trong hàm.

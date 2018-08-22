@@ -87,6 +87,8 @@ Quay trở lại địa chỉ của token contract trên etherscan.io, ta thấy
 
 Submit && all done!
 
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
+
 ### Bình luận
 
 Enjoy coding!

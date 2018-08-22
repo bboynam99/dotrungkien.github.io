@@ -201,6 +201,8 @@ contract Attack {
 
 - Submit & all done!
 
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
+
 ## Bình luận
 
 `delegatecall` và `storage` chưa bao giờ là dễ cả!

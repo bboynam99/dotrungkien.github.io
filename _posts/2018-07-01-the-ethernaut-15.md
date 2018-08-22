@@ -109,6 +109,8 @@ await contract.blanceof(player).then(x => x.toNumber())
 
 Vậy là balance đã về 0. Submit && all done!
 
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
+
 ## Bình luận
 
 Đây là một bài toán khá đơn giản, điều cốt lõi ở đây chỉ là nắm và hiểu kiến trúc của ERC20 mà thôi.

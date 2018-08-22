@@ -73,6 +73,8 @@ await contract.balanceOf(player).then(x => x.toNumber())
 
 - Submit & all done!
 
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
+
 ### Bình luận
 
 - Overflow hay Underflow đều nguy hiểm, hãy dùng thư viện [Safe Math](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/math/SafeMath.sol) cho bất cứ phép toán nào của bạn.
@@ -147,6 +149,8 @@ await contract.owner()
 
 - Submit & all done!
 
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
+
 ### Bình luận
 
 - Hãy luôn luôn hiểu rõ những hàm bạn code, đặc biệt là các hàm low-level.
@@ -198,6 +202,8 @@ contract AnotherContract {
 - Compile & send cho *AnotherContract* vài ether.
 - Gọi hàm `sendAll()` để hủy contract & gửi tiền vào contract đề bài yêu cầu.
 - Submit & all done!
+
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
 
 ### Bình luận
 
@@ -257,6 +263,8 @@ false
 ```
 
 - Submit & all done!
+
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
 
 ### Bình luận
 

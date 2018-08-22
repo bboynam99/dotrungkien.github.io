@@ -121,6 +121,8 @@ await contract.entrant()
 
 Submit && All done!
 
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
+
 ## Bình luận
 
 Đây là một bài tập theo kiểu dạng "biết thì rất dễ, không biết thì không biết đằng nào mà lần". Phần `assembly { x := extcodesize(caller) }` thực sự là một trick rất khó nhằn.

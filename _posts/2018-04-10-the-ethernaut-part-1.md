@@ -104,6 +104,8 @@ contract.authenticate("ethernaut0")
 
 - Submit & all done!
 
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
+
 ## 1. Fallback
 
 **Mục tiêu**:
@@ -182,6 +184,8 @@ contract.withdraw()
 
 - Submit & all done!
 
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
+
 ## 2. Fallout
 
 **Mục tiêu**: Chiếm quyền owner
@@ -235,6 +239,8 @@ await contract.owner()
 ```
 
 - Submit & all done!
+
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
 
 ## 3.Coin Flip
 
@@ -355,6 +361,8 @@ await contract.consecutiveWins().then(x => x.toNumber())
 
 - Submit & all done!
 
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
+
 ## 4. Telephone
 
 **Nhiệm vụ**: chiếm quyền owner
@@ -426,6 +434,8 @@ await contract.owner()
 ```
 
 - Submit & all done!
+
+![completed]({{site.url}}/assets/images/ethernaut-completed.png)
 
 ## Conclusion
 

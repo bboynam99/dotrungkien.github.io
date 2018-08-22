@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Storage trong smart contract"
+title: "Storage trong Ethereum smart contract"
 mathjax: true
 ---
 

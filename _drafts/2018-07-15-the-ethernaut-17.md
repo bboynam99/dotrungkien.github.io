@@ -4,46 +4,37 @@ title: "The Ethernaut: 17 - Locked"
 mathjax: true
 ---
 
-## 15. Naughty Coin 　★★★★★★
+# 17. Locked 　★★★★★★
 
-**Nhiệm vụ**: bạn có rất nhiều tiền, nhưng phải đợi tới tận 10 năm sau mới được tiêu số tiền đó. Bằng cách nào đó hãy tiêu hết số tiền đó mà ko cần phải chờ tới 10 năm nữa.
+**Nhiệm vụ**: register thành công
 
 ```js
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.23;
 
-import 'zeppelin-solidity/contracts/token/ERC20/StandardToken.sol';
+// A Locked Name Registrar
+contract Locked {
 
- contract NaughtCoin is StandardToken {
+    bool public unlocked = false;  // registrar locked, no name updates
 
-  string public constant name = 'NaughtCoin';
-  string public constant symbol = '0x0';
-  uint public constant decimals = 18;
-  uint public timeLock = now + 10 years;
-  uint public INITIAL_SUPPLY = 1000000 * (10 ** decimals);
-  address public player;
-
-  function NaughtCoin(address _player) public {
-    player = _player;
-    totalSupply_ = INITIAL_SUPPLY;
-    balances[player] = INITIAL_SUPPLY;
-    Transfer(0x0, player, INITIAL_SUPPLY);
-  }
-
-  function transfer(address _to, uint256 _value) lockTokens public returns(bool) {
-    super.transfer(_to, _value);
-  }
-
-  // Prevent the initial owner from transferring tokens until the timelock has passed
-  modifier lockTokens() {
-    if (msg.sender == player) {
-      require(now > timeLock);
-      if (now < timeLock) {
-        _;
-      }
-    } else {
-     _;
+    struct NameRecord { // map hashes to addresses
+        bytes32 name; //
+        address mappedAddress;
     }
-  }
+
+    mapping(address => NameRecord) public registeredNameRecord; // records who registered names
+    mapping(bytes32 => address) public resolve; // resolves hashes to addresses
+
+    function register(bytes32 _name, address _mappedAddress) public {
+        // set up the new NameRecord
+        NameRecord newRecord;
+        newRecord.name = _name;
+        newRecord.mappedAddress = _mappedAddress;
+
+        resolve[_name] = _mappedAddress;
+        registeredNameRecord[msg.sender] = newRecord;
+
+        require(unlocked); // only allow registrations if contract is unlocked
+    }
 }
 ```
 

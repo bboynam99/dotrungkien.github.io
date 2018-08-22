@@ -52,7 +52,7 @@ contract LibraryContract {
 
 ## Solution
 
-Có 2 điều ta cần nắm được về `delegatecall`ss:
+Có 2 điều ta cần nắm được về `delegatecall`:
 
 **Điều thứ nhất**: `delegatecall` chỉ là mượn hàm từ một contract khác và gọi hàm đó trong contract của mình.
 

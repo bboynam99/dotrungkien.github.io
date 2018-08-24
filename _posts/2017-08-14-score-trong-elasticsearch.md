@@ -22,10 +22,10 @@ Thuật toán đánh giá được sử dụng rất phổ biến trong Elastics
 Yếu tố này đánh giá tần suất xuất hiện của term trong field. Càng xuất hiện nhiều, relevance càng cao. Dĩ nhiên rồi, một field mà từ khoá xuất hiện 5 lần sẽ cho relevance cao hơn là field mà từ khoá chỉ xuất hiện 1 lần.
 
 Ví dụ: nếu bạn search với từ khoá "quick", thì rõ ràng field bên trên sẽ cho TF cao hơn (xuất hiện 2 lần) filed bên dưới (xuất hiện 1 lần):
-```
+```js
 { "title": "The quick brown fox jumps over the quick dog" }
 ```
-```
+```js
 { "title": "The quick brown fox" }
 ```
 TF được tính theo công thức sau:
@@ -68,7 +68,7 @@ Trong đó: *numTerms* là số lượng term trong field. (có thể hiểu là
 
 ### Putting it together
 *_score* cuối cùng sẽ là tích của 3 giá trị trên:
-```
+```js
 IDF score * TF score * fieldNorms
 ```
 hay
@@ -83,7 +83,7 @@ hay
 
 ### Time for action
 Ta tạo và test thử với dữ liệu như sau:
-```
+```js
 PUT /my_index/doc/1
 { "text" : "quick brown fox" }
 
@@ -112,7 +112,7 @@ filedNorm = \frac{1}{\sqrt{3}} = 0.577
 \\]
 **Actual:**
 
-```
+```js
 weight(text:fox in 0) [PerFieldSimilarity]:  0.15342641
 result of:
     fieldWeight in 0                         0.15342641
@@ -131,7 +131,7 @@ Cảm ơn bạn đã đọc đến đây, nhưng trên thực tế, kể từ b�
 Mình nhận ra được điều này khi chạy thực tế đoạn code mình viết bên trên kia (yaoming again =))).
 
 Đùa chút thôi, các bạn vẫn hoàn toàn có thể sử dụng thuật toán TF/IDF như cũ, chỉ cần thay đổi config của `similarity` thôi.
-```
+```js
 "similarity": {
   "default": {
     "type": "classic"
@@ -206,7 +206,7 @@ Ta công thức cuối cùng của BM25
 
 Chuẩn bị dữ liệu và test:
 
-```
+```js
 DELETE /my_index
 PUT /my_index
 { "settings": { "number_of_shards": 1 }}
@@ -235,14 +235,14 @@ GET /my_index/my_type/_search
 **Expected:** kết quả cho _id=3 (_id=4 các bạn có thể tự làm)
 
 - idf: docCount = 4, docFreq = 2
-```
+```js
   log(1 + (docCount - docFreq + 0.5) / (docFreq + 0.5))
 = log(1 + (4-2 + 0.5) / (2+0.5))
 = 0.6931471805599453
 ```
 
 - TF with document Length: freq = 1 (trong doc chỉ có 1 "hahaha"), k = 1.25, b = 0.75, fieldLength = 10, agvLength = 7
-```
+```js
   (freq * (k1 + 1)) / (freq + k1 * (1 - b + b * fieldLength / avgFieldLength))
 = (1 * (1.25 + 1) / (1 + 1.25 * (1 - 0.75 + 0.75 * (10. / 7))))
 = 0.8484848484848484
@@ -251,7 +251,7 @@ GET /my_index/my_type/_search
 Vậy `_score = 0.6931471805599453*0.8484848484848484 = 0.588124`
 
 **Actual:**
-```
+```js
 ...
 "_score": 0.58279467,
 ...

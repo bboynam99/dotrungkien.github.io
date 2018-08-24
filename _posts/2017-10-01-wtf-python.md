@@ -18,12 +18,14 @@ Bài viết gốc nằm trên repo [wtfpython](https://github.com/satwikkansal/w
 ## Skipping lines?
 
 #### Output
-```
+
+```py
 >>> apple = 11
 >>> аpple = 12
 >>> apple
 11
 ```
+
 wtf ? có gì đó sai sai ?
 #### 💡 Giải thích
 Thực chất trong ví dụ trên, hai ký tự 'а' và 'a' là khác nhau. Ký tự 'a' ở dòng 1 là Latin thông thường, và ký tự 'а' ở dòng thứ 2 là [Cyrillic](https://en.wikipedia.org/wiki/Cyrillic_script_in_Unicode) 'а'.
@@ -618,7 +620,7 @@ if True == False:
 ```
 
 **Output:**
-```
+```py
 I've lost faith in truth!
 ```
 True == False ? thật giả lẫn lộn hết rồi.

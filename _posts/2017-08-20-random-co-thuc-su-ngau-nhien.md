@@ -23,10 +23,10 @@ Ta sẽ có 3 khái niệm chung trong PRNG:
 ## 2. Random Distribution Types
 Tuỳ vào mục đích sử dụng, Random() trong các ngôn ngữ lập trình sẽ sinh ra các số ngẫu nhiên theo các phân phối khác nhau.
 
-Thông thường nhất là *phân phối đều* (Uniform Distribution) với xác suất xuất hiện các số là gần như nhau
-![Uniform Distribution](http://users.ecs.soton.ac.uk/jn2/simulation/unif.png)
-hoặc *phân phối chuẩn* (Normal Distribution) để sinh ra các giá trị xung quanh một giá trị nào đó.
-![Normal Distribution](http://users.ecs.soton.ac.uk/jn2/simulation/normal.png)
+Thông thường nhất là *phân phối đều* (Uniform Distribution) với xác suất xuất hiện các số là gần như nhau, hoặc *phân phối chuẩn* (Normal Distribution) để sinh ra các giá trị xung quanh một giá trị nào đó.
+
+![Distribution]({{site.url}}/assets/images/random-distribution.png)
+
 Đó, rõ ràng Random() không phải là dùng tuỳ tiện được mà phải phụ thuộc vào việc vào chúng ta muốn dữ liệu như thế nào nữa.
 
 ## 3. PRNG Algorithms

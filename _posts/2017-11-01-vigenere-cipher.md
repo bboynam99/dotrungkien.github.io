@@ -14,7 +14,7 @@ Nhưng thôi, tạm bỏ qua những vấn đề lịch sử, ta sẽ đến lu�
 Mã hóa Vigenère là sự kết hợp xem kẽ nhiều phép mã hóa Caesar với các bước dịch khác nhau.
 
 Nhắc lại một chút về mã hóa Caesar, đây là phương pháp mã hóa mà ta chọn ra một giá trị khóa key K, và dịch các chữ cái theo vòng tròn K bước. Ví dụ thông thường nhất là K=13 thì:
-```
+```js
 A -> N
 B -> O
 C -> P
@@ -35,7 +35,7 @@ LEMONLEMONLE
 Khi này ta sẽ sử dụng bảng mã hóa như sau: bắt đầu từ trái qua phải, lấy ký tự của key làm *dòng*, ký tự của chuỗi cần mã hóa là *cột* và dóng vào trong bảng mã ta được một ký tự, ký tự đó chính là ký tự đã được mã hóa.
 
 Áp dụng với key LEMONLEMONLE và chuỗi ATTACKATDAWN bên trên:
-```
+```js
 [L, A] -> L
 [E, T] -> X
 [M, T] -> F
@@ -51,7 +51,7 @@ Khi này ta sẽ sử dụng bảng mã hóa như sau: bắt đầu từ trái q
 ```
 ta được chuỗi LXFOPVEFRNHR. Đơn giản đúng ko ?
 
-### Decrypt 
+### Decrypt
 Để giải mã, ta sẽ lần ngược lại bảng mã thôi. Bắt đầu từ trái qua phải, với mỗi ký tự của key làm *dòng*, ta tìm *cột* mà khi dóng xuống ta có gía trị là ký tự trong chuỗi đã mã hóa. Ký tự trong cột đó chính là ký tự của chuỗi ban đầu.
 
 ### Note
@@ -65,23 +65,23 @@ class VigenereCipher (object):
     def __init__(self, key, alphabet):
         self.key = key.decode('utf-8')
         self.alphabet = alphabet.decode('utf-8')
-    
+
     def cipher(self, mode, str):
         return ''.join(self.alphabet[(self.alphabet.index(m) +
                   mode * self.alphabet.index(k)) % len(self.alphabet)]
                   if m in self.alphabet else m for m, k in zip(str.decode('utf-8'),
                   cycle(self.key))).encode('utf-8')
-    
-    def encode(self, str): 
+
+    def encode(self, str):
         return self.cipher(1, str)
-    def decode(self, str): 
+    def decode(self, str):
         return self.cipher(-1, str)
 ```
 
 ## 2. Vigenère Cipher auto key
 Đối với Vigenère Cipher thông thường như trên, thì ta sẽ lặp lại key để có độ dài bằng với độ dài chuỗi cần mã hoá, theo đó thì ta chỉ cần tra bảng mã là ra chuỗi encode cũng như decode. Tuy nhiên, để tăng độ khó cho chuỗi mã hoá, người ta sử dụng một phương pháp khác có tên gọi là Vigenère Cipher auto key, trong đó ta sẽ sử dụng key *một lần duy nhất*, ghép với chuỗi cần mã hoá để tạo ra key mới như sau:
 
-```
+```js
 origin key: password
 message: my secret code i want to secure
 key:     pa ssword myse c retc od eiwant
@@ -89,7 +89,7 @@ key:     pa ssword myse c retc od eiwant
 Ta sẽ tiến hành encode và decode như sau:
 
 **Encode**
-- Bước 1: Tách hoặc thêm các dấu cách (space) trong origin key để cùng form với chuỗi gốc. Ví dụ như trên với "my secret" thì ta phải tách "password" thành "pa ssword" 
+- Bước 1: Tách hoặc thêm các dấu cách (space) trong origin key để cùng form với chuỗi gốc. Ví dụ như trên với "my secret" thì ta phải tách "password" thành "pa ssword"
 - Bước 2: Sau đó ghép với chuỗi gốc và cắt cho độ dài bằng độ dài chuỗi gốc. Ta được chuỗi key là "pa ssword myse c retc od eiwant"
 - Bước 3: So sánh với bảng mã và đưa ra chuỗi mã hoá "by kwqihf aghg z atph ws aachkx"
 
@@ -106,7 +106,7 @@ class VigenereAutokeyCipher:
         self.key = key
         self.abc = abc
         self.alle = len(abc)
-    
+
     def cipher(self, s, m):
         output, keyarr = '', list(self.key)
         for char in s:
@@ -116,10 +116,10 @@ class VigenereAutokeyCipher:
             except ValueError:
                 output += char
         return output
-    
+
     def encode(self, s):
         return self.cipher(s, 1)
-        
+
     def decode(self, s):
         return self.cipher(s, 0)
 ```

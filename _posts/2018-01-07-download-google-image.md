@@ -49,12 +49,12 @@ pbpaste | awk '{print substr($0, 1, length($0)-1) ">>" NR ".jpg"}' | bash
 Lưu ý nếu bạn đang thực hành trên ubuntu thì có thể sẽ không có lệnh pbcopy hay pbpaste, thay vì đó bạn có thể tự tạo alias cho mình bằng cách chỉnh sửa file ~/.bashrc như sau:
 
 1. Thêm vào cuối cùng của file ~/.bashrc 2 dòng sau:
-```bashh
+```js
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 ```
 2. Sau đó load lại bashrc bằng lệnh:
-```bash
+```js
 source ~/.bashrc
 ```
 

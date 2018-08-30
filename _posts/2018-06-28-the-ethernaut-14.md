@@ -115,7 +115,7 @@ contract Backdoor {
 Kiểm tra lại xem entrant đã đổi thành địa chỉ của mình chưa ?
 
 ```js
-await contract.entrant()
+> await contract.entrant()
 "0xf32fd9e7d64a3b90ce2e5563927eff2567ebd96b"
 ```
 

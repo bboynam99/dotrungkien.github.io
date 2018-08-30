@@ -131,7 +131,7 @@ Trước hết ta nhắc lại một lượt các giới hạn số nguyên tron
 
 Khi ép kiểu thì nếu số đó lớn hơn giới hạn của kiểu dữ liệu, thì sẽ quay vòng trở lại từ số bé nhất.
 
-Có nghĩa là, giả sử như ta ép kiểu uint16(x) thì kết quả ta nhận được sẽ là x % 65536
+Có nghĩa là, giả sử như ta ép kiểu `uint16(x)` thì kết quả ta nhận được sẽ là x % 65536
 
 OK, quay trở lại bài toán, **điều kiện thứ 3**:
 
@@ -197,7 +197,7 @@ thay *key* bằng chuỗi bên trên và submit
 Kiểm tra lại xem entrant đã đổi thành địa chỉ của mình chưa ?
 
 ```js
-await contract.entrant()
+> await contract.entrant()
 "0xf32fd9e7d64a3b90ce2e5563927eff2567ebd96b"
 ```
 

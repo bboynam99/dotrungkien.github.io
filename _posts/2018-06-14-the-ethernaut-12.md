@@ -68,7 +68,7 @@ bytes32[3] private data;
 
 như trên, ta sẽ có các slot như sau:
 
-- slot 0: locked, flattening, denimination, awkwardness
+- slot 0: locked, flattening, denomination, awkwardness
 - slot 1: data[0] (do mỗi thành phần của data đã là 32 bytes rồi)
 - slot 2: data[1]
 - slot 3: data[2]

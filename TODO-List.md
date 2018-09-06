@@ -28,3 +28,4 @@ permalink: /todolist
 - [ ] [Understanding ERC20 token](https://medium.com/@jgm.orinoco/understanding-erc-20-token-contracts-a809a7310aa5)
 - [ ] [ICO in less than 20 minutes](https://medium.com/bitfwd/how-to-do-an-ico-on-ethereum-in-less-than-20-minutes-a0062219374)
 - [ ] [How to Secure Your Smart Contracts: 6 Solidity Vulnerabilities and how to avoid them](https://medium.com/loom-network/how-to-secure-your-smart-contracts-6-solidity-vulnerabilities-and-how-to-avoid-them-part-1-c33048d4d17d)
+- [ ] [Understand Hyperledger Fabric blockchain network](https://hyperledger-fabric.readthedocs.io/en/latest/network/network.html)

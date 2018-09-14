@@ -31,3 +31,5 @@ permalink: /todolist
 - [ ] [How to Secure Your Smart Contracts: 6 Solidity Vulnerabilities and how to avoid them](https://medium.com/loom-network/how-to-secure-your-smart-contracts-6-solidity-vulnerabilities-and-how-to-avoid-them-part-1-c33048d4d17d)
 - [ ] [Understand Hyperledger Fabric blockchain network](https://hyperledger-fabric.readthedocs.io/en/latest/network/network.html)
 - [ ] [Deconstructing a Solidity Contract](https://blog.zeppelin.solutions/deconstructing-a-solidity-contract-part-i-introduction-832efd2d7737)
+- [ ] [Blockchain basics: Hyperledger Fabric and Hyperledger Composer](https://www.ibm.com/developerworks/cloud/library/cl-blockchain-hyperledger-fabric-hyperledger-composer-compared/index.html)
+- [ ] [Hyperledger blockchain basic tutorial](https://www.ibm.com/developerworks/cloud/library/cl-model-test-your-blockchain-network-with-hyperledger-composer-playground/index.html)

@@ -4,7 +4,7 @@ title: "The Ethernaut: 17 - Locked"
 mathjax: true
 ---
 
-# 17. Locked 　★★★★★★
+# 17. Locked 　 ★★★★★★
 
 **Nhiệm vụ**: unlock contract
 
@@ -67,6 +67,6 @@ Submit && all done!
 
 Hãy luôn nhớ tới keyword `memory` khi khai báo một struct mới trong hàm.
 
-Bên cạnh đó, việc nắm chắc *storage* là điều tối cần thiết cho bất cứ ai muốn làm việc với *smart contract* nói chung và *solidity* nói riêng.
+Bên cạnh đó, việc nắm chắc _storage_ là điều tối cần thiết cho bất cứ ai muốn làm việc với _smart contract_ nói chung và _solidity_ nói riêng.
 
 Enjoy coding!

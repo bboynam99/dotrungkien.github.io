@@ -4,7 +4,7 @@ title: "The Ethernaut: 18 - Recovery"
 mathjax: true
 ---
 
-# 18 Recovery 　★★★★★★
+# 18 Recovery 　 ★★★★★★
 
 **Nhiệm vụ**: tác giả đã tạo ra contract `Recovery` đóng vai trò như một token factory để có thể dễ dàng tạo ra những đồng tiền ảo mới. Thật không may khi tạo ra đồng tiền ảo đầu tiên và gửi vào đó 0.5 ether để mua token, ông đã quên mất địa chỉ của token contract này. Nhiệm vụ của chúng ta là phải tìm ra địa chỉ của token contract đó và lấy lại 0.5 ether.
 

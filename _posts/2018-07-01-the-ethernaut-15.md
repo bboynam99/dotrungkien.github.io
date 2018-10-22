@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "The Ethernaut: 15 - Naughty Coin"
+title: 'The Ethernaut: 15 - Naughty Coin'
 mathjax: true
 ---
-# 15. Naughty Coin 　★★★★★★
+
+# 15. Naughty Coin 　 ★★★★★★
 
 **Nhiệm vụ**: bạn có rất nhiều tiền, nhưng phải đợi tới tận 10 năm sau mới được tiêu số tiền đó. Bằng cách nào đó hãy tiêu hết số tiền đó mà ko cần phải chờ tới 10 năm nữa.
 
@@ -83,7 +84,7 @@ function approve(address spender, uint tokens) public returns (bool success);
 function transferFrom(address from, address to, uint tokens) public returns (bool success);
 ```
 
-Do đó ta sẽ khai thác như sau: Đầu tiên paste code lên Remix và load contract của ta ra, nhớ là sử dụng account *player* hiện tại nhé.
+Do đó ta sẽ khai thác như sau: Đầu tiên paste code lên Remix và load contract của ta ra, nhớ là sử dụng account _player_ hiện tại nhé.
 
 Bước 1: Trên chrome console kiểm tra balance hiện tại
 

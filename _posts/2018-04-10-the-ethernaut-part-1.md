@@ -1,15 +1,16 @@
 ---
 layout: post
-title: "The Ethernaut - Part 1: 0-4"
+title: 'The Ethernaut - Part 1: 0-4'
 mathjax: true
 ---
+
 Những năm gần đây, **Blockchain** và các ứng dụng của nó nổi lên như một xu thế công nghệ của tương lai. Áp dụng **Blockchain**, ta có thể giải quyết được rất nhiều vấn đề mà các công nghệ hiện tại không làm được, mà trong đó nổi bật nhất là không còn trung gian giao dịch, không cần tin tưởng vào một bên thứ 3 nào nữa. Điều này khiến cho mọi thứ trở nên đơn giản hơn, tiện lợi hơn, minh bạch hơn, sự tin tưởng cao hơn.
 
-Tuy vậy **Blockchain** không phải chỉ có toàn ưu điểm, nó vẫn còn là một công nghệ còn rất "mới" và sẽ cần nhiều thời gian nữa để hoàn thiện. Một số nhược điểm cơ bản có thể kể đến như tốc độ confirm giao dịch vẫn còn chậm, chi phí còn cao đối với các giao dịch nhỏ. Một điều nữa là *user experience* - người dùng phổ thông vẫn chưa sẵn sàng với khái niệm **Blockchain**, sự tin tưởng vào công nghệ này vẫn còn cần rất nhiều sự minh chứng nữa.
+Tuy vậy **Blockchain** không phải chỉ có toàn ưu điểm, nó vẫn còn là một công nghệ còn rất "mới" và sẽ cần nhiều thời gian nữa để hoàn thiện. Một số nhược điểm cơ bản có thể kể đến như tốc độ confirm giao dịch vẫn còn chậm, chi phí còn cao đối với các giao dịch nhỏ. Một điều nữa là _user experience_ - người dùng phổ thông vẫn chưa sẵn sàng với khái niệm **Blockchain**, sự tin tưởng vào công nghệ này vẫn còn cần rất nhiều sự minh chứng nữa.
 
 Và một điều được coi như "sống còn" của sự hoàn thiện: đó chính là tính **bảo mật**. Đối với bất kỳ sản phẩm nào, dù lớn hay nhỏ, chỉ cần một lần xảy ra sự cố bảo mật thôi, cũng có thể dẫn đến sự sụp đổ của cả một hệ thống. **Blockchain** cũng vậy, nó chưa hoàn hảo, và vẫn còn những lỗi bảo mật tiềm ẩn, cả trong kiến trúc **Blockchain** lẫn trong những đoạn code của các ứng dụng trên nền tảng này.
 
-Trong bài này, chúng ta sẽ đi qua một số lỗi bảo mật của các smart contract trên nền tảng Ethereum thông qua một CTF games của Zeppelin - một hãng rất nổi tiếng hiện nay trong xây dựng các solutions cho smart contract. CTF này có tên là **The Ethernaut** - nội dung chủ đạo là *hacking smart contract*.
+Trong bài này, chúng ta sẽ đi qua một số lỗi bảo mật của các smart contract trên nền tảng Ethereum thông qua một CTF games của Zeppelin - một hãng rất nổi tiếng hiện nay trong xây dựng các solutions cho smart contract. CTF này có tên là **The Ethernaut** - nội dung chủ đạo là _hacking smart contract_.
 
 Các bạn có thể tham gia chơi tại đây: [https://ethernaut.zeppelin.solutions](https://ethernaut.zeppelin.solutions)
 
@@ -40,7 +41,7 @@ Tại mỗi bài, chúng ta sẽ được cấp một instance, địa chỉ ins
 
 ```js
 await contract.info()
-"You will find what you need in info1()."
+;('You will find what you need in info1().')
 ```
 
 - Một chỉ dẫn rất rõ ràng, chạy tiếp hàm `info1`
@@ -53,8 +54,8 @@ await contract.info1()
 - Tiếp tục `info2` với giá trị tham số "hello"
 
 ```js
-await contract.info2("hello")
-"The property infoNum holds the number of the next info method to call."
+await contract.info2('hello')
+;('The property infoNum holds the number of the next info method to call.')
 ```
 
 - Tiếp tục gọi `infoNum`
@@ -72,34 +73,34 @@ __proto__: Object
 
 ```js
 await contract.info42()
-"theMethodName is the name of the next method."
+;('theMethodName is the name of the next method.')
 ```
 
 - chạy tiếp `theMethodName`
 
 ```js
 await contract.theMethodName()
-"The method name is method7123949."
+;('The method name is method7123949.')
 ```
 
 - chạy tiếp `method7123949`
 
 ```js
 await contract.method7123949()
-"If you know the password, submit it to authenticate()."
+;('If you know the password, submit it to authenticate().')
 ```
 
 - vậy là đã rõ, để hoàn thành bài này ta cần submit function `authenticate` với tham số là `password`. Gọi hàm `password` để lấy password.
 
 ```js
 await contract.password()
-"ethernaut0"
+;('ethernaut0')
 ```
 
 - authenticate
 
 ```js
-contract.authenticate("ethernaut0")
+contract.authenticate('ethernaut0')
 ```
 
 - Submit & all done!
@@ -151,11 +152,11 @@ contract Fallback is Ownable {
 
 ### Fallback Solution
 
-- Ở bài này ta sẽ học được về  `fallback function`. Đây là một hàm đặc biệt trong smart contract, nó không có tên hàm và được sử dụng khi: contract nhận ether, hoặc khi có ai đó gọi hàm không có trong contract hoặc tham số không đúng. 
-- Ở đây có một sự đánh lừa nhẹ: hàm `Fallback` không phải là fallback function (dù tên hàm là *Fallback*), mà chính `function() payable public` mới là fallback function. Từ đó ta có cách khai thác như sau: đầu tiên gọi function `contribute()` với một giá trị nhỏ hơn 0.001 để  trở thành contributor
+- Ở bài này ta sẽ học được về `fallback function`. Đây là một hàm đặc biệt trong smart contract, nó không có tên hàm và được sử dụng khi: contract nhận ether, hoặc khi có ai đó gọi hàm không có trong contract hoặc tham số không đúng.
+- Ở đây có một sự đánh lừa nhẹ: hàm `Fallback` không phải là fallback function (dù tên hàm là _Fallback_), mà chính `function() payable public` mới là fallback function. Từ đó ta có cách khai thác như sau: đầu tiên gọi function `contribute()` với một giá trị nhỏ hơn 0.001 để trở thành contributor
 
 ```js
-await contract.contribute({value:toWei(0.0001)})
+await contract.contribute({ value: toWei(0.0001) })
 ```
 
 - Kiểm tra xem đã trở thành contributor chưa, nếu kết quả > 0 thì có nghĩa là ta đã trở thành contributor rồi
@@ -226,7 +227,7 @@ contract Fallout is Ownable {
 
 ### Fallout Solution
 
-- Đơn giản chỉ cần chạy function **Fal1out** là được, lưu ý contract cố tình viết sai chữ *l* thành số *1* nên nó không phải là constructor mà chỉ là một function thông thường có nhiệm vụ là **trao quyền owner**
+- Đơn giản chỉ cần chạy function **Fal1out** là được, lưu ý contract cố tình viết sai chữ _l_ thành số _1_ nên nó không phải là constructor mà chỉ là một function thông thường có nhiệm vụ là **trao quyền owner**
 
 ```js
 contract.Fal1out()
@@ -351,7 +352,7 @@ contract Attack {
 }
 ```
 
-- Compile contract này và chạy function flip *bằng tay* 10 lần trên Remix, nhớ để Gas Limit  và Gas Price cao một chút để tránh bị *out of gas* và để transaction được confirm nhanh hơn.
+- Compile contract này và chạy function flip _bằng tay_ 10 lần trên Remix, nhớ để Gas Limit và Gas Price cao một chút để tránh bị _out of gas_ và để transaction được confirm nhanh hơn.
 
 - Trên chrome console, kiểm tra lại số lần liên tiếp đoán đúng, 10 lần là được
 
@@ -446,7 +447,7 @@ Liên quan trực tiếp đến túi tiền của chúng ta, nên mọi thứ đ
 Hẹn gặp lại các bạn trong phần tới. Coming soon!
 
 ## References
+
 - [The Ethernaut](https://ethernaut.zeppelin.solutions/)
 - [Remix](https://remix.ethereum.org/)
-- [Solidity Docs](http://solidity.readthedocs.io/en/develop/types.html#members-of-addresses
-)
+- [Solidity Docs](http://solidity.readthedocs.io/en/develop/types.html#members-of-addresses)

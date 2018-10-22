@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "The Ethernaut - Part 3: 9-11"
+title: 'The Ethernaut - Part 3: 9-11'
 mathjax: true
 ---
-Chào các bạn, hôm nay chúng ta sẽ đến với phần 3, cũng là phần cuối của chuỗi bài *Blockchain - hacking smart contract with Ethernaut CTF*
+
+Chào các bạn, hôm nay chúng ta sẽ đến với phần 3, cũng là phần cuối của chuỗi bài _Blockchain - hacking smart contract with Ethernaut CTF_
 
 Ở bài này, chúng ta sẽ đối mặt với những thử thách khó nhằn nhất còn lại.
 
@@ -11,7 +12,7 @@ Trước khi vào bài hãy pha cho mình một cốc cà phê & chuẩn bị ch
 
 Final round, fight!
 
-## 9. King 　★★★★★★
+## 9. King 　 ★★★★★★
 
 **Nhiệm vụ**: Đây là một trò chơi, trong đó người nào muốn trở thành **king** (nhà vua) thì sẽ phải trả giá cho người đang nắm giữ vị trí ấy một khoản tiền cao hơn giá trị của nhà vua hiện tại. Nhiệm vụ của bạn là bằng cách nào đó, trở thành **king** và giữ vị trí này mãi mãi, dù người khác có trả mức giá nào đi nữa
 
@@ -86,8 +87,8 @@ contract Attack {
 }
 ```
 
-- mình sẽ giải thích thêm một chút về đoạn `if(!_target.call.value(msg.value)()) revert();,` có vẻ trông đoạn này hơi lạ nhưng có lý do của nó:
-  - để gửi eth đến một địa chỉ, chúng ta có 3 cách: `transfer`, `send`, `call.value`. Trong đó thì *transfer* và *send* được fixed số gas limit là 2100, quá là thấp, có nghĩa *transfer* và *send* chỉ thuần tuý là để chuyển eth mà không thể thực hiện thêm bất cứ logic nào trong fallback function cả.
+- mình sẽ giải thích thêm một chút về đoạn `if(!_target.call.value(msg.value)()) revert();`, có vẻ trông đoạn này hơi lạ nhưng có lý do của nó:
+  - để gửi eth đến một địa chỉ, chúng ta có 3 cách: `transfer`, `send`, `call.value`. Trong đó thì _transfer_ và _send_ được fixed số gas limit là 2100, quá là thấp, có nghĩa _transfer_ và _send_ chỉ thuần tuý là để chuyển eth mà không thể thực hiện thêm bất cứ logic nào trong fallback function cả.
   - `call.value` là một hàm lowlevel, không giới hạn số gas limit, tuy nhiên sẽ trả về kết quả true/false thay vì throw ra một exception, vì thế ta cần đưa vào đoạn if-revert để biết được nó có lỗi hay không.
 - Compile và chạy hàm steal, `_target` là target của instance của bạn, `msg.value` ta cho một giá trị lớn hơn prize hiện tại, ví dụ 1.1 ether (1100 finneys).
 
@@ -109,7 +110,7 @@ await contract.king()
 - Một lần nữa cho thấy tầm quan trọng cũng như sự nguy hiểm trong cách sử dụng fallback function. Tiền nong mà!
 - Việc tấn công một contract tốt nhất luôn luôn là dùng một contract khác.
 
-## 10. Re-entrancy　★★★★★★
+## 10. Re-entrancy 　 ★★★★★★
 
 **Nhiệm vụ**: Rút hết tiền khỏi smart contract
 
@@ -171,13 +172,13 @@ contract Attack {
 }
 ```
 
-- Trên RemixIDE, load *Reentrancy* contract và complile cũng như run *Attack* contract
+- Trên RemixIDE, load _Reentrancy_ contract và complile cũng như run _Attack_ contract
 
-- Tiến hành chạy hàm `donate()` để donate cho *Attack* contract 1 ether
+- Tiến hành chạy hàm `donate()` để donate cho _Attack_ contract 1 ether
 
-- Chạy hàm `attack()` của *Attack* contract
+- Chạy hàm `attack()` của _Attack_ contract
 
-- Trên Chrome console, kiểm tra lại balance của *Reentrancy* instance xem đã về 0 chưa
+- Trên Chrome console, kiểm tra lại balance của _Reentrancy_ instance xem đã về 0 chưa
 
 ```js
 await getBalance(contract.address);
@@ -195,9 +196,9 @@ await getBalance(contract.address);
 - Hãy luôn kiểm tra các điều kiện, fail càng sớm càng tốt
 - Đọc thêm: https://blog.zeppelin.solutions/15-lines-of-code-that-could-have-prevented-thedao-hack-782499e00942
 
-## 11. Elevator　★★★★☆☆
+## 11. Elevator 　 ★★★★☆☆
 
-**Nhiệm vụ**: Chiếc thang máy này ngăn cản bạn lên tầng trên cùng. Bằng cách nào đó hãy *break the rule* và leo lên đỉnh.
+**Nhiệm vụ**: Chiếc thang máy này ngăn cản bạn lên tầng trên cùng. Bằng cách nào đó hãy _break the rule_ và leo lên đỉnh.
 
 ```js
 pragma solidity ^0.4.18;
@@ -226,11 +227,12 @@ contract Elevator {
 ### Phân tích
 
 - Trong solidity có đoạn:
-> **View Functions**
->
-> Functions can be declared view in which case they promise not to modify the state.
 
-- vậy ra `view` thực chất chỉ là một lời hứa "hão" rằng ta chỉ *nhìn* mà không *nắn bóp* dữ liệu. Trên thực tế, trong hàm `view` việc ta *nắn bóp* hay sửa đổi data cũng không có làm sao cả.
+  > **View Functions**
+  >
+  > Functions can be declared view in which case they promise not to modify the state.
+
+- vậy ra `view` thực chất chỉ là một lời hứa "hão" rằng ta chỉ _nhìn_ mà không _nắn bóp_ dữ liệu. Trên thực tế, trong hàm `view` việc ta _nắn bóp_ hay sửa đổi data cũng không có làm sao cả.
 
 ### Solution
 
@@ -257,8 +259,7 @@ contract ElevatorAttack {
 - Trên Chrome Console, kiểm tra lại điều kiện `top`:
 
 ```js
-await contract.top()
-> true
+;(await contract.top()) > true
 ```
 
 - Submit && all done!
@@ -271,7 +272,7 @@ await contract.top()
 
 ## Conclusion
 
-Vậy là chúng ta đã hoàn thành chuỗi bài *Blockchain - hacking smart contract with Ethernaut CTF*.
+Vậy là chúng ta đã hoàn thành chuỗi bài _Blockchain - hacking smart contract with Ethernaut CTF_.
 
 Hi vọng những kiến thức trong đó có thể giúp ích được các bạn ít nhiều trong việc viết code solidity nói riêng cũng như các ứng dụng phi tập trung nói chung.
 

@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "Hiểu đúng về blockchain - ico - tiền ảo "
+title: 'Hiểu đúng về blockchain - ico - tiền ảo '
 mathjax: true
 ---
+
 Vài năm gần đây, bitcoin có bước tăng nhảy vọt kỷ lục, có khi đã vượt tới gần 20,000$/BTC.
 
 Trên khắp các mặt báo, tin tức về bitcoin và blockchain nhiều đến nỗi chỉ đọc title thôi có lẽ cũng mất cả ngày rồi.
@@ -75,7 +76,7 @@ Hãy ICO như thể người mua là một tên sát thủ biết địa chỉ n
 
 Có chứ, bây giờ mới chỉ là khởi đầu của kỷ nguyên blockchain mà thôi. Trong vài năm tới anh sẽ thấy nó thay đổi hoàn toàn bộ mặt của nhiều ngành nghề ý chứ.
 
-Hiện giờ người ta đang rất tích cực nghiên cứu và phát triển các ứng dụng hợp đồng thông minh *smart contract* đó.
+Hiện giờ người ta đang rất tích cực nghiên cứu và phát triển các ứng dụng hợp đồng thông minh _smart contract_ đó.
 
 **smart contract ? nó là cái gì ? có giống tiền ảo không ?**
 
@@ -91,7 +92,7 @@ Smart contract làm được nhiều hơn thế, ngoài trao đổi tiền tệ,
 
 Quá kịp ý chứ, dân tình người ta đang đổ xô đi học đó. Nhưng người làm được về blockchain hiện giờ vẫn như lá mùa thu =))
 
-*Blockchain is like teenage sex: everyone talks about it, nobody really knows how to do it, everyone thinks everyone else is doing it, so everyone claims they are doing it…*
+_Blockchain is like teenage sex: everyone talks about it, nobody really knows how to do it, everyone thinks everyone else is doing it, so everyone claims they are doing it…_
 
 **Nghe hứa hẹn đấy, đợt này tôi quyết tâm tìm hiểu về blockchain xem sao. Anh có thể cho tôi vài nguồn để bắt đầu được không?**
 
@@ -107,4 +108,3 @@ hmm, nhiều lắm, tôi không biết là anh có thực sự cần không, nh�
 Có lẽ cũng khá là nhiều rồi, hi vọng a sẽ sớm tu thành đắc đạo.
 
 **Tuyệt vời, một lần nữa cảm ơn anh!**
-

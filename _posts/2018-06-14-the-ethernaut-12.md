@@ -1,13 +1,14 @@
 ---
 layout: post
-title: "The Ethernaut: 12 - Privacy"
+title: 'The Ethernaut: 12 - Privacy'
 mathjax: true
 ---
-Nightmare nerver ending!
+
+Nightmare is nerver end!
 
 Ethernaut mới gần đây đã cho ra đời thêm 4 thử thách nữa, và nhiệm vụ của chúng ta vẫn chỉ duy nhất là: vượt qua nó.
 
-# 12. Privacy 　★★★★★★★★
+# 12. Privacy 　 ★★★★★★★★
 
 **Nhiệm vụ**: unlock contract là xong.
 
@@ -50,8 +51,8 @@ contract Privacy {
 
 - Các biến sẽ được gộp lại thành từng slot có độ dài 32 bytes (256 bits), tức 64 ký tự hexa
 - Các biến sẽ lần lượt được đưa vào slot, nếu không vừa thì sẽ được đưa sang slot mới
-- *Static array* luôn sinh một slot mới, và cũng đưa các phần tử lần lượt vào slot như trên.
-- *constant* sẽ không được lưu vào storage
+- _Static array_ luôn sinh một slot mới, và cũng đưa các phần tử lần lượt vào slot như trên.
+- _constant_ sẽ không được lưu vào storage
 
 Note: nếu bạn dùng biến có độ dài nhỏ hơn 32 bytes, có thể contract của bạn sẽ tốn nhiều gas hơn! Vì EVM trong ethereum xử lý theo từng block 32 bytes mỗi phép tính, nên nếu có nhiều thành phần nhỏ hơn 32 bytes thì EVM sẽ phải tốn thêm phép tính để giảm size từ 32 bytes về size mà bạn đã định nghĩa.
 
@@ -80,7 +81,9 @@ vì thế `data[2]` sẽ có index là 3 trong storage của contract.
 sử dụng hàm `web3.eth.getStorageAt()` để lấy ra `data[2]`
 
 ```js
-web3.eth.getStorageAt(instance, 3, function (error,result) {alert(result); })
+web3.eth.getStorageAt(instance, 3, function(error, result) {
+  alert(result)
+})
 0x637a643557a340c479666c021cd18ee92449d19ff85bd81414bd52b54422cda5
 ```
 
@@ -88,7 +91,7 @@ web3.eth.getStorageAt(instance, 3, function (error,result) {alert(result); })
 
 ```js
 // nhớ thay bằng đoạn string mà bạn lấy được bên trên
-await contract.unlock("0x637a643557a340c479666c021cd18ee9")
+await contract.unlock('0x637a643557a340c479666c021cd18ee9')
 ```
 
 - kiểm tra lại tình trạng khoá của contract:

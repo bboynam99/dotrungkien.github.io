@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Ethernaut: 17 - Locked"
+title: 'The Ethernaut: 17 - Locked'
 mathjax: true
 ---
 

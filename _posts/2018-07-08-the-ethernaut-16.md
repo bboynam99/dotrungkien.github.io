@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "The Ethernaut: 16 - Preservation"
+title: 'The Ethernaut: 16 - Preservation'
 mathjax: true
 ---
 
-# 16. Preservation 　★★★★★★
+# 16. Preservation 　 ★★★★★★
 
 **Nhiệm vụ**: chiếm quyền owner
 
@@ -96,7 +96,7 @@ contract D {
 }
 ```
 
-**Điều thứ hai**: khi gọi `delegatecall`, các biến của hàm trong contract E sẽ là *biến với slot tương ứng* của contract D, không cần quan tâm đến tên biến và kiểu dữ liệu.
+**Điều thứ hai**: khi gọi `delegatecall`, các biến của hàm trong contract E sẽ là _biến với slot tương ứng_ của contract D, không cần quan tâm đến tên biến và kiểu dữ liệu.
 
 Ví dụ như bên trên, giả sử ta đổi tên biến và kiểu dữ liệu trong contract D như sau:
 

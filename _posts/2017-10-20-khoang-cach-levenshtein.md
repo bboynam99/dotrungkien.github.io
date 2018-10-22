@@ -1,15 +1,16 @@
 ---
 layout: post
-title: "Khoảng cách Levenshtein và fuzzy query trong Elasticsearch"
+title: 'Khoảng cách Levenshtein và fuzzy query trong Elasticsearch'
 tags: Levenshtein fuzzy query Elasticsearch dynamic-programming
 ---
+
 Chào các bạn, quay lại với Elasticsearch, hôm nay chúng ta sẽ đến với một chủ đề khác trong fulltext search: **fuzzy query**.
 
 Khi làm việc với Elasticsearch, hẳn là các bạn không lạ gì với fuzzy query, tuy nhiên nếu không hiểu về cách mà fuzzy query hoạt động, thì rất có thể việc search của bạn sẽ cho ra những kết quả như "trên trời rơi xuống" vậy. Vì vậy hiểu và nắm được nguyên lý của fuzzy query là một điều rất quan trọng trong fulltext search.
 
 ## Khoảng cách Levenshtein
 
-Để hiểu được nguyên lý của fuzzy query, trước hết ta phải nắm được về *khoảng cách Levenshtein*: **Khoảng cách Levenshtein** thể hiện khoảng cách khác biệt giữa 2 chuỗi ký tự.
+Để hiểu được nguyên lý của fuzzy query, trước hết ta phải nắm được về _khoảng cách Levenshtein_: **Khoảng cách Levenshtein** thể hiện khoảng cách khác biệt giữa 2 chuỗi ký tự.
 
 Khoảng cách Levenshtein giữa chuỗi S1 và chuỗi S2 là số bước ít nhất biến chuỗi S1 thành chuỗi S2 thông qua 3 phép biến đổi là:
 
@@ -90,13 +91,13 @@ Ra vậy, chúng đã lộ nguyên hình là các multibyte character, nhẩm t�
 
 ### Fuzzy query trong Elasticsearch
 
-Fuzzy query trong Elasticsearch cũng sử dụng khoảng cách Levenshtein, và cho phép ta config tham số *fuzziness* để cho kết quả phù hợp nhất với nhu cầu của mình:
+Fuzzy query trong Elasticsearch cũng sử dụng khoảng cách Levenshtein, và cho phép ta config tham số _fuzziness_ để cho kết quả phù hợp nhất với nhu cầu của mình:
 
 - 0, 1, 2: Là khoảng cách Levenshtein lớn nhất được chấp thuận. Nghĩa là trong ví dụ trên nếu bạn đặt fuzziness=3 thì "cân đường" sẽ không được tìm thấy với từ khoá "con đường"
 - AUTO: Sẽ tự động điều chỉnh kết quả dựa trên độ dài của term. Cụ thể:
-    - 0..2: bắt buộc match chính xác (khoảng cách Levenshtein lớn nhất là 0)
-    - 3..5: khoảng cách Levenshtein lớn nhất là 1
-    - 5 trở lên: khoảng cách Levenshtein lớn nhất là 2
+  - 0..2: bắt buộc match chính xác (khoảng cách Levenshtein lớn nhất là 0)
+  - 3..5: khoảng cách Levenshtein lớn nhất là 1
+  - 5 trở lên: khoảng cách Levenshtein lớn nhất là 2
 
 Nếu trang web bạn đang sử dụng không phải là tiếng Anh, thì khi tìm kiếm fulltext search, có thể bạn sẽ phải chú ý điều chỉnh config giá trị fuzzy query hợp lý để đưa ra kết quả gần nhất với mong đợi. Nhiều khi AUTO chưa chắc đã là tốt.
 

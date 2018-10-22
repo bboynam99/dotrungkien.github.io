@@ -1,11 +1,12 @@
 ---
 layout: post
-title: "The Ethernaut: 13 - Gatekeeper One"
+title: 'The Ethernaut: 13 - Gatekeeper One'
 mathjax: true
 ---
-# 13. Gatekeeper One 　★★★★★
 
-**Note**: hãy luôn chọn đúng version solidity và tắt chế độ *Enable Optimization* trên Remix, vì với mỗi version số lượng gas tiêu tốn có thể khác nhau. Đây là một kinh nghiệm đau thương của mình khi tốn cả ngày trời debug mà không biết lỗi nằm ở đâu.
+# 13. Gatekeeper One 　 ★★★★★
+
+**Note**: hãy luôn chọn đúng version solidity và tắt chế độ _Enable Optimization_ trên Remix, vì với mỗi version số lượng gas tiêu tốn có thể khác nhau. Đây là một kinh nghiệm đau thương của mình khi tốn cả ngày trời debug mà không biết lỗi nằm ở đâu.
 
 **Nhiệm vụ**: vượt qua 3 cánh cổng và thay đổi địa chỉ của cửa vào
 
@@ -86,11 +87,11 @@ contract Backdoor {
 }
 ```
 
-trong đó _target là địa chỉ instance của bạn.
+trong đó \_target là địa chỉ instance của bạn.
 
 Ta sẽ switch qua môi trường là `JavaScript VM` và compile lại cả `GateKeeperOne` và `Backdoor` contract để tiến hành debug.
 
-Ta sẽ set cho hàm enterGate2 một số lượng gas đủ lớn là `500000` gas, `_key` thì tuỳ ý vì ta chưa động đến *gateThree*.
+Ta sẽ set cho hàm enterGate2 một số lượng gas đủ lớn là `500000` gas, `_key` thì tuỳ ý vì ta chưa động đến _gateThree_.
 
 ![png]({{ site.url }}/assets/images/GatekeeperOne-Gate2.png)
 
@@ -136,7 +137,7 @@ Có nghĩa là, giả sử như ta ép kiểu `uint16(x)` thì kết quả ta nh
 OK, quay trở lại bài toán, **điều kiện thứ 3**:
 
 ```js
-require(uint32(_gateKey) == uint16(tx.origin));
+require(uint32(_gateKey) == uint16(tx.origin))
 ```
 
 ở đây `tx.origin` chính là địa chỉ account của mình. Ở đây mình sử dụng địa chỉ của mình, các bạn hãy thay tương ứng với địa chỉ của các bạn.
@@ -150,15 +151,15 @@ Trước tiên ta sẽ tính `uint16(tx.origin)`
 55659
 ```
 
-Vậy thì từ `require(uint32(_gateKey) == uint16(tx.origin));` ta có `_gateKey` sẽ có dạng $$2^{32}*x + 55659$$
+Vậy thì từ `require(uint32(_gateKey) == uint16(tx.origin));` ta có `_gateKey` sẽ có dạng $$2^{32}\times x + 55659$$
 
-**Điều kiện đầu tiên**: 
+**Điều kiện đầu tiên**:
 
 ```js
-require(uint32(_gateKey) == uint16(_gateKey));
+require(uint32(_gateKey) == uint16(_gateKey))
 ```
 
-Ta thấy rằng với dạng $$2^{32}*x + 55659$$ thì điều kiện trên rõ ràng luôn đúng vì
+Ta thấy rằng với dạng $$2^{32} \times x + 55659$$ thì điều kiện trên rõ ràng luôn đúng vì
 
 \\[
 (2^{32} \times x + 55659) ~ mod ~ 2^{32} = (2^{32} \times x + 55659) ~ mod ~ 2^{16} = 55659
@@ -166,10 +167,10 @@ Ta thấy rằng với dạng $$2^{32}*x + 55659$$ thì điều kiện trên rõ
 
 nghĩa là chỉ cần một số đi quá chu kì của $$2^{32}$$ một lượng nhỏ hơn $$2^{16}$$ là ok
 
-**Điều kiện thứ 2**: 
+**Điều kiện thứ 2**:
 
 ```js
-require(uint32(_gateKey) != uint64(_gateKey));
+require(uint32(_gateKey) != uint64(_gateKey))
 ```
 
 Để đạt được điều kiện này ta chỉ cần một số đi quá giới hạn của `uint32` nhưng chưa tới giới hạn của `uint64`, khi đó số đó sẽ quay trở lại rất nhỏ với `uint32` nhưng vẫn còn rất lớn với `uint64`, thật vậy
@@ -190,7 +191,7 @@ Vậy nên ta chọn luôn số $$2^{32} + 55659$$ và chuyển nó qua dạng h
 ```
 
 vì chuỗi key là dạng `bytes8`, tức 16 ký tự hexa, ta sẽ thêm vài số 0 ở đầu để đảm bảo key dài 16 ký tự: `0x000000010000d96b`
-thay *key* bằng chuỗi bên trên và submit
+thay _key_ bằng chuỗi bên trên và submit
 
 ![png]({{ site.url }}/assets/images/GatekeeperOne-Final.png)
 
@@ -207,7 +208,7 @@ Submit && All done!
 
 ## Bình luận
 
-Đây là một bài tập hết sức khó nhằn, yêu cầu rất nhiều kiến thức tổng hợp. Từ kiến thức về msg.sender, tx.origin, cho đến overflow dữ liệu, đồng thời phải biết cả debug transaction, hiểu về khái niệm *gas* trong giao dịch. Thực sự mình đánh giá đây là bài tập khó nhất của chuỗi CTF này.
+Đây là một bài tập hết sức khó nhằn, yêu cầu rất nhiều kiến thức tổng hợp. Từ kiến thức về msg.sender, tx.origin, cho đến overflow dữ liệu, đồng thời phải biết cả debug transaction, hiểu về khái niệm _gas_ trong giao dịch. Thực sự mình đánh giá đây là bài tập khó nhất của chuỗi CTF này.
 
 Không hiểu sao phía BTC họ lại để 5/6 sao, chắc trêu =))
 

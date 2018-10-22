@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "The Ethernaut: 14 - Gatekeeper Two"
+title: 'The Ethernaut: 14 - Gatekeeper Two'
 mathjax: true
 ---
-# 14. Gatekeeper Two 　★★★★★★
+
+# 14. Gatekeeper Two 　 ★★★★★★
 
 **Nhiệm vụ**: vượt qua 3 cánh cổng khác và thay đổi địa chỉ của cửa vào
 
@@ -75,7 +76,7 @@ một điều kiện quan trọng ở đây chính là `require(x == 0)`, có ng
 Đó chính là lúc ta cần đến `yellow paper` - tài liệu đặc tả kỹ thuật của ethereum, trong đó có đoạn:
 
 > During initialization code execution, EXTCODESIZE on the address should return zero, which is the length of the code of the account while
-CODESIZE should return the length of the initialization cod
+> CODESIZE should return the length of the initialization cod
 
 có nghĩa là trong contract thì trong constructor codesize vẫn là 0, chỉ sau khi hoàn thành constructor thì codesize mới có giá trị.
 
@@ -90,7 +91,7 @@ modifier gateThree(bytes8 _gateKey) {
 }
 ```
 
-điều kiện này rất là dễ, chỉ đơn thuần là một phép *XOR* mà thôi. Ta biết rằng nếu `a XOR b = c` thì `b = a XOR c`, một tính chất rất cơ bản của *XOR*. Do đó:
+điều kiện này rất là dễ, chỉ đơn thuần là một phép _XOR_ mà thôi. Ta biết rằng nếu `a XOR b = c` thì `b = a XOR c`, một tính chất rất cơ bản của _XOR_. Do đó:
 
 ```js
 uint64(_gateKey) = uint64(keccak256(msg.sender)) ^ (uint64(0) - 1)

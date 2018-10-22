@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Storage trong Ethereum smart contract"
+title: 'Storage trong Ethereum smart contract'
 mathjax: true
 ---
 
-Trong các bài toán liên quan đến security của smart contract, ta rất hay gặp những lỗi liên quan đến **storage**, vì thế việc nắm chắc *storage* là điều tối cần thiết cho bất cứ ai muốn làm việc với *smart contract* nói chung và *solidity* nói riêng.
+Trong các bài toán liên quan đến security của smart contract, ta rất hay gặp những lỗi liên quan đến **storage**, vì thế việc nắm chắc _storage_ là điều tối cần thiết cho bất cứ ai muốn làm việc với _smart contract_ nói chung và _solidity_ nói riêng.
 
 # Storage structure
 
@@ -22,7 +22,7 @@ Các slot trong **storage** lưu trữ dưới dạng các cặp key-value với
 
 Cơ bản nhất, chúng ta có thể hiểu các biến trong contract sẽ được lưu trữ strong storage như sau:
 
-- Storage chỉ lưu các biến, không lưu *constant*
+- Storage chỉ lưu các biến, không lưu _constant_
 - Mỗi slot lưu trữ được tối đa 256 bit (32 byte)
 - Các biến lần lượt được vào slot theo thứ tự lower-order (nghĩa là từ phải qua trái).
 - Nếu size của biến vượt quá size còn lại của slot, biến này sẽ được đưa qua slot mới.
@@ -243,10 +243,10 @@ Vậy là các giá trị ta check được hoàn toàn chính xác với nhữn
 
 ```js
 function increaseHexByOne(hex) {
- let x = new BigNumber(hex)
- let sum = x.add(1)
- let result = '0x' + sum.toString(16)
- return result
+  let x = new BigNumber(hex)
+  let sum = x.add(1)
+  let result = '0x' + sum.toString(16)
+  return result
 }
 ```
 
@@ -254,7 +254,7 @@ function increaseHexByOne(hex) {
 
 Mapping cũng luôn chiếm một slot mới, tuy nhiên slot này không lưu trữ giá trị nào cả! giả sử slot này là `p`
 
-Việc sinh ra slot mới này chỉ đơn thuần để đảm bảo 2 mapping này là *khác nhau* mà thôi.
+Việc sinh ra slot mới này chỉ đơn thuần để đảm bảo 2 mapping này là _khác nhau_ mà thôi.
 
 Mỗi key `k` của mapping sẽ được lưu trữ tại slot `keccak256(k + p)`, một lưu ý quan trọng là `k` và `p` là chuỗi 64 ký tự hexa (256 bit), chứ không phải là các giá trị uint.
 

@@ -26,10 +26,9 @@ permalink: /todolist
 - [x] Writeup Ethernaut CTF part 18
 - [ ] Writeup Ethernaut CTF part 19
 - [x] Storage trong Ethereum smart contract
-- [ ] [Understanding ERC20 token](https://medium.com/@jgm.orinoco/understanding-erc-20-token-contracts-a809a7310aa5)
-- [ ] [ICO in less than 20 minutes](https://medium.com/bitfwd/how-to-do-an-ico-on-ethereum-in-less-than-20-minutes-a0062219374)
-- [ ] [How to Secure Your Smart Contracts: 6 Solidity Vulnerabilities and how to avoid them](https://medium.com/loom-network/how-to-secure-your-smart-contracts-6-solidity-vulnerabilities-and-how-to-avoid-them-part-1-c33048d4d17d)
 - [ ] [Understand Hyperledger Fabric blockchain network](https://hyperledger-fabric.readthedocs.io/en/latest/network/network.html)
 - [ ] [Deconstructing a Solidity Contract](https://blog.zeppelin.solutions/deconstructing-a-solidity-contract-part-i-introduction-832efd2d7737)
 - [ ] [Blockchain basics: Hyperledger Fabric and Hyperledger Composer](https://www.ibm.com/developerworks/cloud/library/cl-blockchain-hyperledger-fabric-hyperledger-composer-compared/index.html)
 - [ ] [Hyperledger blockchain basic tutorial](https://www.ibm.com/developerworks/cloud/library/cl-model-test-your-blockchain-network-with-hyperledger-composer-playground/index.html)
+- [ ] [Ethereum transaction lifecycle](https://medium.com/blockchannel/life-cycle-of-an-ethereum-transaction-e5c66bae0f6e)
+- [ ] [React-router-pass-props-to-component](https://tylermcginnis.com/react-router-pass-props-to-components/)

@@ -1,10 +1,24 @@
 <ul class="menu">
-    <li><a href="{{ '/about' | prepend: site.baseurl | prepend: site.url }}">About</a></li>
-    {% if site.harmony.social.github %}
-    <li><a href="https://github.com/{{ site.harmony.social.github }}">Github</a></li>
-    {% endif %}
-    {% if site.harmony.social.facebook %}
-    <li><a href="https://facebook.com/{{ site.harmony.social.facebook }}">Facebook</a></li>
-    {% endif %}
+  <li>
+    <a href="{{ '/about' | prepend: site.baseurl | prepend: site.url }}"
+      >About</a
+    >
+  </li>
+  {% if site.harmony.social.github %}
+  <li>
+    <a href="https://github.com/{{ site.harmony.social.github }}">Github</a>
+  </li>
+  {% endif %} {% if site.harmony.social.facebook %}
+  <li>
+    <a href="https://facebook.com/{{ site.harmony.social.facebook }}"
+      >Facebook</a
+    >
+  </li>
+  {% endif %}
 </ul>
-<a  href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img class="license" alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png"></a>
+<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  ><img
+    class="license"
+    alt="Creative Commons License"
+    src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png"
+/></a>

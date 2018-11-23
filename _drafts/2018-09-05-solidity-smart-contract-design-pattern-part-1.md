@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Design Pattern In Solidity Smart Contract - Part 1"
+title: 'Design Pattern In Solidity Smart Contract - Part 1'
 mathjax: true
 ---
 
@@ -10,10 +10,10 @@ Bài dịch từ [https://github.com/fravoll/solidity-patterns](https://github.c
 
 # Behavioral Patterns
 
-  - **Guard Check**
-  - **State Machine**
-  - **Oracle**
-  - **Randomness**
+- **Guard Check**
+- **State Machine**
+- **Oracle**
+- **Randomness**
 
 ## Guard Check
 
@@ -22,4 +22,3 @@ Bài dịch từ [https://github.com/fravoll/solidity-patterns](https://github.c
 Đảm bảo hành vi của contract và đảm bảo được input đầu vào của contract.
 
 ### Motivation
-

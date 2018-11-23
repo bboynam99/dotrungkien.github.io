@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Design Pattern In Solidity Smart Contract - Overview"
+title: 'Design Pattern In Solidity Smart Contract - Overview'
 mathjax: true
 ---
 

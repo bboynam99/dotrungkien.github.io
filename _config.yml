@@ -1,13 +1,5 @@
-# Harmony Jekyll theme general configurations
-
-# Base URL
-baseurl: ""
-
-# Site live URL
+baseurl: ''
 url: https://dotrungkien.github.io
-
-# Localhost
-# url: http://127.0.0.1:4000
 
 # Harmony theme configuration. Please change accordingly.
 harmony:
@@ -15,7 +7,7 @@ harmony:
   # Little description about your site
   description: Talk is cheap. Show me the code.
   basetheme: theme-base-01 # pre defined thmes are darken, blue-water, redish.
-  author: # Author details
+  author:
     name: Do Trung Kien
     email: trungkien162@gmail.com
     url: https://dotrungkien.github.io
@@ -27,14 +19,14 @@ harmony:
 show_drafts: false
 future: true
 unpublished: true
-markdown:    kramdown
+markdown: kramdown
 highlighter: rouge
 kramdown:
   input: GFM
   math_engine: mathjax
   syntax_highlighter: rouge
 # Permalinks
-permalink:        pretty
+permalink: pretty
 
 exclude:
   - CNAME
@@ -47,5 +39,5 @@ exclude:
 
 # Sass conversion configs
 sass:
-    sass_dir: assets/css/_sass
-    style: :compressed
+  sass_dir: assets/css/_sass
+  style: :compressed

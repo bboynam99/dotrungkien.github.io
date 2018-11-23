@@ -46,3 +46,7 @@ Câu trả lời là sử dụng prop `render` thay vì `component`.
 ```
 
 Tuyệt vời, một giải pháp rất đơn giản cho vấn đề truyền props trong Route. Nếu bạn có cách làm nào hay hơn, hãy chia sẻ cho mình nhé.
+
+Tham khảo:
+
+- [https://tylermcginnis.com/react-router-pass-props-to-components/](https://tylermcginnis.com/react-router-pass-props-to-components/)

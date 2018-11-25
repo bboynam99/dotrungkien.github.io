@@ -30,5 +30,5 @@ permalink: /todolist
 - [ ] [Deconstructing a Solidity Contract](https://blog.zeppelin.solutions/deconstructing-a-solidity-contract-part-i-introduction-832efd2d7737)
 - [ ] [Blockchain basics: Hyperledger Fabric and Hyperledger Composer](https://www.ibm.com/developerworks/cloud/library/cl-blockchain-hyperledger-fabric-hyperledger-composer-compared/index.html)
 - [ ] [Hyperledger blockchain basic tutorial](https://www.ibm.com/developerworks/cloud/library/cl-model-test-your-blockchain-network-with-hyperledger-composer-playground/index.html)
-- [ ] [Ethereum transaction lifecycle](https://medium.com/blockchannel/life-cycle-of-an-ethereum-transaction-e5c66bae0f6e)
-- [ ] [React-router-pass-props-to-component](https://tylermcginnis.com/react-router-pass-props-to-components/)
+- [x] [Ethereum transaction lifecycle](https://medium.com/blockchannel/life-cycle-of-an-ethereum-transaction-e5c66bae0f6e)
+- [x] [React-router-pass-props-to-component](https://tylermcginnis.com/react-router-pass-props-to-components/)

@@ -9,21 +9,21 @@ Dạo gần đây mình có làm một project sử dụng react, và gặp ph�
 Nhắc lại một chút, thông thường ta sẽ sử dụng React Router để tạo một Route component giống như sau:
 
 ```js
-<Route path="/dashboard" component={Dashboard} />
+<Route path='/dashboard' component={Dashboard} />
 ```
 
 ban đầu mình suy nghĩ rất đơn giản, ok truyền thêm tham số vào như **props** thông thường thôi:
 
 ```js
-<Route path="/dashboard" component={Dashboard} isAuthed={true} />
+<Route path='/dashboard' component={Dashboard} isAuthed={true} />
 ```
 
-rất tiếc, trông code có vẻ đẹp nhưng không chạy :sad: Lý do rất đơn gỉản, ngoại trừ React Router không forward props của bạn đi, ngoại trừ _component_
+rất tiếc, trông code có vẻ đẹp nhưng không chạy :sad: Lý do rất đơn giản, React Router không forward các props khác của bạn đi, ngoại trừ _component_
 
-hmmm, ô kê, vậy thì giải pháp ở đây là biến bản thân object Dashboard thành một component prop mới & truyển props bên trong component đó, sound good!
+hmmm, ô kê, vậy thì giải pháp ở đây là biến bản thân object Dashboard thành một prop component mới & truyền props bên trong component đó, sound good!
 
 ```js
-<Route path="/dashboard" component={() => <Dashboard isAuthed={true} />} />
+<Route path='/dashboard' component={() => <Dashboard isAuthed={true} />} />
 ```
 
 ok, code đã chạy. Tuy nhiên nhìn lại, giải pháp này có điều không ổn. Theo official docs của React thì
@@ -40,7 +40,7 @@ Câu trả lời là sử dụng prop `render` thay vì `component`.
 
 ```js
 <Route
-  path="/dashboard"
+  path='/dashboard'
   render={props => <Dashboard {...props} isAuthed={true} />}
 />
 ```

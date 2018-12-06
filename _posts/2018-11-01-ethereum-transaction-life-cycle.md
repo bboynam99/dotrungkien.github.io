@@ -95,7 +95,7 @@ var rawTxn = {
 }
 ```
 
-khá nhiều thông số, ta sẽ đi qua từng giá trị
+trong đó:
 
 - `nonce`: đây chính là số transaction mà tài khoản gửi đã từng thực hiện. Mỗi lần gửi một transaction thì giá trị này sẽ tăng lên. Số _nonce_ sinh ra nhằm ngăn các cuộc tấn công _replay attack_ trong ethereum.
 - `gasPrice`: Mạng lưới ethereum được vận hành bởi _gas_, cũng giống như xăng để chạy xe vậy. Mỗi transaction đều tốn một lượng _gas_ nhất định, và _gasPrice_ chính là đơn giá của 1 gas, đơn giá này tính bằng chính **ether**, tuy nhiên giá trị của nó khá nhỏ, chỉ từ 0.1 cho tới 100+ _Gwei_ mà thôi.
@@ -166,7 +166,7 @@ Giống như trên ta có nói, không phải node nào cũng làm nhiệm vụ 
 
 Trong trường hợp trên, transaction `voteForCandidate('Nick')` của chúng ta đang đứng cuối bảng xếp hạng với giá gas chỉ 1 Gwei, có nghĩa là transaction này có thể sẽ rất lâu nữa mới được confirm, hoặc thậm chí sẽ nằm đó mãi mãi nếu như các transaction mới với giá gas cao hơn cứ liên tục được đẩy vào pool.
 
-Một trick để giải quyết việc này, đó là chúng ta sẽ gửi lại một transaction mới, với giá gas cao hơn, tuy nhiên đặc biệt quan trọng là _số nonce phải giữ nguyên như cũ_. Khi số nonce không thay đổi, thì transaction mới sẽ được overide transaction cũ trong pool, còn nếu số nonce thay đổi, nó sẽ trở thành 2 transaction hoàn toàn khác nhau.
+Một trick để giải quyết việc này, đó là chúng ta sẽ gửi lại một transaction mới, với giá gas cao hơn, tuy nhiên đặc biệt quan trọng là _số nonce phải giữ nguyên như cũ_. Khi số nonce không thay đổi, thì transaction mới sẽ được ghi đè transaction cũ trong pool, còn nếu số nonce thay đổi, nó sẽ trở thành 2 transaction hoàn toàn khác nhau.
 
 > _Có thể bạn đã biết_: **mining** chính là quá trình confirm các giao dịch và đưa vào block.
 

@@ -21,7 +21,7 @@ debug(needLogVariable);
 
 sau đó khi test thì thêm biến môi trường vào
 
-```bash
+```js
 DEBUG=something npm test
 ```
 
@@ -33,13 +33,13 @@ lỗi này xảy ra khi thiếu thư viện `_gdbm.cpython-35m-x86_64-linux-gnu.
 
 chạy lệnh
 
-```sh 
+```js
 dpkg -L python3-gdbm
 ```
 
 được kết quả
 
-```sh
+```js
 /.
 /usr
 /usr/lib
@@ -56,7 +56,7 @@ dpkg -L python3-gdbm
 
 tạo symbolic link, câu lệnh `ln -s source destination` giống y như `cp`
 
-```sh
+```js
 sudo ln -s /usr/lib/python3.5/lib-dynload/_gdbm.cpython-35m-x86_64-linux-gnu.so /usr/lib/python3.6/lib-dynload/_gdbm.cpython-36m-x86_64-linux-gnu.so
 ```
 

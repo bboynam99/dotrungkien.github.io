@@ -4,6 +4,27 @@ title: Today i learned
 permalink: /til
 ---
 
+### 20190110
+
+sử dụng `debug` module thay cho `console.log`
+rất đơn giản, khai báo
+
+```js
+debug = require('debug')('something');
+```
+
+tại nơi cần debug thì cột vào đó
+
+```js
+debug(needLogVariable);
+```
+
+sau đó khi test thì thêm biến môi trường vào
+
+```bash
+DEBUG=something npm test
+```
+
 ### 20190108
 
 gặp lỗi `ModuleNotFoundError: No module named '_gdbm'`

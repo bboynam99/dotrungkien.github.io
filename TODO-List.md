@@ -30,3 +30,4 @@ permalink: /todolist
 - [ ] test nodejs resfull api với mocha & chai
 - [ ] tìm hiểu restful vs graphql vs grpc
 - [ ] [write tests - not too much-mostly integration](https://blog.kentcdodds.com/write-tests-not-too-many-mostly-integration-5e8c7fff591c)
+- [ ] [Nodejs & Javascript test best pratices](https://medium.com/@me_37286/yoni-goldberg-javascript-nodejs-testing-best-practices-2b98924c9347)

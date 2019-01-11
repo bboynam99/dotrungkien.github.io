@@ -5,6 +5,13 @@ title: Javascript & Nodejs test note
 
 - ![](https://cdn-images-1.medium.com/max/880/1*TRAT1glkPpDFhv-GHCFBNQ.jpeg)
 
+# TL;DR
+
+- If you want to “just get started” or looking for a fast framework for large projects, go with **Jest**.
+- If you want a very flexible and extendable configuration, go with **Mocha**.
+- If you are looking for simplicity go with **Ava**.
+- If you want to be really low-level, go with **tape**.
+
 ### Test framework/library
 
 - [Mocha](https://mochajs.org/) - the fun, simple, flexible JavaScript test framework.

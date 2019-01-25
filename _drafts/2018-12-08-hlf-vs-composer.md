@@ -96,3 +96,87 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
    return shim.Error("Received unknown function invocation")
 }
 ```
+
+Sau đó trong mỗi function, Go code sẽ gọi methods trong `shim` để đọc hay ghi dữ liệu lên sổ cái chung. `shim` chính là phần đứng giữa chaincode và sổ cái, nó sẽ làm các nhiệm vụ CRUD state, emit các events..
+
+Ví dụ:
+
+```go
+err = stub.DelState(colorNameIndexKey)
+colorNameIndexKey, err := stub.CreateCompositeKey(indexName, []string{marble.Color, marble.Name})
+stub.PutState(colorNameIndexKey, value)
+valAsbytes, err := stub.GetState(name) //get the marble from chaincode state
+```
+
+ta sẽ đi sâu hơn vào detail của một function.
+
+## Step3: Validate arguments
+
+Mỗi function chỉ nhận vào một mảng bao gồm tên functino và các đối số. Vì thế việc thực hiện validate số lượng các đối số luôn là việc cần làm đầu tiên trong function.
+
+```go
+func (t *SimpleChaincode) transferMarble(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+   //   0       1
+   // "name", "bob"
+   if len(args) < 2 {
+      return shim.Error("Incorrect number of arguments. Expecting 2")
+   }
+```
+
+## Step4: Lookup Asset
+
+Chaincode có thể tìm kiếm các asset trong mạng bằng `id`, và return một `error` nếu nó không tồn tại.
+
+```go
+marbleName := args[0]
+newOwner := strings.ToLower(args[1])
+fmt.Println("- start transferMarble ", marbleName, newOwner)
+marbleAsBytes, err := stub.GetState(marbleName)
+
+if err != nil {
+   return shim.Error("Failed to get marble:" + err.Error())
+} else if marbleAsBytes == nil {
+   return shim.Error("Marble does not exist")
+}
+```
+
+## Step5: Deserialize data
+
+Nếu asset mà bạn tìm kiếm ở bước 4 tồn tại, nó sẽ trả về dưới dạng raw data, tức bytes, ta sẽ phải tiến hành deserialize dữ liệu đó ra và convert nó trở lại dạng Go struct.
+
+```go
+marbleToTransfer := marble{}
+err = json.Unmarshal(marbleAsBytes, &marbleToTransfer) //unmarshal it aka JSON.parse()
+if err != nil {
+   return shim.Error(err.Error())
+}
+```
+
+## Step 6: Update data in memory
+
+## Step 7: Serialize data and persist
+
+## Step 8: Content based query
+
+## Step 9: Emitting events
+
+# Coding with Composer
+
+## Step 1: Data model
+
+## Step 2: Dispatch incoming calls
+
+## Step 3: Validate arguments
+
+## Step 4,5,6,7 Lookup Asset, Deserialize Data, Update Data In Memory, Serialize Data and Persist
+
+## Step 8: Content based query
+
+## Step 9: Emitting events
+
+# Testing
+
+# Summary
+
+# References
+- [https://blog.selman.org/2017/07/08/getting-started-with-blockchain-development/](https://blog.selman.org/2017/07/08/getting-started-with-blockchain-development/)

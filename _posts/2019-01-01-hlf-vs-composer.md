@@ -394,7 +394,11 @@ Những features lớn của Fabric:
 - Sử dụng một ngôn ngữ duy nhất cho cả business model và business logic.
 - Có thể tích hợp với các bên thư viện C hay Go của bên thứ ba.
 
-Tổng kết lại, với một dự án Hyperledger chạy trên Fabric, thì có lẽ 90% Composer sẽ là lựa chọn hợp lý để bắt đầu. Nó cho phép nhà phát triển tập trung hơn vào cách thiết kế network cũng như logic của business hơn là việc tập trung vào việc debug, sửa lỗi để chạy được network trong Fabric. Hơn thế nữa, với hàng loạt các Composer high-level tool khác như REST API hay Angular app sẽ khiến việc code trở nên thuận tiện hơn rất nhiều.
+Tổng kết lại, với một dự án Hyperledger chạy trên Fabric, thì có lẽ **90%** Composer sẽ là lựa chọn hợp lý để bắt đầu.
+
+Nó cho phép nhà phát triển tập trung hơn vào cách thiết kế network cũng như logic của business hơn là việc tập trung vào việc debug, sửa lỗi để chạy được network trong Fabric.
+
+Hơn thế nữa, với hàng loạt các Composer high-level tool khác như REST API hay Angular app sẽ khiến việc code trở nên thuận tiện hơn rất nhiều.
 
 Enjoy coding!
 

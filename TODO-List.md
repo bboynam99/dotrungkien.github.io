@@ -26,7 +26,7 @@ permalink: /todolist
 - [x] Storage trong Ethereum smart contract
 - [x] [Ethereum transaction lifecycle](https://medium.com/blockchannel/life-cycle-of-an-ethereum-transaction-e5c66bae0f6e)
 - [x] [React-router-pass-props-to-component](https://tylermcginnis.com/react-router-pass-props-to-components/)
-- [ ] Bắt đầu với hyperledger fabric hay hyperledger composer
+- [x] Bắt đầu với hyperledger fabric hay hyperledger composer
 - [ ] test nodejs resfull api với mocha & chai
 - [ ] tìm hiểu restful vs graphql vs grpc
 - [ ] [write tests - not too much-mostly integration](https://blog.kentcdodds.com/write-tests-not-too-many-mostly-integration-5e8c7fff591c)

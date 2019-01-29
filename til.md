@@ -4,6 +4,14 @@ title: Today i learned
 permalink: /til
 ---
 
+### 20190129
+
+Combo để test nodejs app:
+
+[Mocha](https://mochajs.org/) framework test + [Chai](https://www.chaijs.com/) assertion library + [sinon](https://sinonjs.org/) để mock dữ liệu.
+
+![](https://i.imgur.com/Obael7W.jpg)
+
 ### 20190110
 
 sử dụng `debug` module thay cho `console.log`

@@ -5,7 +5,7 @@ title: 'Hyperledger - bắt đầu với Fabric hay Composer?'
 
 # Introduction
 
-Bạn mới bắt đầu với hyperledger và bạn băn khoăn không biết nên bắt đầu với `Hyperledger Composer` hay `Hyperledger Fabric`? bài viết này sẽ cung cấp cho các bạn một cái nhìn tổng quan về các ưu nhược điểm của 2 cách tiếp cận. Hi vọng sẽ giúp các bạn trong việc lựa chọn con đường phù hợp.
+Bạn mới bắt đầu với [Hyperledger](https://www.hyperledger.org/) và bạn băn khoăn không biết nên bắt đầu với `Hyperledger Composer` hay `Hyperledger Fabric`? bài viết này sẽ cung cấp cho các bạn một cái nhìn tổng quan về các ưu nhược điểm của 2 cách tiếp cận. Hi vọng sẽ giúp các bạn trong việc lựa chọn con đường phù hợp.
 
 # TL;DR
 

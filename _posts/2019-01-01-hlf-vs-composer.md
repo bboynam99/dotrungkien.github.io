@@ -15,16 +15,21 @@ Bạn mới bắt đầu với hyperledger và bạn băn khoăn không biết n
 
 Cả Hyperledger Fabric và Hyperledger Composer đều là các project nằm trong hệ sinh thái Hyperledger được phát triển bởi tổ chức **Linux Foundation**
 
-- Hyperledger Fabric là một pluggable blockchain, nó cung cấp các một set các permissioned peer để truy cập vào một sổ cái chung.
-- Hyperledger Composer là một set ở tầm cao hơn, sử dụng các API + tools để mô hình hóa, build, integrate và deploy blockchain network. Network này có thể được đóng gói và chạy trên Hyperledger Fabric.
+- Hyperledger Fabric là một pluggable blockchain, nó cung cấp các một set các peer node với những quyền truy cập khác nhau để thao tác với một sổ cái chung.
+- Hyperledger Composer là một set ở tầm cao hơn, sử dụng các API + tools để mô hình hóa, build, integrate và deploy blockchain network. Network này có thể được đóng gói và chạy _bên trên_ Hyperledger Fabric.
 
 Hay nói một cách đơn giản, Composer **chạy trên** Fabric. Composer cung cấp API bậc cao, và về bản chất, các API này vẫn gọi đến các API của Fabric.
 
 Để có cái nhìn cụ thể hơn, ta sẽ đi vào so sánh việc code giữa Composer và Fabric thông qua một project sample của Hyperledger là [Marble Network](https://github.com/hyperledger/composer-sample-networks/tree/master/packages/marbles-network)
 
+**Recommend**:
+
+- sẽ tốt hơn nếu bạn có kiến thức cơ bản về blockchain
+- sẽ tốt hơn nếu bạn có kiến thức về _golang_ hay _javascript_
+
 # Code với Fabric
 
-> Có thể bạn chưa biết: Trong Fabric cũng có smart contract, gọi là `chaincode`
+> Có thể bạn chưa biết: Trong Fabric cũng có khái niệm smart contract, gọi là `chaincode`
 
 Các bạn có thể viết chaincode trong Fabric bằng `Go` hoặc bằng `Nodejs`, `Java`. Trong bài viết này ta sẽ dùng `Go`.
 
@@ -64,7 +69,7 @@ type marble struct {
 
 ## Step 2: Dispatching Incoming Calls
 
-Mỗi khi client submit một transaction lên trên blockchain (trong Fabric ta sẽ dùng một node-sdk client), nó sẽ sử dụng một interface dạng RPC bất đồng bộ. RPC calls sẽ dispatch các transaction đó đến các hàm Go tương ứng để process. Như trên ta cũng có nói, việc này đơn giản là xử lý một loạt các `if` trong `Invoke`:
+Mỗi khi client submit một transaction lên trên blockchain (trong Fabric ta sẽ dùng một node-sdk client), nó sẽ sử dụng một interface dạng RPC bất đồng bộ. RPC calls sẽ chuyển tiếp các transaction đó đến các hàm Go tương ứng để xử lý. Như trên ta cũng có nói, việc này đơn giản là xử lý một loạt các `if` trong `Invoke`:
 
 ```go
 func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
@@ -96,7 +101,9 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 }
 ```
 
-Sau đó trong mỗi function, Go code sẽ gọi methods trong `shim` để đọc hay ghi dữ liệu lên sổ cái chung. `shim` chính là phần đứng giữa chaincode và sổ cái, nó sẽ làm các nhiệm vụ CRUD state, emit các events..
+Sau đó trong mỗi function, Go code sẽ gọi methods trong `shim` để đọc hay ghi dữ liệu lên sổ cái chung.
+
+> `shim` chính là phần đứng giữa chaincode và sổ cái, nó sẽ làm các nhiệm vụ CRUD state, emit các events..
 
 Ví dụ:
 
@@ -111,7 +118,7 @@ ta sẽ đi sâu hơn vào detail của một function.
 
 ## Step3: Validate arguments
 
-Mỗi function chỉ nhận vào một mảng bao gồm tên functino và các đối số. Vì thế việc thực hiện validate số lượng các đối số luôn là việc cần làm đầu tiên trong function.
+Mỗi function chỉ nhận vào một mảng bao gồm tên function và các đối số. Vì thế việc thực hiện validate số lượng các đối số luôn là việc cần làm đầu tiên trong function.
 
 ```go
 func (t *SimpleChaincode) transferMarble(stub shim.ChaincodeStubInterface, args []string) pb.Response {
@@ -141,7 +148,7 @@ if err != nil {
 
 ## Step5: Deserialize data
 
-Nếu asset mà bạn tìm kiếm ở bước 4 tồn tại, nó sẽ trả về dưới dạng raw data, tức bytes, ta sẽ phải tiến hành deserialize dữ liệu đó ra và convert nó trở lại dạng Go struct.
+Nếu asset mà bạn tìm kiếm ở bước 4 tồn tại, nó sẽ trả về dưới dạng raw data, tức **bytes**, ta sẽ phải tiến hành deserialize dữ liệu đó ra và convert nó trở lại dạng Go **struct**.
 
 ```go
 marbleToTransfer := marble{}
@@ -153,7 +160,7 @@ if err != nil {
 
 ## Step 6: Update data in memory
 
-Chain code sẽ update state của struct thông qua dữ liệu params truyền vào
+Chaincode sẽ update state của struct thông qua dữ liệu params truyền vào
 
 ```go
 marbleToTransfer.Owner = newOwner //change the owner
@@ -161,7 +168,7 @@ marbleToTransfer.Owner = newOwner //change the owner
 
 ## Step 7: Serialize data and persist
 
-Cuối cùng, để update lại ledger (hay world-state data), ta sẽ phải serialize dữ liệu lại dưới dạng JSON bytes:
+Cuối cùng, để update lại dữ liệu sổ cái (world-state data), ta sẽ phải serialize dữ liệu lại dưới dạng JSON bytes:
 
 ```go
 marbleJSONasBytes, _ := json.Marshal(marbleToTransfer)
@@ -178,7 +185,7 @@ return shim.Success(nil)
 
 ## Step 8: Content based query
 
-Để query data trong ledger, ta sẽ có thể lấy trực tiếp bằng key-value, hoặc để tiện lợi hơn thì ta sẽ sử dụng JSON
+Để query data trong ledger, ta sẽ có thể lấy trực tiếp bằng key-value, hoặc để tiện lợi hơn thì ta sẽ sử dụng JSON request.
 
 ```go
 queryString := fmt.Sprintf("{\"selector\":{\"docType\":\"marble\",\"owner\":\"%s\"}}", owner)
@@ -297,7 +304,7 @@ transaction TradeMarble {
 
 ## Step 2: Dispatch incoming calls
 
-Composer sử dụng decorations trên các functions để tự động điều hướng transaction tới Javascript function tương ứng. Do đó phần dispatch function này chúng ta sẽ không phải tự viết nữa, ngon.
+Composer sử dụng **decorations** trên các functions để tự động điều hướng transaction tới Javascript function tương ứng. Do đó phần dispatch function này chúng ta sẽ không phải tự viết nữa, ngon.
 
 Ví dụ, marbles-network có một hàm Javascript, các decorations `@param` và `@transaction` sẽ điều hướng để Composer runtime biết rằng những function đó sẽ được submit bởi một instance của `org.hyperledger_composer.marbles.TradeMarble`.
 
@@ -317,10 +324,12 @@ Runtime sẽ tự động trả về asset cho tradeMarble transaction. Nếu as
 
 ```js
 function tradeMarble(tradeMarble) {
-  tradeMarble.marble.owner = tradeMarble.newOwner;
-  return getAssetRegistry('org.hyperledger_composer.marbles.Marble').then(function(assetRegistry) {
-    return assetRegistry.update(tradeMarble.marble);
-  });
+  tradeMarble.marble.owner = tradeMarble.newOwner
+  return getAssetRegistry('org.hyperledger_composer.marbles.Marble').then(
+    function(assetRegistry) {
+      return assetRegistry.update(tradeMarble.marble)
+    }
+  )
 }
 ```
 
@@ -346,11 +355,11 @@ Rõ ràng, sử dụng Javascript và query language giống như SQL khiến vi
 
 ```js
 // Emit an event for the modified asset.
-var event = getFactory().newEvent('org.acme.sample', 'SampleEvent');
-event.asset = tx.asset;
-event.oldValue = oldValue;
-event.newValue = tx.newValue;
-emit(event);
+var event = getFactory().newEvent('org.acme.sample', 'SampleEvent')
+event.asset = tx.asset
+event.oldValue = oldValue
+event.newValue = tx.newValue
+emit(event)
 ```
 
 Một điều cần chú ý là trước khi tiến hành emit event, ta cần chắc chắn rằng data đã được validate bởi Composer model, để đảm bảo rằng client sẽ không nhận được các dữ liệu sai lệch từ event.
@@ -383,15 +392,15 @@ Ta có thể điểm lại những features lớn của Composer:
 - Tích hợp Composer với các công nghệ tiên tiến khác của IBM, thông qua OpenAPI và LoopBack connector
 - Unit test trên node.js runtime sử dụng các thư viện testing nổi tiếng của JS như là Mocha, Chai, Sinon, Istanbul...
 - Có thể vừa dev vừa test trên Composer Playground
-- Có thể generate ra một skeleton Angular app tương ứng với business network - vô cùng tiện lợi.
+- Có thể generate ra một **skeleton Angular app** tương ứng với business network - vô cùng tiện lợi.
 - Publish và sử dụng model cho những business network khác nhau.
 
 Những features lớn của Fabric:
 
-- Luôn luôn cập nhật những update mới nhất của Fabric API và những công cụ liên quan.
+- Luôn luôn update những Fabric API mới nhất và những công cụ liên quan.
 - Cho raw perfomance tốt hơn.
 - type-safety.
-- Sử dụng một ngôn ngữ duy nhất cho cả business model và business logic.
+- Có thể sử dụng một ngôn ngữ duy nhất cho cả business model và business logic.
 - Có thể tích hợp với các bên thư viện C hay Go của bên thứ ba.
 
 Tổng kết lại, với một dự án Hyperledger chạy trên Fabric, thì có lẽ **90%** Composer sẽ là lựa chọn hợp lý để bắt đầu.

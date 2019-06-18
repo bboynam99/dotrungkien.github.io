@@ -4,6 +4,10 @@ title: Today i learned
 permalink: /til
 ---
 
+### 20190618
+
+It’s important to note that you should not rely solely on fake data in place of real data when testing. At some point in the testing process, possibly in a staging/pre-prod environment, you should test out all external communication so that you can be confident that the system works as expected. This is often achieved with some form of end-to-end tests.
+
 ### 20190129
 
 Combo để test nodejs app:

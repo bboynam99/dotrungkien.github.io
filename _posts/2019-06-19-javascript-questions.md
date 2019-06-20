@@ -12,7 +12,7 @@ Hi vọng mọi người sẽ có thêm những trải nghiệm mới mẻ với
 
 ---
 
-#### 1. Ouput là gì?
+### 1. Ouput là gì?
 
 ```javascript
 function sayHi() {
@@ -32,7 +32,7 @@ sayHi();
 
 <p>
 
-##### Đáp án: D
+#### Đáp án: D
 
 Trong hàm chúng ta đã khai báo biến `name` với `var`. Điều đó có nghĩa là biến này sẽ được hoisted (một vùng nhớ sẽ được set up khi biến được khởi tạo) với giá trị mặc định là `undefined`, cho tới khi chúng ta thực sự định nghĩa biến đó. Trong hàm này, chúng ta chưa hề định nghĩa biến `name` tại dòng mà ta log ra, vậy nên giá trị mặc định của nó vẫn là `undefined`.
 
@@ -42,7 +42,7 @@ Các biến được khai báo với keyword `let` (và `const`) cũng được 
 
 ---
 
-#### 2. Output sẽ là gì?
+### 2. Output sẽ là gì?
 
 ```javascript
 for (var i = 0; i < 3; i++) {
@@ -60,7 +60,7 @@ for (let i = 0; i < 3; i++) {
 
 <p>
 
-##### Đáp án: C
+#### Đáp án: C
 
 Bởi vì event queue trong JavaScript, hàm `setTimeout` callback sẽ được gọi _sau khi_ vòng lặp được thực hiện. Bời vì biến `i` trong vòng lặp đầu tiên được khai báo với từ khóa `var`, nên nó sẽ là một biến global. Trong suốt vòng lặp, mỗi lần chúng ta tăng giá trị của `i` lên `1`, sử dụng phép toán `++`. Cho tới khi callback `setTimeout` được gọi, giá trị của `i` đã trở thành `3` rồi.
 
@@ -70,7 +70,7 @@ Trong vòng lặp thứ 2, biến `i` được khai báo với từ khóa `let`,
 
 ---
 
-#### 3. Output sẽ là gì?
+### 3. Output sẽ là gì?
 
 ```javascript
 const shape = {
@@ -92,7 +92,7 @@ shape.perimeter();
 
 <p>
 
-##### Đáp án: B
+#### Đáp án: B
 
 Chú ý rằng giá trị `diameter` là một hàm thông thường, còn `perimeter` là một _arrow function_.
 
@@ -104,7 +104,7 @@ Khi không có giá trị `radius` tại object đó, nó sẽ trả về `undef
 
 ---
 
-#### 4. Ouput là gì?
+### 4. Ouput là gì?
 
 ```javascript
 +true;
@@ -117,7 +117,7 @@ Khi không có giá trị `radius` tại object đó, nó sẽ trả về `undef
 
 <p>
 
-##### Đáp án: A
+#### Đáp án: A
 
 Phép toán cộng `+` sẽ convert một toán hạng sang dạng number. `true` là `1`, và `false` is `0`.
 
@@ -127,7 +127,7 @@ Chuỗi `'Lydia'` là một _truthy value_. Điều chúng ta thật sự đang 
 
 ---
 
-#### 5. Cái nào đúng?
+### 5. Cái nào đúng?
 
 ```javascript
 const bird = {
@@ -147,7 +147,7 @@ const mouse = {
 
 <p>
 
-##### Đáp án: A
+#### Đáp án: A
 
 Trong JavaScript thì tất cả keys của các object đều là string (ngoại trừ khi nó là một Symbol). Dù chúng ta không viết chúng như một string, về cơ bản chúng sẽ luôn được convert sang dạng string.
 
@@ -163,7 +163,7 @@ Tuy nhiên, khi chúng ta sử dụng dấu chấm `.`, điều trên không cò
 
 ---
 
-#### 6. Ouput là gì?
+### 6. Ouput là gì?
 
 ```javascript
 let c = { greeting: "Hey!" };
@@ -182,7 +182,7 @@ console.log(d.greeting);
 
 <p>
 
-##### Đáp án: A
+#### Đáp án: A
 
 Trong JavaScript, tất cả các object sẽ được _tham chiếu_ khi chúng được gán _bằng_  một giá trị khác.
 
@@ -196,7 +196,7 @@ Khi ta thay đổi giá trị của object, tất cả các biến tham chiếu 
 
 ---
 
-#### 7. Ouput là gì?
+### 7. Ouput là gì?
 
 ```javascript
 let a = 3;
@@ -215,7 +215,7 @@ console.log(b === c);
 
 <p>
 
-##### Đáp án: C
+#### Đáp án: C
 
 `new Number()` là một hàm built-in constructor. Mặc dù nó trông có vẻ giống như là một số, nhưng không phải: nó thực sự là một object với hàng tá những thông số khác nữa.
 
@@ -227,7 +227,7 @@ Tuy nhiên khi sử dụng phép so sánh `===`, cả _giá trị_ và _kiểu_ 
 
 ---
 
-#### 8. Ouput là gì?
+### 8. Ouput là gì?
 
 ```javascript
 class Chameleon {
@@ -252,7 +252,7 @@ freddie.colorChange("orange");
 
 <p>
 
-##### Đáp án: D
+#### Đáp án: D
 
 Hàm `colorChange` là một hàm static (hàm tĩnh). Hàm static được thiết kế để chỉ để tồn tại ở mức class, và không thể truyền cho bất cứ instance con nào. Vì `freddie` là một instance con, hàm static này sẽ không được truyền xuống, và do đó không thể gọi được tại `freddie` instance: nó sẽ throw ra một `TypeError`.
 
@@ -260,7 +260,7 @@ Hàm `colorChange` là một hàm static (hàm tĩnh). Hàm static được thi�
 
 ---
 
-#### 9. Ouput là gì?
+### 9. Ouput là gì?
 
 ```javascript
 let greeting;
@@ -274,7 +274,7 @@ console.log(greetign);
 
 <p>
 
-##### Đáp án: A
+#### Đáp án: A
 
 Nó sẽ log ra object `greetign`, bởi vì chúng ta vừa khởi tạo một global object! Khi chúng ta đánh máy nhầm `greeting` thành `greetign`, trình thông dịch của JS sẽ coi nó như là `global.greetign = {}` (hay `window.greetign = {}` nếu chạy trên browser).
 
@@ -284,7 +284,7 @@ Nó sẽ log ra object `greetign`, bởi vì chúng ta vừa khởi tạo một 
 
 ---
 
-#### 10. Điều gì sẽ xảy ra khi chúng ta làm thế này?
+### 10. Điều gì sẽ xảy ra khi chúng ta làm thế này?
 
 ```javascript
 function bark() {
@@ -301,7 +301,7 @@ bark.animal = "dog";
 
 <p>
 
-##### Đáp án: A
+#### Đáp án: A
 
 Điều này là có thể với Javascript, bởi vì `function` cũng chỉ là `object` mà thôi! (Mọi primitive types đều là object)
 
@@ -311,7 +311,7 @@ Function là một object đặc biệt. Phần code mà bạn viết không ph�
 
 ---
 
-#### 11. Ouput là gì?
+### 11. Ouput là gì?
 
 ```javascript
 function Person(firstName, lastName) {
@@ -334,7 +334,7 @@ console.log(member.getFullName());
 
 <p>
 
-##### Đáp án: A
+#### Đáp án: A
 
 Chúng ta không thể add thêm một thuộc tính cho một constructor giống như một object thông thường. Nếu bạn muốn add thêm thuộc tính nào đó cho tất cả các object một lần, bạn phải dùng `prototype`. Trong trường hợp này cũng vậy.
 
@@ -350,7 +350,7 @@ khi này `member.getFullName()` sẽ hoạt động. Tại sao nên làm vậy? 
 
 ---
 
-#### 12. Ouput là gì?
+### 12. Ouput là gì?
 
 ```javascript
 function Person(firstName, lastName) {
@@ -372,7 +372,7 @@ console.log(sarah);
 
 <p>
 
-##### Đáp án: A
+#### Đáp án: A
 
 Với `sarah`, chúng ta khai báo mà không có từ khóa `new`. Khi sử dụng `new`, nó sẽ trỏ đến một object mới mà ta vừa tạo ra. Tuy nhiên nếu ta không dùng `new` thì nó sẽ trỏ tới **global object**!
 
@@ -382,7 +382,7 @@ Chúng ta cho rằng `this.firstName` là `"Sarah"` và `this.lastName` là `"Sm
 
 ---
 
-#### 13. What are the three phases of event propagation?
+### 13. What are the three phases of event propagation?
 
 - A: Target > Capturing > Bubbling
 - B: Bubbling > Target > Capturing
@@ -391,7 +391,7 @@ Chúng ta cho rằng `this.firstName` là `"Sarah"` và `this.lastName` là `"Sm
 
 <p>
 
-##### Đáp án: D
+#### Đáp án: D
 
 Trong **capturing** phase, event được truyền từ các phần tử cha cho tới phần tử target. Sau khi tới được phần tử **target** thì **bubbling** sẽ bắt đầu.
 
@@ -401,14 +401,14 @@ Trong **capturing** phase, event được truyền từ các phần tử cha cho
 
 ---
 
-#### 14. Tất cả các object đều có prototypes.
+### 14. Tất cả các object đều có prototypes.
 
 - A: đúng
 - B: sai
 
 <p>
 
-##### Đáp án: B
+#### Đáp án: B
 
 Tất cả các object đều có prototypes, ngoại trừ **base object**. Object base có thể truy cập đến vài methods và properties, ví dụ như `.toString`. Đó là lý do tại sao chúng ta có thể sử dụng được các built-in methods trong JavaScript! Tất cả các phương thức đó đều có trong prototype. Mặc dù JavaScript không thể tìm thấy chúng trong object một cách trực tiếp, nó sẽ được truyền xuống thông qua prototype chain và xuống tới object, tại đây chúng ta có thể truy cập được nó.
 
@@ -417,7 +417,7 @@ Tất cả các object đều có prototypes, ngoại trừ **base object**. Obj
 ---
 
 
-#### 15. Ouput là gì?
+### 15. Ouput là gì?
 
 ```javascript
 function sum(a, b) {
@@ -434,7 +434,7 @@ sum(1, "2");
 
 <p>
 
-##### Đáp án: C
+#### Đáp án: C
 
 JavaScript là một ngôn ngữ **dynamically typed**: chúng ta không khai báo kiểu dữ liệu khi khai báo biến. Giá trị có thể bị tự động convert sang một kiểu dữ liệu khác mà ta không hề hay biết, điều này được gọi là __implicit type coercion_. **Coercion** có nghĩa là convert từ kiểu này sang kiểu khác.
 
@@ -444,7 +444,7 @@ Trong ví dụ này, JavaScript sẽ convert số `1` sang dạng string. Mỗi 
 
 ---
 
-#### 16. Ouput là gì?
+### 16. Ouput là gì?
 
 ```javascript
 let number = 0;
@@ -460,7 +460,7 @@ console.log(number);
 
 <p>
 
-##### Đáp án: C
+#### Đáp án: C
 
 Khi phép toán `++` nằm ở **đằng sau** (**postfix**):
 
@@ -478,7 +478,7 @@ Vậy kết quả là `0 2 2`.
 
 ---
 
-#### 17. Ouput là gì?
+### 17. Ouput là gì?
 
 ```javascript
 function getPersonInfo(one, two, three) {
@@ -499,7 +499,7 @@ getPersonInfo`${person} is ${age} years old`;
 
 <p>
 
-##### Đáp án: B
+#### Đáp án: B
 
 Nếu bạn dùng _tagged template literals_, giá trị của đối số đầu tiên luôn luôn là một mảng các string. Những đối số còn lại sẽ lấy giá trị từ biểu thức đưa vào!
 
@@ -507,7 +507,7 @@ Nếu bạn dùng _tagged template literals_, giá trị của đối số đầ
 
 ---
 
-#### 18. Ouput là gì?
+### 18. Ouput là gì?
 
 ```javascript
 function checkAge(data) {
@@ -529,7 +529,7 @@ checkAge({ age: 18 });
 
 <p>
 
-##### Đáp án: C
+#### Đáp án: C
 
 Khi test sự bằng nhau, các kiểu dữ liệu cơ bản sẽ so sánh _giá trị_ của chúng, còn object thì so sánh _tham chiếu_. JavaScript sẽ kiểm tra xem các object đó có trỏ đến những vùng nhớ giống nhau hay không.
 
@@ -541,7 +541,7 @@ Hai object chúng ta đang so sánh không có được điều đó: object đ�
 
 ---
 
-#### 19. Ouput là gì?
+### 19. Ouput là gì?
 
 ```javascript
 function getAge(...args) {
@@ -558,7 +558,7 @@ getAge(21);
 
 <p>
 
-##### Đáp án: C
+#### Đáp án: C
 
 _Spread operator_ (`...args`.) sẽ trả về một mảng các đối số. Mảng thực chất là một object, vậy nên `typeof args` sẽ trả về `"object"`.
 
@@ -566,7 +566,7 @@ _Spread operator_ (`...args`.) sẽ trả về một mảng các đối số. M�
 
 ---
 
-#### 20. Ouput là gì?
+### 20. Ouput là gì?
 
 ```javascript
 function getAge() {
@@ -585,7 +585,7 @@ getAge();
 
 <p>
 
-##### Đáp án: C
+#### Đáp án: C
 
 Với `"use strict"`, chúng ta sẽ đảm bảo được rằng ta sẽ không bao giờ khai báo biến global một cách vô ý. Tại đây chúng ta chưa khai báo biến `age`, và khi dùng `"use strict"`, nó sẽ throw ra một _reference error_. Nếu như không dùng `"use strict"`, nó sẽ vẫn hoạt động, vì thuộc tính `age` sẽ được thêm vào global object.
 
@@ -593,7 +593,7 @@ Với `"use strict"`, chúng ta sẽ đảm bảo được rằng ta sẽ không
 
 ---
 
-#### 21. What's value of `sum`?
+### 21. What's value of `sum`?
 
 ```javascript
 const sum = eval("10*10+5");
@@ -606,7 +606,7 @@ const sum = eval("10*10+5");
 
 <p>
 
-##### Đáp án: A
+#### Đáp án: A
 
 `eval` sẽ đánh giá đoạn code bên trong string. Nếu nó là một biểu thức, giống như trong trường hợp này, nó sẽ tính toán giá trị đó. Biểu thức là `10 * 10 + 5`, kết quả sẽ là `105`.
 
@@ -614,7 +614,7 @@ const sum = eval("10*10+5");
 
 ---
 
-#### 22. Biến cool_secret sẽ truy cập được trong bao lâu?
+### 22. Biến cool_secret sẽ truy cập được trong bao lâu?
 
 ```javascript
 sessionStorage.setItem("cool_secret", 123);
@@ -627,7 +627,7 @@ sessionStorage.setItem("cool_secret", 123);
 
 <p>
 
-##### Đáp án: B
+#### Đáp án: B
 
 Dữ liệu được lưu trữ trong `sessionStorage` sẽ được xóa khi đóng _tab_.
 
@@ -637,7 +637,7 @@ Nếu chúng ta dùng `localStorage`, data sẽ được lưu trữ mãi mãi, t
 
 ---
 
-#### 23. Ouput là gì?
+### 23. Ouput là gì?
 
 ```javascript
 var num = 8;
@@ -653,7 +653,7 @@ console.log(num);
 
 <p>
 
-##### Đáp án: B
+#### Đáp án: B
 
 Với từ khóa `var` bạn có thể khai báo bao nhiêu biến trùng tên tùy thích. Biến đó sẽ có giá trị là lần cuối khai báo.
 
@@ -663,7 +663,7 @@ Bạn không thể làm điều tương tự với `let` hay `const` vì chúng 
 
 ---
 
-#### 24. Ouput là gì?
+### 24. Ouput là gì?
 
 ```javascript
 const obj = { 1: "a", 2: "b", 3: "c" };
@@ -682,7 +682,7 @@ set.has(1);
 
 <p>
 
-##### Đáp án: C
+#### Đáp án: C
 
 Tất cả các keys của object (ngoại trừ Symbols) về bản chất đều là string, dù chúng ta có viết chúng ra dạng string hay không. Nó là lý do tại sao `obj.hasOwnProperty('1')` cũng trả về `true`.
 
@@ -692,7 +692,7 @@ Tuy nhiên điều đó không đúng với `set`. Không hề có `'1'` trong s
 
 ---
 
-#### 25. Ouput là gì?
+### 25. Ouput là gì?
 
 ```javascript
 const obj = { a: "one", b: "two", a: "three" };
@@ -706,7 +706,7 @@ console.log(obj);
 
 <p>
 
-##### Đáp án: C
+#### Đáp án: C
 
 Nếu chúng ta có 2 keys giống nhau, thì chúng sẽ bị replace. Nó sẽ vẫn nằm ở vị trí đầu tiên chúng được khai báo, nhưng giá trị thì sẽ là giá trị lần cuối.
 
@@ -714,7 +714,7 @@ Nếu chúng ta có 2 keys giống nhau, thì chúng sẽ bị replace. Nó sẽ
 
 ---
 
-#### 26. Ngữ cảnh thực thi global của JavaScript tạo ra 2 thứ cho chúng ta: global object, và từ khóa "this".
+### 26. Ngữ cảnh thực thi global của JavaScript tạo ra 2 thứ cho chúng ta: global object, và từ khóa "this".
 
 - A: đúng
 - B: sai
@@ -722,7 +722,7 @@ Nếu chúng ta có 2 keys giống nhau, thì chúng sẽ bị replace. Nó sẽ
 
 <p>
 
-##### Đáp án: A
+#### Đáp án: A
 
 Ngữ cảnh thực thi cơ bản chính là ngữ cảnh global: nó là thứ mà chúng ta có thể truy cập được ở bất cứ đâu trong code.
 
@@ -730,7 +730,7 @@ Ngữ cảnh thực thi cơ bản chính là ngữ cảnh global: nó là thứ 
 
 ---
 
-#### 27. Ouput là gì?
+### 27. Ouput là gì?
 
 ```javascript
 for (let i = 1; i < 5; i++) {
@@ -746,7 +746,7 @@ for (let i = 1; i < 5; i++) {
 
 <p>
 
-##### Đáp án: C
+#### Đáp án: C
 
 Lệnh `continue` sẽ bỏ qua một vòng lặp nếu điều kiện của nó là `true`.
 
@@ -754,7 +754,7 @@ Lệnh `continue` sẽ bỏ qua một vòng lặp nếu điều kiện của nó
 
 ---
 
-#### 28. Ouput là gì?
+### 28. Ouput là gì?
 
 ```javascript
 String.prototype.giveLydiaPizza = () => {
@@ -773,7 +773,7 @@ name.giveLydiaPizza();
 
 <p>
 
-##### Đáp án: A
+#### Đáp án: A
 
 `String` là một built-in constructor, có nghĩa là chúng ta có thể thêm các thuộc tính vào đó. Ta vừa thêm vào đó một thuộc tính. Kiểu String cơ bản sẽ được convert sang dạng object bởi hàm string prototype. Vì thế nên tất cả các string object đều có thể truy cập đến hàm `giveLydiaPizza` này!
 
@@ -781,7 +781,7 @@ name.giveLydiaPizza();
 
 ---
 
-#### 29. Ouput là gì?
+### 29. Ouput là gì?
 
 ```javascript
 const a = {};
@@ -801,7 +801,7 @@ console.log(a[b]);
 
 <p>
 
-##### Đáp án: B
+#### Đáp án: B
 
 Object keys sẽ tự động được convert sang dạng string. Chúng ta đang set một object như là một key cho object `a`, với giá trị là `123`.
 
@@ -813,7 +813,7 @@ Cuối cùng khi gọi `a[b]`, thực chất chính là gọi `a["Object object"
 
 ---
 
-#### 30. Ouput là gì?
+### 30. Ouput là gì?
 
 ```javascript
 const foo = () => console.log("First");
@@ -832,7 +832,7 @@ baz();
 
 <p>
 
-##### Đáp án: B
+#### Đáp án: B
 
 Chúng ta có một hàm `setTimeout` được gọi đầu tiên. Nên, nó sẽ được log ra cuối cùng.
 
@@ -864,7 +864,7 @@ WebAPI không thể thêm thứ gì đó vào stack cho tới khi nó được s
 
 ---
 
-#### 31. What is the event.target when clicking the button?
+### 31. What is the event.target when clicking the button?
 
 ```html
 <div onclick="console.log('first div')">
@@ -883,7 +883,7 @@ WebAPI không thể thêm thứ gì đó vào stack cho tới khi nó được s
 
 <p>
 
-##### Đáp án: C
+#### Đáp án: C
 
 Phần tử sâu nhất trong các phần tử lồng nhau sẽ là target của event. Bạn có thể ngăn việc đó lại bằng cách sử dụng `event.stopPropagation`
 
@@ -891,7 +891,7 @@ Phần tử sâu nhất trong các phần tử lồng nhau sẽ là target của
 
 ---
 
-#### 32. Khi bạn click vào đoạn văn, cái gì sẽ được ghi ra output?
+### 32. Khi bạn click vào đoạn văn, cái gì sẽ được ghi ra output?
 
 ```html
 <div onclick="console.log('div')">
@@ -908,7 +908,7 @@ Phần tử sâu nhất trong các phần tử lồng nhau sẽ là target của
 
 <p>
 
-##### Đáp án: A
+#### Đáp án: A
 
 Nếu ta click vào `p`, ta sẽ thấy hai log: `p` và `div`. Trong chuỗi event sẽ có 3 phases: capturing, target, và bubbling. Mặc định thì event handlers sẽ được thực hiện tại bubbling phase (trừ phi chúng ta khai báo `useCapture` là `true`). Chúng sẽ đi từ phần tử sâu nhất ra đến bên ngoài.
 
@@ -916,7 +916,7 @@ Nếu ta click vào `p`, ta sẽ thấy hai log: `p` và `div`. Trong chuỗi ev
 
 ---
 
-#### 33. Ouput là gì?
+### 33. Ouput là gì?
 
 ```javascript
 const person = { name: "Lydia" };
@@ -936,7 +936,7 @@ sayHi.bind(person, 21);
 
 <p>
 
-##### Đáp án: D
+#### Đáp án: D
 
 Với cả hai, chúng ta có thể đưa vào object để sử dụng từ khóa `this`. Tuy nhiên, `.call` có nghĩa là _thực hiện ngay lập tức_!
 
@@ -946,7 +946,7 @@ Với cả hai, chúng ta có thể đưa vào object để sử dụng từ kh�
 
 ---
 
-#### 34. Ouput là gì?
+### 34. Ouput là gì?
 
 ```javascript
 function sayHi() {
@@ -963,7 +963,7 @@ typeof sayHi();
 
 <p>
 
-##### Đáp án: B
+#### Đáp án: B
 
 `sayHi` function trả về giá trị của một _hàm gọi ngay lập tức_ (immediately invoked function - IIFE). Function này trả về `0`, kiểu dữ liệu `"number"`.
 
@@ -973,7 +973,7 @@ FYI: chỉ có 7 kiểu dữ liệu built-in: `null`, `undefined`, `boolean`, `n
 
 ---
 
-#### 35. Giá trị nào trong các giá trị dưới đây là falsy?
+### 35. Giá trị nào trong các giá trị dưới đây là falsy?
 
 ```javascript
 0;
@@ -991,7 +991,7 @@ undefined;
 
 <p>
 
-##### Đáp án: A
+#### Đáp án: A
 
 Chỉ có 6 giá trị _falsy_:
 
@@ -1008,7 +1008,7 @@ Function constructors như `new Number` và `new Boolean` đều là _truthy_.
 
 ---
 
-#### 36. Ouput là gì?
+### 36. Ouput là gì?
 
 ```javascript
 console.log(typeof typeof 1);
@@ -1021,7 +1021,7 @@ console.log(typeof typeof 1);
 
 <p>
 
-##### Đáp án: B
+#### Đáp án: B
 
 `typeof 1` trả về `"number"`.
 `typeof "number"` trả về `"string"`
@@ -1030,7 +1030,7 @@ console.log(typeof typeof 1);
 
 ---
 
-#### 37. Ouput là gì?
+### 37. Ouput là gì?
 
 ```javascript
 const numbers = [1, 2, 3];
@@ -1045,7 +1045,7 @@ console.log(numbers);
 
 <p>
 
-##### Đáp án: C
+#### Đáp án: C
 
 Mỗi khi chúng ta set một giá trị cho một phần tử trong mảng mà vượt quá độ dài của mảng, JavaScript sẽ tạo ra những "empty slots". Chúng sẽ có giá trị là `undefined`, nhưng khi ghi ra thì chúng ta sẽ thấy dạng:
 
@@ -1057,7 +1057,7 @@ phụ thuộc vào nơi mà chúng ta chạy chúng (có thể khác nhau tùy m
 
 ---
 
-#### 38. Ouput là gì?
+### 38. Ouput là gì?
 
 ```javascript
 (() => {
@@ -1080,7 +1080,7 @@ phụ thuộc vào nơi mà chúng ta chạy chúng (có thể khác nhau tùy m
 
 <p>
 
-##### Đáp án: A
+#### Đáp án: A
 
 `catch` block nhận về giá trị `x`. Đây không phải là giá trị `x` mà ta khai báo với từ khóa `let` ở bên trên. Đây là biến `x` trong _block-scoped_.
 
@@ -1092,7 +1092,7 @@ Bên ngoài `catch` block, `x` vẫn là `undefined`, và `y` là `2`. Khi gọi
 
 ---
 
-#### 39. Mọi thứ trong JavaScript đều là...
+### 39. Mọi thứ trong JavaScript đều là...
 
 - A: primitives hoặc object
 - B: function hoặc object
@@ -1101,7 +1101,7 @@ Bên ngoài `catch` block, `x` vẫn là `undefined`, và `y` là `2`. Khi gọi
 
 <p>
 
-##### Đáp án: A
+#### Đáp án: A
 
 JavaScript chỉ có primitive types và objects.
 
@@ -1113,7 +1113,7 @@ Primitive types là `boolean`, `null`, `undefined`, `bigint`, `number`, `string`
 
 ---
 
-#### 40. Ouput là gì?
+### 40. Ouput là gì?
 
 ```javascript
 [[0, 1], [2, 3]].reduce(
@@ -1131,7 +1131,7 @@ Primitive types là `boolean`, `null`, `undefined`, `bigint`, `number`, `string`
 
 <p>
 
-##### Đáp án: C
+#### Đáp án: C
 
 `[1, 2]` là giá trị khởi tạo. Đây là giá trị chúng ta bắt đầu, và cũng là giá trị đầu tiên của `acc`. Tại vòng đầu tiên, `acc` là `[1,2]`, và `cur` là `[0, 1]`. Ta nối chúng lại tạo ra `[1, 2, 0, 1]`.
 
@@ -1141,7 +1141,7 @@ Tiếp tục, `[1, 2, 0, 1]` là `acc` và `[2, 3]` là `cur`. Ta nối chúng l
 
 ---
 
-#### 41. Ouput là gì?
+### 41. Ouput là gì?
 
 ```javascript
 !!null;
@@ -1156,7 +1156,7 @@ Tiếp tục, `[1, 2, 0, 1]` là `acc` và `[2, 3]` là `cur`. Ta nối chúng l
 
 <p>
 
-##### Đáp án: B
+#### Đáp án: B
 
 `null` là falsy. `!null` trả về `true`. `!true` trả về `false`.
 
@@ -1168,7 +1168,7 @@ Tiếp tục, `[1, 2, 0, 1]` là `acc` và `[2, 3]` là `cur`. Ta nối chúng l
 
 ---
 
-#### 42. Hàm `setInterval` trả về cái gì?
+### 42. Hàm `setInterval` trả về cái gì?
 
 ```javascript
 setInterval(() => console.log("Hi"), 1000);
@@ -1181,7 +1181,7 @@ setInterval(() => console.log("Hi"), 1000);
 
 <p>
 
-##### Đáp án: A
+#### Đáp án: A
 
 Nó trả về một id duy nhất. Id này dùng để clear interval sau này với hàm `clearInterval()`.
 
@@ -1189,7 +1189,7 @@ Nó trả về một id duy nhất. Id này dùng để clear interval sau này 
 
 ---
 
-#### 43. Giá trị trả về là gì?
+### 43. Giá trị trả về là gì?
 
 ```javascript
 [..."Lydia"];
@@ -1202,7 +1202,7 @@ Nó trả về một id duy nhất. Id này dùng để clear interval sau này 
 
 <p>
 
-##### Đáp án: A
+#### Đáp án: A
 
 String là một _iterable_. Thế nên _spread operator_ sẽ map toàn bộ các ký tự trong chuỗi lại thành một mảng.
 

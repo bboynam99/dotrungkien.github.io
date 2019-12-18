@@ -27,8 +27,5 @@ permalink: /todolist
 - [x] [Ethereum transaction lifecycle](https://medium.com/blockchannel/life-cycle-of-an-ethereum-transaction-e5c66bae0f6e)
 - [x] [React-router-pass-props-to-component](https://tylermcginnis.com/react-router-pass-props-to-components/)
 - [x] Bắt đầu với hyperledger fabric hay hyperledger composer
-- [ ] test nodejs resfull api với mocha & chai
-- [ ] tìm hiểu restful vs graphql vs grpc
-- [ ] [write tests - not too much-mostly integration](https://blog.kentcdodds.com/write-tests-not-too-many-mostly-integration-5e8c7fff591c)
-- [ ] [Nodejs & Javascript test best pratices](https://medium.com/@me_37286/yoni-goldberg-javascript-nodejs-testing-best-practices-2b98924c9347)
-- [ ] [react from redux to hooks case stydy](https://staleclosures.dev/from-redux-to-hooks-case-study/)
+- [ ] http://xyproblem.info
+- [ ] https://www.gartner.com/en/research/methodologies/gartner-hype-cycle

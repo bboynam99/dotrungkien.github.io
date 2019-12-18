@@ -3,14 +3,14 @@ url: https://dotrungkien.github.io
 
 # Harmony theme configuration. Please change accordingly.
 harmony:
-  name: Momo's Blog
+  name: KienDT
   # Little description about your site
   description: Talk is cheap. Show me the code.
   basetheme: theme-base-01 # pre defined thmes are darken, blue-water, redish.
   author:
     name: Do Trung Kien
     email: trungkien162@gmail.com
-    url: https://dotrungkien.github.io
+    url: https://kiendt.me
   social:
     github: dotrungkien
     facebook: trungkien162

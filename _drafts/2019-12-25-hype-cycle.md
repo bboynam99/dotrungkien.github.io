@@ -5,7 +5,7 @@ title: 'Giới thiệu Hype Cycle - và câu chuyện chúng ta đang đứng �
 
 ## Hype Cycle là gì?
 
-Hype Cycle (chu kỳ bong bóng) là khái niệm được Gartner, hãng nghiên cứu thị trường nổi tiếng của mỹ đề xướng.
+Hype Cycle (chu kỳ bong bóng) là khái niệm được Gartner, hãng nghiên cứu thị trường nổi tiếng của Mỹ đề xướng.
 
 Hype Cycle cung cấp một bức tranh tổng thể về sự chuyển dịch của các xu hướng mới nổi liên quan đến nhiều lĩnh vực, từ khi xuất hiện cho tới khi các xu hướng/công nghệ này được áp dụng vào đời sống.
 
@@ -17,11 +17,13 @@ Liệu chúng ta có nên tham gia vào sớm? Liệu các phương án hiện n
 
 Có thể nói đối với các nhà phát triển, nhà nhà quản lý công nghệ, nhà nghiên cứu... thì đây là một báo cáo không thể bỏ qua.
 
-_Rất nhiều nơi dịch ra đó là "chu kỳ kỳ vọng", nhưng mình không thích cách dịch này lắm, và thấy nó cũng không sát nghĩa, nên sẽ tạm dịch là `chu kỳ bong bóng`_.
+> Nhiều nơi dịch ra đó là "chu kỳ kỳ vọng", nhưng mình không thích cách dịch này lắm, và thấy nó cũng không sát nghĩa, nên sẽ tạm dịch là `chu kỳ bong bóng`.
 
 ## Hype Cycle hoạt động ra sao?
 
 Trong chu kỳ bong bóng, chúng ta có 5 giai đoạn:
+
+![hype-cycle-phases]({{ site.url }}/assets/images/hype-cycle-phases.png)
 
 - **Innovation Trigger** (_bình minh công nghệ_): Một công nghệ mới tiềm năng ra đời, xuất hiện những lý thuyết và những sản phẩm proof-of-concept. Tuy nhiên thông thường sẽ chưa có sản phẩm nào sử dụng được và tính thương mại của nó vẫn chưa được chứng minh.
 - **Peak of Inflated Expectations** (_đỉnh điểm của thổi phồng kỳ vọng_): Xuất hiện một vài câu chuyện về sản phẩm thành công đầu tiên, đi kèm với đó là vô số thất bại khác. Một số công ty hành động, phần lớn còn lại thì không.
@@ -31,22 +33,78 @@ Trong chu kỳ bong bóng, chúng ta có 5 giai đoạn:
 
 ## Hype Cycle giúp chúng ta điều gì?
 
+- Nhận ra được sự thổi phồng quá đáng từ những lời hứa hẹn thương mại của các công nghệ mới.
+- Giảm thiểu rủi ro của những quyết định đầu tư công nghệ.
+- So sánh đánh giá của chính chúng ta về giá trị thương mại của công nghệ với sự đánh giá khách quan từ các chuyên gia phân tích IT.
+
 ## Chúng ta đang ở đâu trong chu kỳ bong bóng
 
 Gatner cung cấp cho chúng ta rất nhiều những báo cáo về nhiều loại công nghệ khác nhau, nhưng ở đây mình muốn nói riêng về 2 công nghệ mà những năm gần đây rất nổi trên thế giới nói chung và Việt Nam nói riêng, đó là Blockchain và AI.
 
+Những năm gần đây, có thể nói rằng người người nói về AI, nhà nhà nói về Bitcoin, đâu đâu cũng thấy cụm từ "cách mạng công nghiệp 4.0" (haiz).
+
+Nếu ai đó có dịp đi nghe trình bày ý tưởng tại các cuộc thi hackathon hay ideathon hay đơn giản là nghe bảo vệ tốt nghiệp tại các trường đại học thôi, thì cũng sẽ thấy một điều là phải đến hơn một nửa số ý tưởng là xây dựng các hệ thống AI. Kiểu như có rất nhiều dữ liệu, ta sẽ đưa nó qua AI, và nó sẽ tạo ra cho chúng ta kết quả chúng ta mong muốn. Thật thần kì!
+
+Vậy thì, quay trở lại thực tế, chúng ta đang ở đâu trong cái chu kỳ này ? Liệu chúng ta có đang chậm trễ trên chuyến tàu 4.0 hay không ? hay chúng ta đang lao vào trên đỉnh của sự thổi phồng kỳ vọng ?
+
+Hãy xem qua những báo cáo của Gatner về những công nghệ bốn chấm không này xem sao.
+
 ## Blockchain
+
+![hype-cycle-blockchain]({{ site.url }}/assets/images/blockchain-hypecycle-oct-3-2019-2.png)
+
+Có thể thấy rõ ràng hầu hết các công nghệ liên quan trong blockchain đều đang ở thời kì bình minh công nghệ và đang được thổi phồng quá mức khả năng của nó.
+
+Và những thứ được thổi phồng sớm nhất, có lẽ chúng ta đều biết, đó là _Bitcoin_, là _Sổ cái phân tán_ (Distributed Ledger), là _Đào coin_ (Cryptocurrencies Mining).
+
+Đã có thời kì những năm 2017 tất cả mọi người đổ xô vào Bitcoin và tiền ảo, người người đào coin, nhà nhà đào coin.
+
+Nửa đầu những năm 2018, thị trường đó bắt đầu xuống dốc khỏi đỉnh điểm, bước dần về giá trị thực tế của nó, Bitcoin lao dốc, máy đào coin bán tháo, sự sụp đổ của những ICO, sự bất ổn của thị trường tiền ảo cùng nạn scam đã khiến cho không còn quá nhiều người mặn mà với tiền ảo nói riêng và blockchain nói chung nữa.
+
+Có lẽ trong ít nhất một vài năm tới, chúng ta sẽ vẫn chưa thể có được những thành tựu thực sự đáng kể với blockchain, vì các công nghệ vẫn đang trong quá trình hoàn thiện và vẫn đang trên sườn dốc của sự thổi phồng kỳ vọng.
+
+Nhưng về bản chất, tiềm năng của công nghệ vẫn là rất lớn, chỉ là chúng ta cần thêm thời gian công sức để nghiên cứu, phát triển, đưa nó trở thành công nghệ chính thống mà thôi.
+
+Có những công nghệ rất đáng để kỳ vọng như: _Decentralize Identity, Privacy-Enhanced Multiparty Computing, Blockchain and IoT, Blockchain Data Security, Postquantum Blockchain, Decentralized Web_.
 
 ## AI
 
+![hype-cycle-ai]({{ site.url }}/assets/images/hype-cycle-ai-2019.png)
+
+AI - vốn có lịch sử phát triển từ khá lâu đời, tuy nhiên lý thuyết của AI đã đi trước sự phát triển của phần cứng quá xa, nên cho tới gần đây chúng ta mới có được những thành tựu có thể coi là đáng kể nhờ có sự phát triển của phần cứng máy tính.
+
+Những năm trở lại đây với những lý thuyết mới về Deep Learning, các mô hình học máy kinh điển, hàng loạt các sản phẩm về AI ra đời đã mang lại tiếng vang lớn cho ngành khoa học này. Hàng loạt sự kiện như "AI đánh bại con người" trong những bộ môn như cờ vây, cờ vua, hay gần đây chính là Dota đã cho ta thấy sự tiến bộ vượt bậc đó.
+
+Rất nhiều những công ty lớn như Google, Microsoft, Facebook đã chỉ hàng triệu Đô la vào nghiên cứu và phát triển.
+
+Các công ty mạnh dạn chi rất nhiều tiền để tuyển dụng những nhân tài AI về làm việc cho họ.
+
+AI Lab xuất hiện tại hầu hết tất cả các trường đại học trên thế giới. AI Everywhere!
+
+Nhưng, nhìn đi cũng phải nhìn lại, rõ ràng các công nghệ siêu hot như **Machine Learning**, **Deep Learning**, **Auto ML** đang ở chính đỉnh điểm của sự thổi phồng kỳ vọng.
+
+Rồi cũng sẽ đến lúc chúng ta dừng lại và đặt câu hỏi "Liệu khi AI thoái trào, Deep Learning thoái trào, chúng ta có còn nghiên cứu/làm AI nữa không?"
+
+Đáng mừng là đã có những sản phẩm của AI đã thực sự trở nên hoàn thiện và đưa vào sản xuất chính thống, đó chính là những sản phẩm về **Speech Recognition** - nhận diện giọng nói, gần gũi nhất mà ta hay bắt gặp chính là những trợ lý ảo như _Siri, Cortana, Google Assistant_. Ngày nay ta có thể thấy nó ở mọi nơi trên internet, trên điện thoại, trên tivi, và trên các thiết bị thông minh khác.
+
+Và cũng giống như Blockchain, rất nhiều những công nghệ tiềm năng khác trong lĩnh vực này vẫn còn đang nằm ở bình minh công nghệ và vẫn chưa thành hình.
+
+Chúng ta vẫn còn rất nhiều cơ hội đểu nghiên cứu và phát triển những công nghệ đó trong tương lai.
+
 ## Kết luận
+
+Bất kì công nghệ nào trước khi trở thành công nghệ chính thống đều phải trải qua những giai đoạn bị thổi phồng, những giai đoạn khó khăn, nhưng nếu tiềm năng của nó đủ lớn, nó vẫn sẽ thành công trong tương lai, dù có lẽ sẽ mất thời gian, đôi khi là 2 năm, 3 năm, hoặc cũng có thể là 5-10 năm.
+
+Là một người làm công nghệ, hãy lựa chọn lĩnh vực mình đam mê để theo đuổi. Đừng chọn theo trào lưu, chúng ta sẽ sớm chán nản khi công nghệ không còn như kỳ vọng của ta nữa.
+
+High risk high return!
 
 ## Tham khảo
 
-- https://www.gartner.com/en/research/methodologies/gartner-hype-cycle
-- https://www.gartner.com/en/newsroom/press-releases/2019-10-08-gartner-2019-hype-cycle-shows-most-blockchain-technologies-are-still-five-to-10-years-away-from-transformational-impact
-- https://www.gartner.com/smarterwithgartner/top-trends-on-the-gartner-hype-cycle-for-artificial-intelligence-2019?utm_campaign=RM_NA_2019_SWG_NL_NL38_IT&utm_medium=email&utm_source=Eloqua&cm_mmc=Eloqua-_-Email-_-LM_RM_NA_2019_SWG_NL_NL38_IT-_-0000
-- https://pharmaphorum.com/views-analysis-digital/ai-in-the-gartner-hype-cycle/
-- https://spiderum.com/bai-dang/P6-Hype-Cycle-Chu-ky-Ky-vong-cua-hang-Gartner-99i
-- https://www.devpro.edu.vn/loi-di-nao-danh-cho-cac-chuyen-gia-va-ky-su-ai
-- http://cusbe.tech/index.php/2017/09/14/chia-se-the-hype-cycle-of-emerging-technologies/
+- [https://www.gartner.com/en/research/methodologies/gartner-hype-cycle](https://www.gartner.com/en/research/methodologies/gartner-hype-cycle)
+- [https://www.gartner.com/en/newsroom/press-releases/2019-10-08-gartner-2019-hype-cycle-shows-most-blockchain-technologies-are-still-five-to-10-years-away-from-transformational-impact](https://www.gartner.com/en/newsroom/press-releases/2019-10-08-gartner-2019-hype-cycle-shows-most-blockchain-technologies-are-still-five-to-10-years-away-from-transformational-impact)
+- [https://www.gartner.com/smarterwithgartner/top-trends-on-the-gartner-hype-cycle-for-artificial-intelligence-2019](https://www.gartner.com/smarterwithgartner/top-trends-on-the-gartner-hype-cycle-for-artificial-intelligence-2019)
+- [https://pharmaphorum.com/views-analysis-digital/ai-in-the-gartner-hype-cycle/](https://pharmaphorum.com/views-analysis-digital/ai-in-the-gartner-hype-cycle/)
+- [https://spiderum.com/bai-dang/P6-Hype-Cycle-Chu-ky-Ky-vong-cua-hang-Gartner-99i](https://spiderum.com/bai-dang/P6-Hype-Cycle-Chu-ky-Ky-vong-cua-hang-Gartner-99i)
+- [https://www.devpro.edu.vn/loi-di-nao-danh-cho-cac-chuyen-gia-va-ky-su-ai](https://www.devpro.edu.vn/loi-di-nao-danh-cho-cac-chuyen-gia-va-ky-su-ai)
+- [http://cusbe.tech/index.php/2017/09/14/chia-se-the-hype-cycle-of-emerging-technologies/](http://cusbe.tech/index.php/2017/09/14/chia-se-the-hype-cycle-of-emerging-technologies/)

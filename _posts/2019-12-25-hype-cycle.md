@@ -49,7 +49,7 @@ Vậy thì, quay trở lại thực tế, chúng ta đang ở đâu trong cái c
 
 Hãy xem qua những báo cáo của Gatner về những công nghệ bốn chấm không này xem sao.
 
-## Blockchain
+### Blockchain
 
 ![hype-cycle-blockchain]({{ site.url }}/assets/images/blockchain-hypecycle-oct-3-2019-2.png)
 
@@ -67,7 +67,7 @@ Nhưng về bản chất, tiềm năng của công nghệ vẫn là rất lớn,
 
 Có những công nghệ rất đáng để kỳ vọng như: _Decentralize Identity, Privacy-Enhanced Multiparty Computing, Blockchain and IoT, Blockchain Data Security, Postquantum Blockchain, Decentralized Web_.
 
-## AI
+### AI
 
 ![hype-cycle-ai]({{ site.url }}/assets/images/hype-cycle-ai-2019.png)
 

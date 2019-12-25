@@ -1,31 +1,8 @@
 ---
 layout: task
 title: TODO List
-permalink: /todolist
+permalink: /todo
 ---
 
-- [x] Understanding Git reset & soft & hard
-- [x] Vigenere Cipher
-- [x] WTF Python
-- [x] Python Decorator
-- [x] Chúng ta đang đứng ở đâu trong cách mạng công nghiệp 4.0
-- [x] Khoảng cách Levenshtein và Fuzzy Search
-- [x] [modulo 10^9+7 in competitive programming](https://www.quora.com/What-exactly-is-print-it-modulo-10-9-+-7-in-competitive-programming-web-sites)
-- [x] Cách download hàng loạt google images
-- [x] Writeup Ethernaut CTF part 1
-- [x] Writeup Ethernaut CTF part 2
-- [x] Writeup Ethernaut CTF part 3
-- [x] Writeup Ethernaut CTF part 12
-- [x] Writeup Ethernaut CTF part 13
-- [x] Writeup Ethernaut CTF part 14
-- [x] Writeup Ethernaut CTF part 15
-- [x] Writeup Ethernaut CTF part 16
-- [x] Writeup Ethernaut CTF part 17
-- [x] Writeup Ethernaut CTF part 18
-- [ ] Writeup Ethernaut CTF part 19
-- [x] Storage trong Ethereum smart contract
-- [x] [Ethereum transaction lifecycle](https://medium.com/blockchannel/life-cycle-of-an-ethereum-transaction-e5c66bae0f6e)
-- [x] [React-router-pass-props-to-component](https://tylermcginnis.com/react-router-pass-props-to-components/)
-- [x] Bắt đầu với hyperledger fabric hay hyperledger composer
-- [ ] http://xyproblem.info
+- [x] http://xyproblem.info
 - [ ] https://www.gartner.com/en/research/methodologies/gartner-hype-cycle

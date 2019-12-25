@@ -41,7 +41,7 @@ Bạn T muốn lấy file extensions, nhưng thay vì hỏi đúng vấn đề, 
 >
 > T: À đúng.
 >
-> Kien: Cậu nên biết rằng không phải lúc nào file extension cũng chỉ có 3 ký tự, nên việc cậu lấy 3 ký tự cuối đâu có giải quyết được vấn đề đâu (canloi).
+> Kien: HÃY HỎI ĐÚNG THỨ CẬU CẦN! không phải lúc nào file extension cũng chỉ có 3 ký tự, nên việc cậu lấy 3 ký tự cuối đâu có giải quyết được vấn đề đâu (canloi).
 >
 > Kien: `echo ${foo##*.}`
 

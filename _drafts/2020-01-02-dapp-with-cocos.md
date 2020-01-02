@@ -43,21 +43,21 @@ Download và cài đặt tại đây: [https://www.cocos.com/en/creator](https:/
 
 Ứng dụng của chúng ta sẽ có 2 phần, phần `contract` và phần `game`, ta sẽ lần lượt tạo từng folder:
 
-1. Tạo thư mục gốc của ứng dụng:
+1 - Tạo thư mục gốc của ứng dụng:
 
 ```sh
 mkdir hello-world && cd hello-world
 ```
 
-2. tạo thư mục `contract`:
+2 - tạo thư mục `contract`:
 
 ```sh
 mkdir contract && cd contract
 ```
 
-3. init truffle project
+3 - init truffle project
 
-```
+```sh
 truffle init
 ```
 
@@ -65,13 +65,40 @@ khi này chúng ta sẽ có được một project để bắt đầu code contr
 
 ![truffle-init]({{ site.url }}/assets/images/truffle-init.png)
 
-4. init game project
+4 - init game project
 
-Ta sẽ khởi động Cocos Creator lên và tạo một project mới, để project đơn giản và dễ hiểu nhất ta sẽ tạo project theo template "Hello-world"
+Ta sẽ khởi động Cocos Creator lên và tạo một project mới, để project đơn giản và dễ hiểu nhất ta sẽ tạo project theo template `Hello-world`
 
 ![hello-world]({{ site.url }}/assets/images/hello-world.png)
 
+OK ta đã sẵn sang để vào bước phát triển rồi.
+
 ## Contract Development
+
+Trong bài này ta sẽ làm một contract vô cùng đơn giản, chỉ có 2 phương thức và 1 biến mà thôi.
+
+Vào thư mục `contracts` và tạo một file mới `SimpleStore.sol` với nội dung như sau:
+
+```js
+pragma solidity ^0.5.0;
+
+contract SimpleStore {
+  uint256 value;
+
+  event NewValueSet(uint256 indexed _value, address _sender);
+
+  function set(uint256 newValue) public {
+    value = newValue;
+    emit NewValueSet(value, msg.sender);
+  }
+
+  function get() public view returns (uint256) {
+    return value;
+  }
+}
+```
+
+ở đây ta sẽ dùng một phiên bản solidity 0.5.0.
 
 ## Game Development
 

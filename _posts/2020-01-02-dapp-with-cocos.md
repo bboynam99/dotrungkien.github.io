@@ -15,7 +15,7 @@ Về mặt lý thuyết, ta cũng hoàn toàn có thể xây dựng được cá
 
 Hi vọng trong tương lai với sự hoàn thiện hơn của blockchain thì các store sẽ có các cơ chế thông thoáng hơn với dapp.
 
-Để xây dựng dapp chúng ta có thể sử dụng javascript thuần, hay reactjs, hay vuejs đều được, các bạn có thể tham khảo thêm các bài viết sau đây:
+Để xây dựng dapp chúng ta có thể sử dụng _javascript_ thuần, hay _reactjs_, hay _vuejs_ đều được, các bạn có thể tham khảo thêm các bài viết sau đây:
 
 - Plain: [https://viblo.asia/p/xay-dung-ung-dung-phi-tap-trung-dapp-gAm5y8LLldb](https://viblo.asia/p/xay-dung-ung-dung-phi-tap-trung-dapp-gAm5y8LLldb)
 - Reactjs: [https://viblo.asia/p/xay-dung-ung-dung-phi-tap-trung-dapp-voi-reacjs-L4x5x8p15BM](https://viblo.asia/p/xay-dung-ung-dung-phi-tap-trung-dapp-voi-reacjs-L4x5x8p15BM)
@@ -27,7 +27,7 @@ Trong bài viết này mình sẽ hướng dẫn các bạn xây dựng một we
 
 ## Cài đặt
 
-Chúng ta cần cài đặt _truffle_ để code contract và _Cocos Creator_ để code một sample game đơn giản, _Metamask_ để tương tác với web dapp.
+Chúng ta cần cài đặt _truffle_ để code contract, _Cocos Creator_ để code một sample app đơn giản, và _Metamask_ để tương tác với web dapp.
 
 **truffle**
 
@@ -284,7 +284,9 @@ Scene sẽ trở thành như sau:
 
 ### Script
 
-Để kết nối với blockchain từ game, ta cần phải sử dụng thư viện `Web3js`. Download tại đây [https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js](https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js)
+Để kết nối với blockchain từ game, ta cần phải sử dụng thư viện `Web3js`, trong bài viết này chúng ta sử dụng phiên bản `1.0.0-beta36`.
+
+Download tại đây [https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js](https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js).
 
 Tạo một thư mục `Library` trong thư mục `game` và đưa `web3.min.js` vào đây. Thư mục game của chúng ta sẽ trông như sau:
 
@@ -592,7 +594,7 @@ Confirm và chờ một chút, ta sẽ thấy transaction hoàn thành, và giá
 
 ![game-after]({{ site.url }}/assets/images/game-after.png)
 
-Done!
+All done!
 
 ## Kết luận
 

@@ -108,7 +108,7 @@ contract SimpleStore {
 
 ### Truffle config
 
-tại `truffle-config.js` ta sẽ config tất cả những thông tin về chain, compiler, tài khoản...
+tại `truffle-config.js` ta sẽ config tất cả những thông tin về chain, compiler, accounts...
 
 ```js
 module.exports = {
@@ -124,7 +124,8 @@ module.exports = {
 ```
 
 Ta sẽ build contracts vào luôn một thư mục bên trong thư mục game, để chút nữa ta có thể sử dụng nó trong Cocos.
-Tại bước này, để đơn giản nhất ta sẽ sử dụng một local chain, chạy bởi `ganache-cli`.
+
+Với chain, để đơn giản nhất ta sẽ sử dụng một local chain, chạy bởi `ganache-cli`.
 
 ### Chạy local chain
 
@@ -170,7 +171,7 @@ Private Keys
 (9) 4c97648a754569ef7cfbfafeeb3df4213eea2fb8f1ced9ff38ade25e1ad688c5
 ```
 
-hãy lưu lại một private key để chút nữa ta sẽ sử dụng account tương ứng trong metamask.
+hãy lưu lại private key đầu tiên để chút nữa ta sẽ sử dụng account tương ứng trong metamask.
 
 ### Compile và Migration
 
@@ -267,10 +268,340 @@ OK vậy là xong phần contract.
 
 ## Game Development
 
-## Kết nối contract với game
+Hãy mở Cocos Creator và chọn project `game` mà chúng ta vừa tạo.
 
-## Mở rộng
+### Scene
+
+Mở đầu chúng ta sẽ có một scene `helloworld` với chỉ có một background, một logo và một label.
+
+![cocos-hello-world]({{ site.url }}/assets/images/cocos-hello-world.png)
+
+Ta sẽ tiến hành xóa logo, thêm một label cho `Address`, một label cho `Balance`, một inputBox cho giá trị `value` trong contract, và một button để set giá trị cho `value`.
+
+Scene sẽ trở thành như sau:
+
+![cocos-scene-edited]({{ site.url }}/assets/images/cocos-scene-edited.png)
+
+### Script
+
+Để kết nối với blockchain từ game, ta cần phải sử dụng thư viện `Web3js`. Download tại đây [https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js](https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js)
+
+Tạo một thư mục `Library` trong thư mục `game` và đưa `web3.min.js` vào đây. Thư mục game của chúng ta sẽ trông như sau:
+
+![import-web3]({{ site.url }}/assets/images/import-web3.png)
+
+click vào `web3.min.js` và đảm bảo rằng checkbox `import as plugin` không được check.
+
+![plugin-uncheck]({{ site.url }}/assets/images/plugin-uncheck.png)
+
+OK, giờ ta sẽ chỉnh sửa script `Hello World` như sau:
+
+```js
+const Web3 = require('web3.min');
+const GAS_PRICE_DEFAULT = '20000000000';
+
+cc.Class({
+  extends: cc.Component,
+
+  properties: {
+    currentValueLabel: {
+      default: null,
+      type: cc.Label
+    },
+    addressLabel: {
+      default: null,
+      type: cc.Label
+    },
+    balanceLabel: {
+      default: null,
+      type: cc.Label
+    },
+    inputBox: cc.EditBox,
+    contractABI: cc.JsonAsset
+  },
+
+  onLoad: function() {
+    this.web3 = null;
+    this.web3Provider = null;
+    this.web3ProviderName = 'metamask';
+    this.contract = null;
+    this.currentValue = 0;
+    this.address = '0x';
+    this.balance = 0;
+    this.addressLabel.string = 'Address: ' + this.address;
+    this.balanceLabel.string = 'Balance: ' + this.currentValue;
+
+    this.updateCurrentValue(0);
+
+    this.initWeb3();
+  },
+
+  initWeb3() {
+    const isWeb3Enabled = () => !!window.web3;
+    if (isWeb3Enabled()) {
+      this.web3 = new Web3();
+
+      //Request account access for modern dapp browsers
+      if (window.ethereum) {
+        this.web3Provider = window.ethereum;
+        this.web3.setProvider(this.web3Provider);
+        window.ethereum
+          .enable()
+          .then(accounts => {
+            this.initAccount();
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      }
+      //Request account access for legacy dapp browsers
+      else if (window.web3) {
+        this.web3Provider = window.web3.currentProvider;
+        this.web3.setProvider(this.web3Provider);
+
+        this.initAccount();
+      }
+    } else {
+      console.error('You must enable and login into your Wallet or MetaMask accounts!');
+    }
+  },
+  initAccount() {
+    this.web3.eth.getAccounts().then(accounts => {
+      if (accounts.length > 0) {
+        this.address = accounts[0].toLowerCase();
+        this.addressLabel.string = 'Address: ' + this.address;
+        this.initContract();
+        this.updateBalance();
+      } else console.error('You must enable and login into your Wallet or MetaMask accounts!');
+    });
+  },
+
+  initContract() {
+    let networks = { main: '1', ropsten: '3', kovan: '42', rinkeby: '4' };
+    this.web3.eth.net.getNetworkType().then(netId => {
+      this.contract = new this.web3.eth.Contract(
+        this.contractABI.json.abi,
+        // this.contractABI.json.networks[networks[netId]].address
+        this.contractABI.json.networks['123456789'].address
+      );
+    });
+  },
+
+  updateBalance() {
+    this.web3.eth.getBalance(this.address, (err, balance) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      this.balanceLabel.string = cc.js.formatStr(
+        'Balance: %d ETH',
+        parseInt(this.web3.utils.fromWei(balance))
+      );
+    });
+  },
+
+  getValue() {
+    this.contract.methods
+      .get()
+      .call({
+        from: this.address
+      })
+      .then(val => {
+        this.updateCurrentValue(val);
+        // console.log('get current value: ', val);
+      });
+  },
+
+  setValue() {
+    this.contract.methods
+      .set(this.inputBox.string)
+      .send({
+        from: this.address,
+        gas: 250000,
+        gasPrice: GAS_PRICE_DEFAULT
+      })
+      .on('transactionHash', hash => {
+        // console.log('transactionHash: ', hash);
+      })
+      .on('receipt', receipt => {
+        this.getValue();
+      })
+      .on('error', error => {
+        console.error('endgame error: ', error);
+      });
+  },
+
+  updateCurrentValue(value) {
+    this.currentValueLabel.string = 'Current Value: ' + value;
+  }
+});
+```
+
+**Giải thích**:
+
+- khai báo các label và input box ta vừa định nghĩa bên trên, ở đây đáng chú ý là ta sẽ có một biến `contractABI`, đây chính là contract mà ta đã build bằng lệnh `truffle migrate --network development` ở bên trên.
+
+```js
+contractABI: cc.JsonAsset;
+```
+
+- tại `onLoad`, ta sẽ tiến hành khởi tạo các thuộc tính cần thiết, cũng như web3
+
+```js
+onLoad: function() {
+  this.web3 = null;
+  this.web3Provider = null;
+  this.web3ProviderName = 'metamask';
+  this.contract = null;
+  this.currentValue = 0;
+  this.address = '0x';
+  this.balance = 0;
+  this.addressLabel.string = 'Address: ' + this.address;
+  this.balanceLabel.string = 'Balance: ' + this.currentValue;
+  this.updateCurrentValue(0);
+  this.initWeb3();
+},
 
 ```
 
+- Tại `initWeb3`, ta sẽ detect network ta đang dùng hiện tại và tạo ra một web3 instance
+
+```js
+if (window.ethereum) {
+  this.web3Provider = window.ethereum;
+  this.web3.setProvider(this.web3Provider);
+  window.ethereum
+    .enable()
+    .then(accounts => {
+      this.initAccount();
+    })
+    .catch(error => {
+      console.error(error);
+    });
+} else if (window.web3) {
+  this.web3Provider = window.web3.currentProvider;
+  this.web3.setProvider(this.web3Provider);
+
+  this.initAccount();
+}
 ```
+
+- ta sẽ lấy account đầu tiên trong số các account của ganache-cli và update balance cho nó, đồng thời tạo một instance của contract `SimpleStorage` chúng ta đã code trên kia.
+
+```js
+initAccount() {
+  this.web3.eth.getAccounts().then(accounts => {
+    if (accounts.length > 0) {
+      this.address = accounts[0].toLowerCase();
+      this.addressLabel.string = 'Address: ' + this.address;
+      this.initContract();
+      this.updateBalance();
+    } else console.error('You must enable and login into your Wallet or MetaMask accounts!');
+  });
+},
+
+initContract() {
+  let networks = { main: '1', ropsten: '3', kovan: '42', rinkeby: '4' };
+  this.web3.eth.net.getNetworkType().then(netId => {
+    this.contract = new this.web3.eth.Contract(
+      this.contractABI.json.abi,
+      // this.contractABI.json.networks[networks[netId]].address
+      this.contractABI.json.networks['123456789'].address
+    );
+  });
+},
+
+updateBalance() {
+  this.web3.eth.getBalance(this.address, (err, balance) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    this.balanceLabel.string = cc.js.formatStr(
+      'Balance: %d ETH',
+      parseInt(this.web3.utils.fromWei(balance))
+    );
+  });
+},
+```
+
+- Cuối cùng ta sẽ cài đặt 2 hàm `setValue` và `getValue` tương ứng với hai hàm `set` và `get` trong `SimpleStorage` contract. Lưu ý rằng Cocos Creator chưa support `async/await` nên buộc ta phải xử lý các bất đồng bộ bằng cách wrap và chain promise.
+
+```js
+getValue() {
+  this.contract.methods
+    .get()
+    .call({
+      from: this.address
+    })
+    .then(val => {
+      this.updateCurrentValue(val);
+      // console.log('get current value: ', val);
+    });
+},
+
+setValue() {
+  this.contract.methods
+    .set(this.inputBox.string)
+    .send({
+      from: this.address,
+      gas: 250000,
+      gasPrice: GAS_PRICE_DEFAULT
+    })
+    .on('transactionHash', hash => {
+      // console.log('transactionHash: ', hash);
+    })
+    .on('receipt', receipt => {
+      this.getValue();
+    })
+    .on('error', error => {
+      console.error('endgame error: ', error);
+    });
+},
+```
+
+ok script đã sẵn sàng, kết nối đã sẵn sàng, quay trở lại scene, kéo các biến cần thiết từ scene vào trong script `HelloWorld`:
+
+![scene-script]({{ site.url }}/assets/images/scene-script.png)
+
+## Test game
+
+Giờ là lúc play, nhớ chọn `Browser` và nhấn Play, ta sẽ tới địa chỉ `http://localhost:7456/`.
+
+Khi này ta cần check lại network đã setup ở Metamask xem đã đúng local chưa. Nếu chưa đúng ta sẽ phải thêm một `Custom RPC` như sau:
+
+![new-rpc]({{ site.url }}/assets/images/new-rpc.png)
+
+Sau đó tiến hành import account:
+
+![import-account]({{ site.url }}/assets/images/import-account.png)
+
+Sau đó ta sẽ nhập vào private key đầu tiên ở bên trên khi ta chạy `ganache-cli` lúc nãy:
+
+![import-private-key]({{ site.url }}/assets/images/import-private-key.png)
+
+Ok, mọi thứ đã hoàn tất, khi này scene của chúng ta sẽ trông như sau:
+
+![game-before]({{ site.url }}/assets/images/game-before.png)
+
+set thử một giá trị xem sao, ví dụ 123, khi này metamask sẽ hiện ra popup như sau:
+
+![metamask-confirm]({{ site.url }}/assets/images/metamask-confirm.png)
+
+Confirm và chờ một chút, ta sẽ thấy transaction hoàn thành, và giá trị của chúng ta đã được update thành 123:
+
+![game-after]({{ site.url }}/assets/images/game-after.png)
+
+Done!
+
+## Kết luận
+
+Vậy là chúng ta đã hoàn thành một ứng dụng vô cùng đơn giản với Cocos Creator tích hợp với Ethereum Blockchain rồi.
+
+Dù chức năng chỉ là minimum nhưng ta hoàn toàn có rất nhiều hướng để phát triển. Cocos vốn là một engine nổi tiếng để làm game, do đó ta có thể xây dựng được các game trên đó rất dễ dàng.
+
+Đồng thời ngoài localchain, bằng cách tương tự, ta cũng có thể deploy và kết nối đến các chain khác như Main chain, Ropsten, Rinkeby, Kovan, Loom, Tomo...
+
+Hi vọng chúng ta đã có những trải nghiệm tích cực :D
+
+Enjoy coding!

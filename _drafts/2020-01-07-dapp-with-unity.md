@@ -7,7 +7,7 @@ Trong bài này, chúng ta sẽ tiếp tục xây dựng một dapp (_decentrali
 
 Đây sẽ là một ứng dụng mobile.
 
-> Note: Hiện giờ Apple Store và Google Play đang chưa chấp nhận các dapp mobile do các lý do liên quan đến bảo mật cũng như ảnh hưởng tới hệ thống in-app purchase của họ. Do vậy về mặt thực tiễn, làm dapp với Unity sẽ không giúp bạn có thêm thu nhập từ app store :D
+> Note: Hiện giờ Apple Store và Google Play Store đang chưa chấp nhận các dapp mobile do các lý do liên quan đến bảo mật cũng như ảnh hưởng tới hệ thống in-app purchase của họ. Do vậy về mặt thực tiễn, làm dapp với Unity sẽ không giúp bạn có thêm thu nhập từ app store :D
 
 Đơn giản mình thích thì mình làm thôi!
 
@@ -303,7 +303,7 @@ Chọn `File/Build Settings...`, tại cửa sổ build setting, ta chọn `Andr
 
 ![android-switch-platform]({{ site.url }}/assets/images/dapp-with-unity/android-switch-platform.png)
 
-Tiếp tục chọn `Player Settings...`, đảm bảo `Scripting Runtime Version` là `.Net 4.x Equivalent`, và `Api Compatibility Level` là `.Net 4.x`
+Tiếp tục chọn `Player Settings...`, hãy đảm bảo `Scripting Runtime Version` là `.Net 4.x Equivalent`, và `Api Compatibility Level` là `.Net 4.x`
 
 ![scripting-backend]({{ site.url }}/assets/images/dapp-with-unity/scripting-backend.png)
 
@@ -459,7 +459,7 @@ public class SimpleStore : MonoBehaviour
 
 #### Giải thích
 
-- đầu tiên ta sẽ khai báo các Text, InputField và Button mà ta đã tạo ra ở bên trên, ở đây đáng chú ý là ta sẽ có 2 biến `TextAsset`, dùng để lưu trữ chính ABI và contract address mà ta đã tạo ra từ trước.
+- đầu tiên ta sẽ khai báo các Text, InputField và Button mà ta đã tạo ra ở bên trên, ở đây đáng chú ý là ta sẽ có 2 biến `TextAsset`, dùng để lưu trữ ABI và contract address mà ta đã tạo ra từ trước.
 
 ```csharp
 public TextAsset contractABI;
@@ -549,3 +549,37 @@ public void OnSetValue()
 ok script đã sẵn sàng, quay trở lại scene, add script `SimpleStore` vào object `Canvas`, sau đó kéo các biến cần thiết từ scene vào trong script `SimpleStore` component:
 
 ![simple-store-script]({{ site.url }}/assets/images/dapp-with-unity/simple-store-script.png)
+
+tiếp theo tạo Click Event cho `SET` button, sử dụng hàm callback là `OnSetValue`:
+
+![set-button]({{ site.url }}/assets/images/dapp-with-unity/set-button.png)
+
+## Test game
+
+Khi ta mới vào, giá trị của value là 0:
+
+![game-before]({{ site.url }}/assets/images/dapp-with-unity/game-before.png)
+
+set thử một giá trị xem sao, ví dụ 321, và chờ chút, giá trị sẽ được cập nhật thành 321:
+
+![game-after]({{ site.url }}/assets/images/dapp-with-unity/game-after.png)
+
+All done!
+
+## Kết luận
+
+Vậy là chúng ta đã hoàn thành một ứng dụng vô cùng đơn giản với Unity tích hợp với Ethereum Blockchain rồi.
+
+Dù chức năng chỉ là minimum nhưng ta hoàn toàn có rất nhiều hướng để phát triển. Unity là một engine vô cùng nổi tiếng để làm game, do đó ta có thể xây dựng được các game trên đó rất dễ dàng.
+
+Đồng thời ngoài localchain, bằng cách tương tự, ta cũng có thể deploy và kết nối đến các chain khác như Main chain, Ropsten, Rinkeby, Kovan, Loom, Tomochain...
+
+Nếu các bạn muốn tham khảo một game hoàn chỉnh, các bạn có thể tham khảo sản phẩm Tomo Sheep Fight mình viết trên Tomochain (sản phẩm đã đạt giải Nhì trị giá **1000\$** tại [Tomochain Dappathon 2019](https://medium.com/tomochain/tomochain-dappathon-champions-a13eecc410d8)) tại đây:
+
+[https://github.com/dotrungkien/TomoSheepFight](https://github.com/dotrungkien/TomoSheepFight)
+
+Demo:
+
+[![](http://img.youtube.com/vi/p8dCEz78AIA/0.jpg)](http://www.youtube.com/watch?v=p8dCEz78AIA)
+
+Enjoy coding!

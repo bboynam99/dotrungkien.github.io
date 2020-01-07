@@ -580,6 +580,6 @@ Nếu các bạn muốn tham khảo một game hoàn chỉnh, các bạn có th�
 
 Demo:
 
-[![tomo-sheep-fight]({{ site.url }}/assets/images/dapp-with-unity/tomo-sheep-fight.png)](http://www.youtube.com/watch?v=p8dCEz78AIA)
+[![tomo-sheep-fight]({{ site.url }}/assets/images/dapp-with-unity/tomo-sheep-fight.jpg)](http://www.youtube.com/watch?v=p8dCEz78AIA)
 
 Enjoy coding!

@@ -3,7 +3,7 @@ layout: post
 title: 'Xây dựng Dapp (Dgame) với Cocos Creator'
 ---
 
-# Mở đầu
+## Mở đầu
 
 Trong thời đại blockchain đang rất phát triển, rất nhiều những ứng dụng truyền thống đang dần chuyển dịch sang hướng phi tập trung.
 

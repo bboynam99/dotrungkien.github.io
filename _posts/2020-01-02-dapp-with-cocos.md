@@ -75,7 +75,7 @@ Ta sẽ khởi động Cocos Creator lên và tạo một project mới, để p
 
 ![hello-world]({{ site.url }}/assets/images/hello-world.png)
 
-OK ta đã sẵn sang để vào bước phát triển rồi.
+OK ta đã sẵn sàng để vào bước phát triển rồi.
 
 ## Contract Development
 

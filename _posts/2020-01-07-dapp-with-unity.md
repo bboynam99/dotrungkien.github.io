@@ -3,7 +3,7 @@ layout: post
 title: 'Xây dựng Dapp (Dgame) với Unity'
 ---
 
-Trong bài này, chúng ta sẽ tiếp tục xây dựng một dapp (_decentralized application_) bằng unity.
+Trong bài này, chúng ta sẽ tiếp tục xây dựng một dapp (_decentralized application_) bằng [Unity](https://unity3d.com/).
 
 Đây sẽ là một ứng dụng mobile.
 
@@ -580,6 +580,6 @@ Nếu các bạn muốn tham khảo một game hoàn chỉnh, các bạn có th�
 
 Demo:
 
-[![](http://img.youtube.com/vi/p8dCEz78AIA/0.jpg)](http://www.youtube.com/watch?v=p8dCEz78AIA)
+[![tomo-sheep-fight]({{ site.url }}/assets/images/dapp-with-unity/tomo-sheep-fight.png)](http://www.youtube.com/watch?v=p8dCEz78AIA)
 
 Enjoy coding!

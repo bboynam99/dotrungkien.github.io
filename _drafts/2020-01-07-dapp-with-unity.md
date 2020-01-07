@@ -103,7 +103,6 @@ tại `truffle-config.js` ta sẽ config tất cả những thông tin về chai
 
 ```js
 module.exports = {
-  contracts_build_directory: '../game/Assets/Contracts',
   networks: {
     development: {
       host: '127.0.0.1',
@@ -113,8 +112,6 @@ module.exports = {
   }
 };
 ```
-
-Ta sẽ build contracts vào luôn một thư mục bên trong thư mục game, để chút nữa ta có thể sử dụng nó trong Cocos.
 
 Với chain, để đơn giản nhất ta sẽ sử dụng một local chain, chạy bởi `ganache-cli`.
 
@@ -255,31 +252,72 @@ Summary
 > Final cost:          0.00860274 ETH
 ```
 
+### Extract contract ABI
+
+Việc tạo script đọc và xử lý file `json` với Csharp khá dài nên mình sẽ viết một script js tách luôn ABI và địa chỉ của contract ra một file riêng, để chút nữa trong game ta không phải viết thêm xử lý chỉ việc kéo thả vào trong Unity mà thôi. Easy!
+
+Tạo thư mục `scripts`, bên trong ta tạo một file `extract_abi.js` với nội dung sau:
+
+```js
+const fs = require('fs');
+const path = require('path');
+const contracts = path.resolve(__dirname, '../build/contracts/');
+const unityAbis = path.resolve(__dirname, '../../game/Assets/Contracts/');
+
+module.exports = function() {
+  let builtContracts = fs.readdirSync(contracts);
+  builtContracts.forEach(contract => {
+    if (contract === 'Migrations.json' || contract === 'SafeMath.json') return;
+    console.log('extracting contract ', contract);
+    const name = contract.split('.')[0];
+    let json = JSON.parse(fs.readFileSync(path.resolve(contracts, contract)));
+    let { abi, networks } = json;
+    if (!Object.keys(networks).length) return;
+    fs.writeFileSync(path.resolve(unityAbis, contract), JSON.stringify(json.abi));
+    fs.writeFileSync(path.resolve(unityAbis, name + 'Address.txt'), networks['123456789'].address);
+  });
+};
+```
+
+Bên game, trong thư mục `game/Assets` ta sẽ tạo một thư mục `Contracts`, sau đó quay lại bên contract và chạy lệnh:
+
+```sh
+truffle exec scripts/extract_abi.js
+```
+
+Khi này nó sẽ sinh ra cho chúng ta thư mục Contracts 2 file: `SimpleStore` chứa contract ABI và `SimpleStoreAddress` chứa contract address.
+
+![built-contract]({{ site.url }}/assets/images/dapp-with-unity/built-contract.png)
+
 OK vậy là xong phần contract.
 
 ## Game Development
 
 Hãy mở Unity và chọn project `game` mà chúng ta vừa tạo.
 
+### Project Settings
+
+Vì ta làm ứng dụng mobile, nên việc đầu tiên là ta sẽ switch project sang `Android`.
+
 Chọn `File/Build Settings...`, tại cửa sổ build setting, ta chọn `Android` và nhấn `Switch Platform`.
 
 ![android-switch-platform]({{ site.url }}/assets/images/dapp-with-unity/android-switch-platform.png)
 
-### Project Settings
+Tiếp tục chọn `Player Settings...`, đảm bảo `Scripting Runtime Version` là `.Net 4.x Equivalent`, và `Api Compatibility Level` là `.Net 4.x`
 
-Vì ta làm ứng dụng mobile, nên việc đầu tiên là ta sẽ switch project sang `Android`.
+![scripting-backend]({{ site.url }}/assets/images/dapp-with-unity/scripting-backend.png)
 
 ### Scene
 
 Mở đầu chúng ta sẽ có một scene `SampleScene` chưa có gì ngoài `MainCamera` và `Event System` cả.
 
-Ta lần lượt sẽ tạo các `Text` cho Value, Address, Balance, một `InputField` cho giá trị nhập vào, và một `Button` để set giá trị cho value.
+Ta lần lượt sẽ tạo các `Text` cho Value, Address, Balance, một `InputField` cho giá trị nhập vào, và một `Button` để set giá trị cho value. Thêm chút màu sắc nếu cần.
 
-Scene sẽ trở thành như sau:
+Scene sẽ trông như sau:
 
 ![scene-edited]({{ site.url }}/assets/images/dapp-with-unity/scene-edited.png)
 
-### Script
+### Nethereum Plugin
 
 Để kết nối với blockchain từ Unity, ta sẽ sử dụng một thư viện của Csharp có tên gọi [Nethereum](https://github.com/Nethereum/Nethereum).
 
@@ -287,10 +325,227 @@ Scene sẽ trở thành như sau:
 
 Download Nethereum tại đây: [https://github.com/Nethereum/Nethereum/releases](https://github.com/Nethereum/Nethereum/releases)
 
+Đọc thêm Documentations tại đây: [https://nethereum.readthedocs.io/en/latest/unity3d-introduction/](https://nethereum.readthedocs.io/en/latest/unity3d-introduction/)
+
 Nethereum có 2 phiên bản: Net461 sử dụng cho các hệ thống .Net 4x trở lên, và Net351 sử dụng cho các hệ thống .Net thấp hơn.
 
 Các phiên bản Unity trước đây sử dụng .Net3.5, nhưng gần đây đã nâng cấp lên sử dụng cả 4.x và 3.5, và trong tương lai sẽ bỏ hoàn toàn phiên bản 3.5, nên chúng ta luôn nên sử dụng các phiên bản 4.x trở lên. Trong bài này cũng vậy, chúng ta sẽ sử dụng phiên bản `Net461`.
 
-Ta sẽ tạo thư mục `Plugins` trong thư mục `game/Assets` và giải nén tại đây
+Ta sẽ tạo thư mục `Plugins` trong thư mục `game/Assets` và giải nén thư viện đã download về tại đây.
 
 ![nethereum-plugins]({{ site.url }}/assets/images/dapp-with-unity/nethereum-plugins.png)
+
+_Note: Nếu gặp các lỗi liên quan đến `Library/PackageCache/` thì hãy mạnh dạn tắt đi khởi động lại Unity_.
+
+### Scripts
+
+Tạo thư mục `Scripts`, bên trong tạo một script `SimpleStore.cs` với nội dung như sau:
+
+```csharp
+using System;
+using System.Numerics;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+using UnityEngine;
+using UnityEngine.UI;
+
+using Nethereum.Web3;
+using Nethereum.Web3.Accounts;
+using Nethereum.Contracts;
+using Nethereum.ABI.FunctionEncoding.Attributes;
+using Nethereum.Signer;
+using Nethereum.Hex.HexTypes;
+
+public class SimpleStore : MonoBehaviour
+{
+
+    [Header("Deployed contract")]
+    public TextAsset contractABI;
+    public TextAsset contractAddress;
+
+    public Text currentValueText;
+    public Text addressText;
+    public Text balanceText;
+    public InputField inputValue;
+
+    private HexBigInteger ethBalance;
+    private Web3 web3;
+    private Account account;
+    private string privateKey;
+    private string from;
+    private Contract contract;
+
+    private HexBigInteger gas = new HexBigInteger(900000);
+
+    private Function getFunction;
+    private Function setFunction;
+
+    void Start()
+    {
+        AccountSetup();
+    }
+
+    public void AccountSetup()
+    {
+        var url = "http://localhost:8545";
+        privateKey = "0x26b3f59a6fec532ffc45f121bd2ba3c088666a34136669df03b315e938330d58";
+        account = new Account(privateKey);
+        from = account.Address;
+        web3 = new Web3(account, url);
+        StartCoroutine(StatusInterval());
+        GetContract();
+    }
+
+    IEnumerator StatusInterval()
+    {
+        while (true)
+        {
+            UpdateStatus();
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    public async Task UpdateStatus()
+    {
+        uint newValFromContract = await GetValue();
+        currentValueText.text = "" + newValFromContract;
+        var newBalance = await web3.Eth.GetBalance.SendRequestAsync(from);
+        ethBalance = newBalance;
+        decimal ethBalanceVal = Web3.Convert.FromWei(ethBalance.Value);
+        addressText.text = from;
+        balanceText.text = string.Format("{0:0.00} ETH", ethBalanceVal);
+    }
+
+    public void OnSetValue()
+    {
+        var newValue = inputValue.text;
+        try
+        {
+            int intValue = Int32.Parse(newValue);
+            SetValue(intValue);
+        }
+        catch (FormatException)
+        {
+            Debug.LogError("Unable to parse input!");
+        }
+    }
+
+    void GetContract()
+    {
+        string abi = contractABI.ToString();
+        string address = contractAddress.ToString();
+        contract = web3.Eth.GetContract(abi, address);
+
+        getFunction = contract.GetFunction("get");
+        setFunction = contract.GetFunction("set");
+    }
+
+    public async Task<uint> GetValue()
+    {
+        var value = await getFunction.CallAsync<uint>();
+        return value;
+    }
+
+    public async Task<string> SetValue(int value)
+    {
+        var receipt = await setFunction.SendTransactionAndWaitForReceiptAsync(from, gas, new HexBigInteger(0), null, value);
+        Debug.LogFormat("tx: {0}", receipt.TransactionHash);
+        return receipt.TransactionHash;
+    }
+}
+```
+
+#### Giải thích
+
+- đầu tiên ta sẽ khai báo các Text, InputField và Button mà ta đã tạo ra ở bên trên, ở đây đáng chú ý là ta sẽ có 2 biến `TextAsset`, dùng để lưu trữ chính ABI và contract address mà ta đã tạo ra từ trước.
+
+```csharp
+public TextAsset contractABI;
+public TextAsset contractAddress;
+
+public Text currentValueText;
+public Text addressText;
+public Text balanceText;
+public InputField inputValue;
+```
+
+- ở bài viết này, chúng ta sẽ sử dụng trực tiếp account đầu tiên sinh ra bởi `ganache-cli`. Trên thực tế, chúng ta nên làm thêm chức năng sinh private-key mới cho người dùng, hoặc cho phép người dùng nhập vào mnemonic hay private để import account đã có của họ.
+
+```csharp
+public void AccountSetup()
+{
+    var url = "http://localhost:8545";
+    privateKey = "0x26b3f59a6fec532ffc45f121bd2ba3c088666a34136669df03b315e938330d58";
+    account = new Account(privateKey);
+    from = account.Address;
+    web3 = new Web3(account, url);
+    StartCoroutine(StatusInterval());
+    GetContract();
+}
+```
+
+- sau đó cứ mỗi giây, chúng ta lại update lại trạng thái của ứng dụng, như `value` hay `balance` của account.
+
+```csharp
+public async Task UpdateStatus()
+{
+    uint newValFromContract = await GetValue();
+    currentValueText.text = "" + newValFromContract;
+    var newBalance = await web3.Eth.GetBalance.SendRequestAsync(from);
+    ethBalance = newBalance;
+    decimal ethBalanceVal = Web3.Convert.FromWei(ethBalance.Value);
+    addressText.text = from;
+    balanceText.text = string.Format("{0:0.00} ETH", ethBalanceVal);
+}
+```
+
+- phần định nghĩa contract, ta sẽ sử dụng ABI và contract address để tạo ra contract instance, đồng thời implement các hàm `GetValue` và `SetValue` tương ứng với các hàm `get` và `set` trong `SimpleStore.sol` contract
+
+```csharp
+void GetContract()
+{
+    string abi = contractABI.ToString();
+    string address = contractAddress.ToString();
+    contract = web3.Eth.GetContract(abi, address);
+
+    getFunction = contract.GetFunction("get");
+    setFunction = contract.GetFunction("set");
+}
+
+public async Task<uint> GetValue()
+{
+    var value = await getFunction.CallAsync<uint>();
+    return value;
+}
+
+public async Task<string> SetValue(int value)
+{
+    var receipt = await setFunction.SendTransactionAndWaitForReceiptAsync(from, gas, new HexBigInteger(0), null, value);
+    Debug.LogFormat("tx: {0}", receipt.TransactionHash);
+    return receipt.TransactionHash;
+}
+```
+
+- khi ta bấm `Set` button, thì đầu tiên ta sẽ check xem giá trị trong input field có phải dạng int hay không, sau đó mới gọi hàm từ smart contract.
+
+```csharp
+public void OnSetValue()
+{
+    var newValue = inputValue.text;
+    try
+    {
+        int intValue = Int32.Parse(newValue);
+        SetValue(intValue);
+    }
+    catch (FormatException)
+    {
+        Debug.LogError("Unable to parse input!");
+    }
+}
+```
+
+ok script đã sẵn sàng, quay trở lại scene, add script `SimpleStore` vào object `Canvas`, sau đó kéo các biến cần thiết từ scene vào trong script `SimpleStore` component:
+
+![simple-store-script]({{ site.url }}/assets/images/dapp-with-unity/simple-store-script.png)

@@ -1,6 +1,6 @@
 ---
 layout: task
-title: Today i learned
+title: Assets Store/Market
 permalink: /asset
 ---
 

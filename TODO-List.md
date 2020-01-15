@@ -5,4 +5,4 @@ permalink: /todo
 ---
 
 - [x] http://xyproblem.info
-- [ ] https://www.gartner.com/en/research/methodologies/gartner-hype-cycle
+- [x] https://www.gartner.com/en/research/methodologies/gartner-hype-cycle

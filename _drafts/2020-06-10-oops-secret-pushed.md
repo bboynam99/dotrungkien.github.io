@@ -38,17 +38,13 @@ Hồi mới lập trình và làm quen với git, ta rất hay gặp cách xử 
 
 Khi đã quen và có kinh nghiệm với git, ta biết rằng git lưu trữ lịch sử dạng cây, commit sau nối tiếp commit trước, có nghĩa là để thay đổi nội dung một commit, ta sẽ phải build lại toàn bộ lịch sử từ commit đó trở đi (nghe giống blockchain nhỉ).
 
-Khi này ta có cách thứ hai: Sử dụng các tool để build lại lịch sử commit, đảm bảo rằng file secret không chứa trong bất kì commit nào, rồi push force lên repo.
+Khi này ta có cách hiệu quả hơn lúc trước: Sử dụng các tool để build lại lịch sử commit, đảm bảo rằng file secret không chứa trong bất kì commit nào, rồi push force lên repo.
 
-Done, bài toán commit được giải quyết.
+Có vài thứ hỗ trợ ta điều này: lệnh `git filter-branch` hoặc sử dụng một tool open source có tên là `BFG Repo-Cleaner`.
 
-Nếu ta lỡ đưa các thông tin nhạy cảm lên trên github như secret key, api key, private key, SSH key, password, ta có thể xóa chúng khỏi lịch sử commit của repo.
+Những lệnh và công cụ này giúp ta viết lại toàn bộ lịch sử commit. Có một chú ý là do commit bị viết lại, nên toàn bộ những hash của chúng bị thay đổi. Điều này có thể gây ảnh hưởng tới những pull request đang open trên repo.
 
-Để xóa toàn bộ những file không mong muốn đã up lên github, ta có thể sử dụng lệnh `git filter-branch` hoặc sử dụng một tool open source có tên là `BFG Repo-Cleaner`.
-
-Những lệnh và công cụ này giúp ta viết lại toàn bộ lịch sử commit. Do đó toàn bộ những hash của commit cũng sẽ bị thay đổi. Điều này có thể gây ảnh hưởng tới những pull request của repo.
-
-Vì thế ta nên tiến hành xử lý bằng cách merge hoặc close toàn bộ các pull request trước khi tiến hành remove file để thay đổi lịch sử commit.
+Vì thế ta nên merge hoặc close toàn bộ các pull request trên repo trước khi tiến hành remove file để thay đổi lịch sử commit.
 
 Ta có thể sử dụng `git rm` để xóa file khỏi commit gần nhất. Để tìm hiểu thêm về xóa thông tin khỏi commit gần nhất, ta có thể tham khảo thêm tại bài viết này [Removing files from a repository's history](https://help.github.com/en/articles/removing-files-from-a-repository-s-history).
 
@@ -78,7 +74,40 @@ bfg --replace-text passwords.txt
 
 Để minh họa về cách hoạt động của `git filter-branch`, ta sẽ làm một ví dụ xóa file chứa dữ liệu nhạy cảm trên một repo của chúng ta, và sau đó add file đó vào `.gitignore` để đảm bảo rằng sẽ không xảy ra việc lỡ commit một lần nữa.
 
-## Ngăn chặn việc lỡ push thông tin nhạy cảm trong tương lai
+## Đưa file secret vào gitignore
+
+## Đã đủ an toàn chưa ?
+
+Ta đã xóa commit cũ, build lại commit history, file secret không còn tồn tại nữa, như vậy đã an toàn chưa?
+
+Câu trả lời là CHƯA.
+
+Thực tế github có một cơ chế, đó chính là `cached views`, dù trên repo không còn commit đó nữa, nhưng nếu có commit hash, ta vẫn có thể xem được như thường. Hoặc thông qua forks và pull request cũ ta vẫn có thể xem được toàn bộ thông tin của commit cũ, bao gồm cả file secret chúng ta đã push lên.
+
+Toang!!!
+
+Xử lý đống này thế nào ? Github suggest cho chúng ta phương án cuối cùng, đó chính là liên hệ với [GitHub Support](https://support.github.com/contact) và [GitHub Premium Support](GitHub Premium Support) để họ tiến hành xóa cached views cũng như toàn bộ những tham chiếu tới dữ liệu nhạy cảm trong các pull request trên github.
+
+## What next ?
+
+Có một điều nữa, hãy đảm bảo rằng những collaborators trong repo của ta khi update code sẽ update bằng `rebase`, chứ không phải bằng `merge`. Vì nếu dùng merge thì lịch sử cũ chứa commit có secret (trên máy của collaborator) sẽ được merge với lịch sử mới ta vừa build lại. Vậy là khi đưa lên mọi chuyện ta làm lúc trước sẽ thành công cốc.
+
+Khi dùng `rebase`, lịch sử commit sẽ được đảm bảo là lịch sử mới bắt đầu từ commit ta build lại.
+
+## Last step
+
+Cuối cùng, khi đảm bảo mọi thứ chạy ổn định, ta sẽ remove tất cả những object backup mà ta tạo ra bởi `git filter-branch` ở trên, làm sạch git của chúng ta:
+
+```sh
+$ git for-each-ref --format="delete %(refname)" refs/original | git update-ref --stdin
+$ git reflog expire --expire=now --all
+$ git gc --prune=now
+> Counting objects: 2437, done.
+> Delta compression using up to 4 threads.
+> Compressing objects: 100% (1378/1378), done.
+> Writing objects: 100% (2437/2437), done.
+> Total 2437 (delta 1461), reused 1802 (delta 1048)
+```
 
 ## Tham khảo
 

@@ -3,9 +3,9 @@ layout: post
 title: 'Thôi xong, tui push secret key lên github rồi!!!'
 ---
 
-## Câu chuyện
-
 ![]({{ site.url }}/assets/images/secret-pushed/git-push-go-home.jpg)
+
+## Câu chuyện 1
 
 Một ngày đẹp trời, bạn hăng say cột dự án, công việc hoàn thành suôn sẻ, bạn gửi Pull Request và ra về.
 
@@ -13,9 +13,21 @@ Một ngày đẹp trời, bạn hăng say cột dự án, công việc hoàn th
 
 Từ git log, bạn hốt hoảng nhận ra chính mình chính là hung thủ, thôi xong, giờ làm sao đây ?
 
+## Câu chuyện 2
+
+Dự án của công ty X lưu trữ trên một private repo, mọi người chỉ được phép fork về và tạo pull request. Mọi thông tin đều được giữ bí mật.
+
+Một ngày nọ dev A xin nghỉ việc.
+
+Để giữ lại những công sức code của mình, dev A âm thầm copy code của project về repo public của mình.
+
+Cuối tháng công ty X bỗng thấy bị AWS charge 50 ngàn đô :wtf:
+
+Công ty ráo riết đi tìm nguyên nhân, cuối cùng phát hiện ra key AWS nằm trong repo public của nhân viên A đã nghỉ kia. Cạn lời.
+
 ## Bình luận
 
-Qua lời kể rất thật về một câu chuyện hư cấu, có lẽ chúng ta đều thấy thấp thoáng hình bóng của mình ở đây. Trong cuộc đời lập trình, có lẽ ai trong chúng ta cũng đã từng gặp những trường hợp như vậy, không chỉ một, có thể là nhiều lần.
+Trong cuộc đời lập trình, có lẽ ai trong chúng ta cũng thấy hình bóng của mình thấp thoáng trong những câu chuyện trên, và không chỉ một, có thể là nhiều lần.
 
 Và không phải ai cũng may mắn.
 
@@ -26,11 +38,17 @@ Có rất nhiều trường hợp những sản phẩm đang phát triển hay t
 Có thể bạn chưa biết, nhưng trên internet luôn có những tool chạy 24/24 chỉ để scan những vụ lộ key như vậy trên các nền tảng lưu trữ thông tin như github hay gitlab, bitbucket...
 Nhanh tới mức ta có thể mất tiền sau **chưa đầy 1 phút** khi bị lộ key.
 
+Kể cả khi repo của chúng ta là private, thì nguy cơ vẫn còn từ chính yếu tố con người (câu chuyện 2).
+
 Và việc bảo vệ key an toàn luôn là việc phải đặt lên hàng đầu, từ _suy nghĩ_ (mindset) cho tới _hành động_ (actions).
 
-## Actions
+## Giải pháp
 
-Lý thuyết thế đủ rồi, thế giờ ta lỡ đưa key lên rồi thì xử lý thế nào bây giờ ?
+> Thế giờ làm thế nào để _không bị lộ key_ ?
+
+Câu trả lời rất đơn giản: _không đưa key_ lên github hay bất kì nơi nào khác. Hãy giữ key offline và an toàn.
+
+> Thế giờ ta lỡ đưa key lên rồi thì xử lý thế nào bây giờ?
 
 Hồi mới lập trình và làm quen với git, ta rất hay gặp cách xử lý thế này: Nhanh chóng xóa file secret đi, làm một commit mới rồi push lên ? coi như chưa có gì xảy ra cả.
 
@@ -42,11 +60,9 @@ Khi này ta có cách hiệu quả hơn lúc trước: Sử dụng các tool đ�
 
 Có vài thứ hỗ trợ ta điều này: lệnh `git filter-branch` hoặc sử dụng một tool open source có tên là `BFG Repo-Cleaner`.
 
-Những lệnh và công cụ này giúp ta viết lại toàn bộ lịch sử commit. Có một chú ý là do commit bị viết lại, nên toàn bộ những hash của chúng bị thay đổi. Điều này có thể gây ảnh hưởng tới những pull request đang open trên repo.
+Có một chú ý là do commit bị viết lại, nên toàn bộ các hash của chúng bị thay đổi. Điều này có thể gây ảnh hưởng tới những pull request hiện đang open trên repo.
 
 Vì thế ta nên merge hoặc close toàn bộ các pull request trên repo trước khi tiến hành remove file để thay đổi lịch sử commit.
-
-Ta có thể sử dụng `git rm` để xóa file khỏi commit gần nhất. Để tìm hiểu thêm về xóa thông tin khỏi commit gần nhất, ta có thể tham khảo thêm tại bài viết này [Removing files from a repository's history](https://help.github.com/en/articles/removing-files-from-a-repository-s-history).
 
 ## Xóa một file khỏi lịch sử commit
 
@@ -75,6 +91,14 @@ bfg --replace-text passwords.txt
 Để minh họa về cách hoạt động của `git filter-branch`, ta sẽ làm một ví dụ xóa file chứa dữ liệu nhạy cảm trên một repo của chúng ta, và sau đó add file đó vào `.gitignore` để đảm bảo rằng sẽ không xảy ra việc lỡ commit một lần nữa.
 
 ## Đưa file secret vào gitignore
+
+```sh
+$ echo "YOUR-FILE-WITH-SENSITIVE-DATA" >> .gitignore
+$ git add .gitignore
+$ git commit -m "Add YOUR-FILE-WITH-SENSITIVE-DATA to .gitignore"
+> [master 051452f] Add YOUR-FILE-WITH-SENSITIVE-DATA to .gitignore
+>  1 files changed, 1 insertions(+), 0 deletions(-)
+```
 
 ## Đã đủ an toàn chưa ?
 
@@ -108,6 +132,17 @@ $ git gc --prune=now
 > Writing objects: 100% (2437/2437), done.
 > Total 2437 (delta 1461), reused 1802 (delta 1048)
 ```
+
+## Kết luận
+
+Tổng kết lại các bước xử lý như sau:
+
+- Build lại lịch sử commit kể từ commit bị lộ secret
+- Đưa file secret vào `.gitignore`
+- Tiến hành `push force` để update lịch sử repo
+- Nhắn các collaborators hãy tiến hành rebase lại
+- Contact với [GitHub Support](https://support.github.com/contact) và [GitHub Premium Support](GitHub Premium Support) để xóa cached views cũng như toàn bộ references.
+- Xóa rác
 
 ## Tham khảo
 

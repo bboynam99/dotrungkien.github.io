@@ -31,7 +31,7 @@ Không biết bạn có thấy thấp thoáng hình bóng của mình trong nh�
 
 Và không phải ai cũng may mắn.
 
-Có rất nhiều trường hợp những sản phẩm đang phát triển hay thậm chí đang chạy rồi bị lộ secret key, lộ password, lộ api key hay nhiều thông tin nhạy cảm đã dẫn tới những thiệt hại hàng ngàn, thậm chí hàng triệu đô.
+Có rất nhiều trường hợp những sản phẩm đang phát triển hay thậm chí đang chạy rồi bị lộ secret key, password, api key, private key, mnemonic hay nhiều thông tin nhạy cảm khác đã dẫn tới những thiệt hại hàng ngàn, thậm chí hàng triệu đô.
 
 > Team mình cũng đã từng bị lộ, và thiệt hại khá lớn, xin phép không tiết lộ con số :(
 
@@ -83,13 +83,13 @@ Chúng ta sẽ tiến hành download và cài đặt theo trang chủ tại đâ
 Ví dụ ta có thể xóa những file không mong muốn (chứa các thông tin nhạy cảm) mà vẫn giữ lại được commit cuối cùng như sau:
 
 ```sh
-bfg --delete-files YOUR-FILE-WITH-SENSITIVE-DATA
+java -jar bfg --delete-files YOUR-FILE-WITH-SENSITIVE-DATA
 ```
 
 Hoặc để replace text bên trong file `password.txt` chẳng hạn, ta có thể sử dụng lệnh sau:
 
 ```sh
-bfg --replace-text passwords.txt
+java -jar bfg --replace-text passwords.txt
 ```
 
 `BFG Repo-Cleaner` cung cấp cho ta rất nhiều tùy chọn khác nữa, có thể tham khảo thêm tại [BFG Repo-Cleaner](https://rtyley.github.io/bfg-repo-cleaner/)

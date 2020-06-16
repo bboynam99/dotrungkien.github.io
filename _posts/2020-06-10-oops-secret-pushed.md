@@ -190,7 +190,7 @@ _Nhưng nó còn tồn tại trong database của github hay không thì....ch�
 
 ### 4. Collaborator tiến hành rebase code
 
-Khi làm team, hãy đảm bảo rằng những member khác trong team (collaborators) sẽ update bằng `rebase`, chứ không phải bằng `merge`. Vì nếu dùng merge thì lịch sử cũ chứa commit có secret (trên máy của collaborators) sẽ được merge với lịch sử mới ta vừa build lại. Vậy là khi đưa lên mọi chuyện ta làm lúc trước sẽ thành công cốc.
+Lúc này với team, hãy đảm bảo rằng những member khác (collaborators) sẽ update code mới nhất bằng `rebase`, chứ không phải bằng `merge`. Vì nếu dùng merge thì lịch sử cũ chứa commit có secret (trên máy của collaborators) sẽ được merge với lịch sử mới ta vừa build lại. Vậy là khi đưa lên mọi chuyện ta làm lúc trước sẽ thành công cốc.
 
 Khi dùng `rebase`, lịch sử commit sẽ được đảm bảo là lịch sử mới bắt đầu từ commit ta build lại.
 
@@ -213,15 +213,15 @@ $ git gc --prune=now
 
 Tổng kết lại các bước xử lý như sau:
 
-- Vô hiệu hóa toàn bộ các key, đổi password.
-- Build lại lịch sử commit kể từ commit bị lộ secret
-- Đưa file secret vào `.gitignore`
-- Tiến hành `push force` để update lịch sử repo
-- Nhắn các collaborators hãy tiến hành rebase lại
+- Vô hiệu hóa toàn bộ các key, đổi password (đồng thời thông báo cho các bên liên quan cũng làm tương tự).
+- Build lại lịch sử commit kể từ commit bị lộ secret.
+- Đưa file secret vào `.gitignore`.
+- Tiến hành `push force` để update lịch sử repo.
+- Nhắn các collaborators hãy tiến hành rebase lại.
 - Contact với [GitHub Support](https://support.github.com/contact) và [GitHub Premium Support](GitHub Premium Support) để xóa cached views cũng như toàn bộ references.
-- Xóa rác
+- Xóa rác để làm sạch git.
 
-Hãy cẩn thận và luôn giữ secret key/password của mình an toàn :smile:
+Hãy cẩn thận và luôn giữ key/password/mnemonic của mình an toàn :smile:
 
 ## Tham khảo
 

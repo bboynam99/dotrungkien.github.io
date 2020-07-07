@@ -218,7 +218,7 @@ Tổng kết lại các bước xử lý như sau:
 - Đưa file secret vào `.gitignore`.
 - Tiến hành `push force` để update lịch sử repo.
 - Nhắn các collaborators hãy tiến hành rebase lại.
-- Contact với [GitHub Support](https://support.github.com/contact) và [GitHub Premium Support](GitHub Premium Support) để xóa cached views cũng như toàn bộ references.
+- Contact với [GitHub Support](https://support.github.com/contact) và [GitHub Premium Support](https://premium.githubsupport.com/) để xóa cached views cũng như toàn bộ references.
 - Xóa rác để làm sạch git.
 
 Hãy cẩn thận và luôn giữ key/password/mnemonic của mình an toàn :smile:
